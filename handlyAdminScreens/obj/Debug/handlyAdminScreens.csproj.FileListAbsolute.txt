@@ -1,0 +1,10 @@
+D:\2nDAM\HANDLY\desktop\desktop pantallas\handlyAdminScreens\handlyAdminScreens\bin\Debug\handlyAdminScreens.exe.config
+D:\2nDAM\HANDLY\desktop\desktop pantallas\handlyAdminScreens\handlyAdminScreens\bin\Debug\handlyAdminScreens.exe
+D:\2nDAM\HANDLY\desktop\desktop pantallas\handlyAdminScreens\handlyAdminScreens\bin\Debug\handlyAdminScreens.pdb
+D:\2nDAM\HANDLY\desktop\desktop pantallas\handlyAdminScreens\handlyAdminScreens\obj\Debug\handlyAdminScreens.csproj.AssemblyReference.cache
+D:\2nDAM\HANDLY\desktop\desktop pantallas\handlyAdminScreens\handlyAdminScreens\obj\Debug\handlyAdminScreens.Form1.resources
+D:\2nDAM\HANDLY\desktop\desktop pantallas\handlyAdminScreens\handlyAdminScreens\obj\Debug\handlyAdminScreens.Properties.Resources.resources
+D:\2nDAM\HANDLY\desktop\desktop pantallas\handlyAdminScreens\handlyAdminScreens\obj\Debug\handlyAdminScreens.csproj.GenerateResource.cache
+D:\2nDAM\HANDLY\desktop\desktop pantallas\handlyAdminScreens\handlyAdminScreens\obj\Debug\handlyAdminScreens.csproj.CoreCompileInputs.cache
+D:\2nDAM\HANDLY\desktop\desktop pantallas\handlyAdminScreens\handlyAdminScreens\obj\Debug\handlyAdminScreens.exe
+D:\2nDAM\HANDLY\desktop\desktop pantallas\handlyAdminScreens\handlyAdminScreens\obj\Debug\handlyAdminScreens.pdb
