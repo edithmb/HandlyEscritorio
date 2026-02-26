@@ -8,3 +8,21 @@ D:\2nDAM\HANDLY\desktop\desktop pantallas\handlyAdminScreens\handlyAdminScreens\
 D:\2nDAM\HANDLY\desktop\desktop pantallas\handlyAdminScreens\handlyAdminScreens\obj\Debug\handlyAdminScreens.csproj.CoreCompileInputs.cache
 D:\2nDAM\HANDLY\desktop\desktop pantallas\handlyAdminScreens\handlyAdminScreens\obj\Debug\handlyAdminScreens.exe
 D:\2nDAM\HANDLY\desktop\desktop pantallas\handlyAdminScreens\handlyAdminScreens\obj\Debug\handlyAdminScreens.pdb
+D:\2nDAM\HANDLY\desktop\desktopPantallas\handlyAdminScreens\handlyAdminScreens\bin\Debug\handlyAdminScreens.exe.config
+D:\2nDAM\HANDLY\desktop\desktopPantallas\handlyAdminScreens\handlyAdminScreens\bin\Debug\handlyAdminScreens.exe
+D:\2nDAM\HANDLY\desktop\desktopPantallas\handlyAdminScreens\handlyAdminScreens\bin\Debug\handlyAdminScreens.pdb
+D:\2nDAM\HANDLY\desktop\desktopPantallas\handlyAdminScreens\handlyAdminScreens\obj\Debug\handlyAdminScreens.csproj.AssemblyReference.cache
+D:\2nDAM\HANDLY\desktop\desktopPantallas\handlyAdminScreens\handlyAdminScreens\obj\Debug\handlyAdminScreens.DenunciasPorRevisar.resources
+D:\2nDAM\HANDLY\desktop\desktopPantallas\handlyAdminScreens\handlyAdminScreens\obj\Debug\handlyAdminScreens.Properties.Resources.resources
+D:\2nDAM\HANDLY\desktop\desktopPantallas\handlyAdminScreens\handlyAdminScreens\obj\Debug\handlyAdminScreens.csproj.GenerateResource.cache
+D:\2nDAM\HANDLY\desktop\desktopPantallas\handlyAdminScreens\handlyAdminScreens\obj\Debug\handlyAdminScreens.csproj.CoreCompileInputs.cache
+D:\2nDAM\HANDLY\desktop\desktopPantallas\handlyAdminScreens\handlyAdminScreens\obj\Debug\handlyAdminScreens.exe
+D:\2nDAM\HANDLY\desktop\desktopPantallas\handlyAdminScreens\handlyAdminScreens\obj\Debug\handlyAdminScreens.pdb
+D:\2nDAM\HANDLY\desktop\desktopPantallas\handlyAdminScreens\handlyAdminScreens\obj\Debug\handlyAdminScreens.IdentiadesPorRevisar.resources
+D:\2nDAM\HANDLY\desktop\desktopPantallas\handlyAdminScreens\handlyAdminScreens\obj\Debug\handlyAdminScreens.CuentasActivas.resources
+D:\2nDAM\HANDLY\desktop\desktopPantallas\handlyAdminScreens\handlyAdminScreens\obj\Debug\handlyAdminScreens.CuentasInactivas.resources
+D:\2nDAM\HANDLY\desktop\desktopPantallas\handlyAdminScreens\handlyAdminScreens\obj\Debug\handlyAdminScreens.CuentasPorRevisar.resources
+D:\2nDAM\HANDLY\desktop\desktopPantallas\handlyAdminScreens\handlyAdminScreens\obj\Debug\handlyAdminScreens.DenunciasResueltas.resources
+D:\2nDAM\HANDLY\desktop\desktopPantallas\handlyAdminScreens\handlyAdminScreens\obj\Debug\handlyAdminScreens.IdentidadesResultas.resources
+D:\2nDAM\HANDLY\desktop\desktopPantallas\handlyAdminScreens\handlyAdminScreens\obj\Debug\handlyAdminScreens.Inicio.resources
+D:\2nDAM\HANDLY\desktop\desktopPantallas\handlyAdminScreens\handlyAdminScreens\obj\Debug\handlyAdminScreens.NavigationButtons.resources
