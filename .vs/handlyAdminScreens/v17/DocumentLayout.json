@@ -1,18 +1,50 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\2nDAM\\HANDLY\\desktop\\desktop pantallas\\handlyAdminScreens\\",
+  "WorkspaceRootPath": "D:\\2nDAM\\HANDLY\\desktop\\desktopPantallas\\handlyAdminScreens\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{EF5E0DE9-588C-4FE6-9ADC-9DD2BE5981E3}|handlyAdminScreens\\handlyAdminScreens.csproj|d:\\2ndam\\handly\\desktop\\desktop pantallas\\handlyadminscreens\\handlyadminscreens\\form2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{EF5E0DE9-588C-4FE6-9ADC-9DD2BE5981E3}|handlyAdminScreens\\handlyAdminScreens.csproj|solutionrelative:handlyadminscreens\\form2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{EF5E0DE9-588C-4FE6-9ADC-9DD2BE5981E3}|handlyAdminScreens\\handlyAdminScreens.csproj|d:\\2ndam\\handly\\desktop\\desktoppantallas\\handlyadminscreens\\handlyadminscreens\\identiadesporrevisar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EF5E0DE9-588C-4FE6-9ADC-9DD2BE5981E3}|handlyAdminScreens\\handlyAdminScreens.csproj|solutionrelative:handlyadminscreens\\identiadesporrevisar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EF5E0DE9-588C-4FE6-9ADC-9DD2BE5981E3}|handlyAdminScreens\\handlyAdminScreens.csproj|D:\\2nDAM\\HANDLY\\desktop\\desktop pantallas\\handlyAdminScreens\\handlyadminscreens\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{EF5E0DE9-588C-4FE6-9ADC-9DD2BE5981E3}|handlyAdminScreens\\handlyAdminScreens.csproj|solutionrelative:handlyadminscreens\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{EF5E0DE9-588C-4FE6-9ADC-9DD2BE5981E3}|handlyAdminScreens\\handlyAdminScreens.csproj|d:\\2ndam\\handly\\desktop\\desktoppantallas\\handlyadminscreens\\handlyadminscreens\\denunciasresueltas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EF5E0DE9-588C-4FE6-9ADC-9DD2BE5981E3}|handlyAdminScreens\\handlyAdminScreens.csproj|solutionrelative:handlyadminscreens\\denunciasresueltas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EF5E0DE9-588C-4FE6-9ADC-9DD2BE5981E3}|handlyAdminScreens\\handlyAdminScreens.csproj|D:\\2nDAM\\HANDLY\\desktop\\desktop pantallas\\handlyAdminScreens\\handlyadminscreens\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EF5E0DE9-588C-4FE6-9ADC-9DD2BE5981E3}|handlyAdminScreens\\handlyAdminScreens.csproj|solutionrelative:handlyadminscreens\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{EF5E0DE9-588C-4FE6-9ADC-9DD2BE5981E3}|handlyAdminScreens\\handlyAdminScreens.csproj|d:\\2ndam\\handly\\desktop\\desktoppantallas\\handlyadminscreens\\handlyadminscreens\\navigationbuttons.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EF5E0DE9-588C-4FE6-9ADC-9DD2BE5981E3}|handlyAdminScreens\\handlyAdminScreens.csproj|solutionrelative:handlyadminscreens\\navigationbuttons.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EF5E0DE9-588C-4FE6-9ADC-9DD2BE5981E3}|handlyAdminScreens\\handlyAdminScreens.csproj|d:\\2ndam\\handly\\desktop\\desktoppantallas\\handlyadminscreens\\handlyadminscreens\\cuentasactivas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EF5E0DE9-588C-4FE6-9ADC-9DD2BE5981E3}|handlyAdminScreens\\handlyAdminScreens.csproj|solutionrelative:handlyadminscreens\\cuentasactivas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EF5E0DE9-588C-4FE6-9ADC-9DD2BE5981E3}|handlyAdminScreens\\handlyAdminScreens.csproj|d:\\2ndam\\handly\\desktop\\desktoppantallas\\handlyadminscreens\\handlyadminscreens\\cuentasinactivas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EF5E0DE9-588C-4FE6-9ADC-9DD2BE5981E3}|handlyAdminScreens\\handlyAdminScreens.csproj|solutionrelative:handlyadminscreens\\cuentasinactivas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EF5E0DE9-588C-4FE6-9ADC-9DD2BE5981E3}|handlyAdminScreens\\handlyAdminScreens.csproj|d:\\2ndam\\handly\\desktop\\desktoppantallas\\handlyadminscreens\\handlyadminscreens\\inicio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EF5E0DE9-588C-4FE6-9ADC-9DD2BE5981E3}|handlyAdminScreens\\handlyAdminScreens.csproj|solutionrelative:handlyadminscreens\\inicio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EF5E0DE9-588C-4FE6-9ADC-9DD2BE5981E3}|handlyAdminScreens\\handlyAdminScreens.csproj|d:\\2ndam\\handly\\desktop\\desktoppantallas\\handlyadminscreens\\handlyadminscreens\\cuentasporrevisar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EF5E0DE9-588C-4FE6-9ADC-9DD2BE5981E3}|handlyAdminScreens\\handlyAdminScreens.csproj|solutionrelative:handlyadminscreens\\cuentasporrevisar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EF5E0DE9-588C-4FE6-9ADC-9DD2BE5981E3}|handlyAdminScreens\\handlyAdminScreens.csproj|d:\\2ndam\\handly\\desktop\\desktoppantallas\\handlyadminscreens\\handlyadminscreens\\denunciasporrevisar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EF5E0DE9-588C-4FE6-9ADC-9DD2BE5981E3}|handlyAdminScreens\\handlyAdminScreens.csproj|solutionrelative:handlyadminscreens\\denunciasporrevisar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EF5E0DE9-588C-4FE6-9ADC-9DD2BE5981E3}|handlyAdminScreens\\handlyAdminScreens.csproj|d:\\2ndam\\handly\\desktop\\desktoppantallas\\handlyadminscreens\\handlyadminscreens\\identidadesresultas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EF5E0DE9-588C-4FE6-9ADC-9DD2BE5981E3}|handlyAdminScreens\\handlyAdminScreens.csproj|solutionrelative:handlyadminscreens\\identidadesresultas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EF5E0DE9-588C-4FE6-9ADC-9DD2BE5981E3}|handlyAdminScreens\\handlyAdminScreens.csproj|d:\\2ndam\\handly\\desktop\\desktoppantallas\\handlyadminscreens\\handlyadminscreens\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EF5E0DE9-588C-4FE6-9ADC-9DD2BE5981E3}|handlyAdminScreens\\handlyAdminScreens.csproj|solutionrelative:handlyadminscreens\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EF5E0DE9-588C-4FE6-9ADC-9DD2BE5981E3}|handlyAdminScreens\\handlyAdminScreens.csproj|d:\\2ndam\\handly\\desktop\\desktoppantallas\\handlyadminscreens\\handlyadminscreens\\navigationbuttons.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EF5E0DE9-588C-4FE6-9ADC-9DD2BE5981E3}|handlyAdminScreens\\handlyAdminScreens.csproj|solutionrelative:handlyadminscreens\\navigationbuttons.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,7 +54,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 13,
           "Children": [
             {
               "$type": "Bookmark",
@@ -42,25 +74,104 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Form2.cs [Dise\u00F1o]",
-              "DocumentMoniker": "D:\\2nDAM\\HANDLY\\desktop\\desktop pantallas\\handlyAdminScreens\\handlyAdminScreens\\Form2.cs",
-              "RelativeDocumentMoniker": "handlyAdminScreens\\Form2.cs",
-              "ToolTip": "D:\\2nDAM\\HANDLY\\desktop\\desktop pantallas\\handlyAdminScreens\\handlyAdminScreens\\Form2.cs [Dise\u00F1o]",
-              "RelativeToolTip": "handlyAdminScreens\\Form2.cs [Dise\u00F1o]",
+              "DocumentIndex": 9,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\2nDAM\\HANDLY\\desktop\\desktopPantallas\\handlyAdminScreens\\handlyAdminScreens\\Program.cs",
+              "RelativeDocumentMoniker": "handlyAdminScreens\\Program.cs",
+              "ToolTip": "D:\\2nDAM\\HANDLY\\desktop\\desktopPantallas\\handlyAdminScreens\\handlyAdminScreens\\Program.cs",
+              "RelativeToolTip": "handlyAdminScreens\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-23T19:11:07.994Z",
-              "EditorCaption": " [Dise\u00F1o]"
+              "WhenOpened": "2026-02-26T18:34:21.452Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "IdentidadesResultas.cs",
+              "DocumentMoniker": "D:\\2nDAM\\HANDLY\\desktop\\desktopPantallas\\handlyAdminScreens\\handlyAdminScreens\\IdentidadesResultas.cs",
+              "RelativeDocumentMoniker": "handlyAdminScreens\\IdentidadesResultas.cs",
+              "ToolTip": "D:\\2nDAM\\HANDLY\\desktop\\desktopPantallas\\handlyAdminScreens\\handlyAdminScreens\\IdentidadesResultas.cs",
+              "RelativeToolTip": "handlyAdminScreens\\IdentidadesResultas.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T18:35:09.891Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "DenunciasPorRevisar.cs",
+              "DocumentMoniker": "D:\\2nDAM\\HANDLY\\desktop\\desktopPantallas\\handlyAdminScreens\\handlyAdminScreens\\DenunciasPorRevisar.cs",
+              "RelativeDocumentMoniker": "handlyAdminScreens\\DenunciasPorRevisar.cs",
+              "ToolTip": "D:\\2nDAM\\HANDLY\\desktop\\desktopPantallas\\handlyAdminScreens\\handlyAdminScreens\\DenunciasPorRevisar.cs",
+              "RelativeToolTip": "handlyAdminScreens\\DenunciasPorRevisar.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T18:34:47.612Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "CuentasPorRevisar.cs",
+              "DocumentMoniker": "D:\\2nDAM\\HANDLY\\desktop\\desktopPantallas\\handlyAdminScreens\\handlyAdminScreens\\CuentasPorRevisar.cs",
+              "RelativeDocumentMoniker": "handlyAdminScreens\\CuentasPorRevisar.cs",
+              "ToolTip": "D:\\2nDAM\\HANDLY\\desktop\\desktopPantallas\\handlyAdminScreens\\handlyAdminScreens\\CuentasPorRevisar.cs",
+              "RelativeToolTip": "handlyAdminScreens\\CuentasPorRevisar.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T18:34:39.895Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Inicio.cs",
+              "DocumentMoniker": "D:\\2nDAM\\HANDLY\\desktop\\desktopPantallas\\handlyAdminScreens\\handlyAdminScreens\\Inicio.cs",
+              "RelativeDocumentMoniker": "handlyAdminScreens\\Inicio.cs",
+              "ToolTip": "D:\\2nDAM\\HANDLY\\desktop\\desktopPantallas\\handlyAdminScreens\\handlyAdminScreens\\Inicio.cs",
+              "RelativeToolTip": "handlyAdminScreens\\Inicio.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T18:32:32.918Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "CuentasInactivas.cs",
+              "DocumentMoniker": "D:\\2nDAM\\HANDLY\\desktop\\desktopPantallas\\handlyAdminScreens\\handlyAdminScreens\\CuentasInactivas.cs",
+              "RelativeDocumentMoniker": "handlyAdminScreens\\CuentasInactivas.cs",
+              "ToolTip": "D:\\2nDAM\\HANDLY\\desktop\\desktopPantallas\\handlyAdminScreens\\handlyAdminScreens\\CuentasInactivas.cs",
+              "RelativeToolTip": "handlyAdminScreens\\CuentasInactivas.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T18:34:30.932Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "CuentasActivas.cs",
+              "DocumentMoniker": "D:\\2nDAM\\HANDLY\\desktop\\desktopPantallas\\handlyAdminScreens\\handlyAdminScreens\\CuentasActivas.cs",
+              "RelativeDocumentMoniker": "handlyAdminScreens\\CuentasActivas.cs",
+              "ToolTip": "D:\\2nDAM\\HANDLY\\desktop\\desktopPantallas\\handlyAdminScreens\\handlyAdminScreens\\CuentasActivas.cs",
+              "RelativeToolTip": "handlyAdminScreens\\CuentasActivas.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T18:31:10.146Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "Form1.cs",
-              "DocumentMoniker": "D:\\2nDAM\\HANDLY\\desktop\\desktop pantallas\\handlyAdminScreens\\handlyAdminScreens\\Form1.cs",
-              "RelativeDocumentMoniker": "handlyAdminScreens\\Form1.cs",
-              "ToolTip": "D:\\2nDAM\\HANDLY\\desktop\\desktop pantallas\\handlyAdminScreens\\handlyAdminScreens\\Form1.cs",
-              "RelativeToolTip": "handlyAdminScreens\\Form1.cs",
-              "ViewState": "AgIAADIAAAAAAAAAAAAWwEIAAAAMAAAAAAAAAA==",
+              "Title": "NavigationButtons.cs",
+              "DocumentMoniker": "D:\\2nDAM\\HANDLY\\desktop\\desktopPantallas\\handlyAdminScreens\\handlyAdminScreens\\NavigationButtons.cs",
+              "RelativeDocumentMoniker": "handlyAdminScreens\\NavigationButtons.cs",
+              "ToolTip": "D:\\2nDAM\\HANDLY\\desktop\\desktopPantallas\\handlyAdminScreens\\handlyAdminScreens\\NavigationButtons.cs",
+              "RelativeToolTip": "handlyAdminScreens\\NavigationButtons.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAC4AAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-02-23T18:16:26.414Z",
               "EditorCaption": ""
@@ -68,14 +179,41 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Form1.cs [Dise\u00F1o]",
-              "DocumentMoniker": "D:\\2nDAM\\HANDLY\\desktop\\desktop pantallas\\handlyAdminScreens\\handlyAdminScreens\\Form1.cs",
-              "RelativeDocumentMoniker": "handlyAdminScreens\\Form1.cs",
-              "ToolTip": "D:\\2nDAM\\HANDLY\\desktop\\desktop pantallas\\handlyAdminScreens\\handlyAdminScreens\\Form1.cs [Dise\u00F1o]",
-              "RelativeToolTip": "handlyAdminScreens\\Form1.cs [Dise\u00F1o]",
+              "Title": "DenunciasResueltas.cs",
+              "DocumentMoniker": "D:\\2nDAM\\HANDLY\\desktop\\desktopPantallas\\handlyAdminScreens\\handlyAdminScreens\\DenunciasResueltas.cs",
+              "RelativeDocumentMoniker": "handlyAdminScreens\\DenunciasResueltas.cs",
+              "ToolTip": "D:\\2nDAM\\HANDLY\\desktop\\desktopPantallas\\handlyAdminScreens\\handlyAdminScreens\\DenunciasResueltas.cs",
+              "RelativeToolTip": "handlyAdminScreens\\DenunciasResueltas.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-23T18:14:19.718Z",
-              "EditorCaption": " [Dise\u00F1o]"
+              "WhenOpened": "2026-02-26T18:34:55.742Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "IdentiadesPorRevisar.cs",
+              "DocumentMoniker": "D:\\2nDAM\\HANDLY\\desktop\\desktopPantallas\\handlyAdminScreens\\handlyAdminScreens\\IdentiadesPorRevisar.cs",
+              "RelativeDocumentMoniker": "handlyAdminScreens\\IdentiadesPorRevisar.cs",
+              "ToolTip": "D:\\2nDAM\\HANDLY\\desktop\\desktopPantallas\\handlyAdminScreens\\handlyAdminScreens\\IdentiadesPorRevisar.cs",
+              "RelativeToolTip": "handlyAdminScreens\\IdentiadesPorRevisar.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T18:35:02.812Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "NavigationButtons.Designer.cs",
+              "DocumentMoniker": "D:\\2nDAM\\HANDLY\\desktop\\desktopPantallas\\handlyAdminScreens\\handlyAdminScreens\\NavigationButtons.Designer.cs",
+              "RelativeDocumentMoniker": "handlyAdminScreens\\NavigationButtons.Designer.cs",
+              "ToolTip": "D:\\2nDAM\\HANDLY\\desktop\\desktopPantallas\\handlyAdminScreens\\handlyAdminScreens\\NavigationButtons.Designer.cs",
+              "RelativeToolTip": "handlyAdminScreens\\NavigationButtons.Designer.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-24T18:50:42.788Z",
+              "EditorCaption": ""
             }
           ]
         }
