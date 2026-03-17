@@ -38,14 +38,18 @@
             this.gridUsers.AllowUserToAddRows = false;
             this.gridUsers.AllowUserToDeleteRows = false;
             this.gridUsers.AllowUserToOrderColumns = true;
+            this.gridUsers.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.gridUsers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gridUsers.Location = new System.Drawing.Point(61, 140);
+            this.gridUsers.Location = new System.Drawing.Point(30, 71);
             this.gridUsers.Name = "gridUsers";
             this.gridUsers.ReadOnly = true;
             this.gridUsers.RowHeadersWidth = 62;
             this.gridUsers.RowTemplate.Height = 28;
-            this.gridUsers.Size = new System.Drawing.Size(240, 150);
+            this.gridUsers.Size = new System.Drawing.Size(749, 367);
             this.gridUsers.TabIndex = 0;
+            this.gridUsers.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridUsers_CellContentClick);
             // 
             // textBox1
             // 
