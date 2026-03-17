@@ -8,18 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace handlyAdminScreens
+namespace handlyAdminScreens.Views
 {
-    public partial class DenunciasResueltas : Form
+    public partial class Transacciones : Form
     {
-        public DenunciasResueltas()
+        public Transacciones()
         {
             InitializeComponent();
-        }
-
-        private void DenunciasResueltas_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

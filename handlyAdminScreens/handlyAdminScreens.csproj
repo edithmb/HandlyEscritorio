@@ -61,29 +61,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CuentasActivas.cs">
+    <Compile Include="UserGridItem.cs" />
+    <Compile Include="Views\Denuncias.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CuentasActivas.Designer.cs">
-      <DependentUpon>CuentasActivas.cs</DependentUpon>
-    </Compile>
-    <Compile Include="CuentasInactivas.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="CuentasInactivas.Designer.cs">
-      <DependentUpon>CuentasInactivas.cs</DependentUpon>
-    </Compile>
-    <Compile Include="CuentasPorRevisar.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="CuentasPorRevisar.Designer.cs">
-      <DependentUpon>CuentasPorRevisar.cs</DependentUpon>
-    </Compile>
-    <Compile Include="DenunciasResueltas.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="DenunciasResueltas.Designer.cs">
-      <DependentUpon>DenunciasResueltas.cs</DependentUpon>
+    <Compile Include="Views\Denuncias.Designer.cs">
+      <DependentUpon>Denuncias.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\GridCuentas.cs">
       <SubType>Form</SubType>
@@ -97,61 +80,43 @@
     <Compile Include="Views\Inicio.Designer.cs">
       <DependentUpon>Inicio.cs</DependentUpon>
     </Compile>
-    <Compile Include="NavigationButtons.cs">
+    <Compile Include="Views\NavigationButtons.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="NavigationButtons.Designer.cs">
+    <Compile Include="Views\NavigationButtons.Designer.cs">
       <DependentUpon>NavigationButtons.cs</DependentUpon>
-    </Compile>
-    <Compile Include="DenunciasPorRevisar.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="DenunciasPorRevisar.Designer.cs">
-      <DependentUpon>DenunciasPorRevisar.cs</DependentUpon>
-    </Compile>
-    <Compile Include="IdentiadesPorRevisar.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="IdentiadesPorRevisar.Designer.cs">
-      <DependentUpon>IdentiadesPorRevisar.cs</DependentUpon>
-    </Compile>
-    <Compile Include="IdentidadesResultas.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="IdentidadesResultas.Designer.cs">
-      <DependentUpon>IdentidadesResultas.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="CuentasActivas.resx">
-      <DependentUpon>CuentasActivas.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="CuentasInactivas.resx">
-      <DependentUpon>CuentasInactivas.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="CuentasPorRevisar.resx">
-      <DependentUpon>CuentasPorRevisar.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DenunciasPorRevisar.resx">
-      <DependentUpon>DenunciasPorRevisar.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DenunciasResueltas.resx">
-      <DependentUpon>DenunciasResueltas.cs</DependentUpon>
+    <Compile Include="Views\Transacciones.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Transacciones.Designer.cs">
+      <DependentUpon>Transacciones.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Usuarios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Usuarios.Designer.cs">
+      <DependentUpon>Usuarios.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\VerificacionIdentidades.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\VerificacionIdentidades.Designer.cs">
+      <DependentUpon>VerificacionIdentidades.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Views\Denuncias.resx">
+      <DependentUpon>Denuncias.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\GridCuentas.resx">
       <DependentUpon>GridCuentas.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="IdentidadesResultas.resx">
-      <DependentUpon>IdentidadesResultas.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Views\Inicio.resx">
       <DependentUpon>Inicio.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="NavigationButtons.resx">
+    <EmbeddedResource Include="Views\NavigationButtons.resx">
       <DependentUpon>NavigationButtons.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="IdentiadesPorRevisar.resx">
-      <DependentUpon>IdentiadesPorRevisar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -162,6 +127,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Views\Usuarios.resx">
+      <DependentUpon>Usuarios.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

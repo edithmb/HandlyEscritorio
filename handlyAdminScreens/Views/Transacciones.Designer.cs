@@ -1,6 +1,6 @@
-﻿namespace handlyAdminScreens
+﻿namespace handlyAdminScreens.Views
 {
-    partial class DenunciasPorRevisar
+    partial class Transacciones
     {
         /// <summary>
         /// Required designer variable.
@@ -28,18 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.SuspendLayout();
-            // 
-            // DenunciasPorRevisar
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.components = new System.ComponentModel.Container();
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Name = "DenunciasPorRevisar";
-            this.Text = "Denuncias por revisar";
-            this.Load += new System.EventHandler(this.DenunciasPorRevisar_Load);
-            this.ResumeLayout(false);
-
+            this.Text = "Transacciones";
         }
 
         #endregion

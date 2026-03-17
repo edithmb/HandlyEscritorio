@@ -26,3 +26,17 @@ D:\2nDAM\HANDLY\desktop\desktopPantallas\handlyAdminScreens\handlyAdminScreens\o
 D:\2nDAM\HANDLY\desktop\desktopPantallas\handlyAdminScreens\handlyAdminScreens\obj\Debug\handlyAdminScreens.IdentidadesResultas.resources
 D:\2nDAM\HANDLY\desktop\desktopPantallas\handlyAdminScreens\handlyAdminScreens\obj\Debug\handlyAdminScreens.Inicio.resources
 D:\2nDAM\HANDLY\desktop\desktopPantallas\handlyAdminScreens\handlyAdminScreens\obj\Debug\handlyAdminScreens.NavigationButtons.resources
+C:\Users\júlia\source\repos\HandlyEscritorio\handlyAdminScreens\obj\Debug\handlyAdminScreens.csproj.AssemblyReference.cache
+C:\Users\júlia\source\repos\HandlyEscritorio\handlyAdminScreens\obj\Debug\handlyAdminScreens.Views.Denuncias.resources
+C:\Users\júlia\source\repos\HandlyEscritorio\handlyAdminScreens\obj\Debug\handlyAdminScreens.GridCuentas.resources
+C:\Users\júlia\source\repos\HandlyEscritorio\handlyAdminScreens\obj\Debug\handlyAdminScreens.Inicio.resources
+C:\Users\júlia\source\repos\HandlyEscritorio\handlyAdminScreens\obj\Debug\handlyAdminScreens.NavigationButtons.resources
+C:\Users\júlia\source\repos\HandlyEscritorio\handlyAdminScreens\obj\Debug\handlyAdminScreens.Properties.Resources.resources
+C:\Users\júlia\source\repos\HandlyEscritorio\handlyAdminScreens\obj\Debug\handlyAdminScreens.csproj.GenerateResource.cache
+C:\Users\júlia\source\repos\HandlyEscritorio\handlyAdminScreens\obj\Debug\handlyAdminScreens.csproj.CoreCompileInputs.cache
+C:\Users\júlia\source\repos\HandlyEscritorio\handlyAdminScreens\obj\Debug\handlyAdminScreens.exe
+C:\Users\júlia\source\repos\HandlyEscritorio\handlyAdminScreens\obj\Debug\handlyAdminScreens.pdb
+C:\Users\júlia\source\repos\HandlyEscritorio\handlyAdminScreens\bin\Debug\handlyAdminScreens.exe.config
+C:\Users\júlia\source\repos\HandlyEscritorio\handlyAdminScreens\bin\Debug\handlyAdminScreens.exe
+C:\Users\júlia\source\repos\HandlyEscritorio\handlyAdminScreens\bin\Debug\handlyAdminScreens.pdb
+C:\Users\júlia\source\repos\HandlyEscritorio\handlyAdminScreens\obj\Debug\handlyAdminScreens.Views.Usuarios.resources

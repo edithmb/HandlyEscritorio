@@ -8,16 +8,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace handlyAdminScreens
+namespace handlyAdminScreens.Views
 {
-    public partial class CuentasInactivas : Form
+    public partial class Usuarios : Form
     {
-        public CuentasInactivas()
+        public Usuarios()
         {
             InitializeComponent();
         }
 
-        private void CuentasInactivas_Load(object sender, EventArgs e)
+        private void Usuarios_Load(object sender, EventArgs e)
         {
 
         }

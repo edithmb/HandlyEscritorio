@@ -8,18 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace handlyAdminScreens
+namespace handlyAdminScreens.Views
 {
-    public partial class CuentasPorRevisar : Form
+    public partial class VerificacionIdentidades : Form
     {
-        public CuentasPorRevisar()
+        public VerificacionIdentidades()
         {
             InitializeComponent();
-        }
-
-        private void CuentasPorRevisar_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }
