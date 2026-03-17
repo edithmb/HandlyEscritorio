@@ -85,16 +85,16 @@
     <Compile Include="DenunciasResueltas.Designer.cs">
       <DependentUpon>DenunciasResueltas.cs</DependentUpon>
     </Compile>
-    <Compile Include="GridCuentas.cs">
+    <Compile Include="Views\GridCuentas.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GridCuentas.Designer.cs">
+    <Compile Include="Views\GridCuentas.Designer.cs">
       <DependentUpon>GridCuentas.cs</DependentUpon>
     </Compile>
-    <Compile Include="Inicio.cs">
+    <Compile Include="Views\Inicio.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Inicio.Designer.cs">
+    <Compile Include="Views\Inicio.Designer.cs">
       <DependentUpon>Inicio.cs</DependentUpon>
     </Compile>
     <Compile Include="NavigationButtons.cs">
@@ -138,13 +138,13 @@
     <EmbeddedResource Include="DenunciasResueltas.resx">
       <DependentUpon>DenunciasResueltas.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GridCuentas.resx">
+    <EmbeddedResource Include="Views\GridCuentas.resx">
       <DependentUpon>GridCuentas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="IdentidadesResultas.resx">
       <DependentUpon>IdentidadesResultas.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Inicio.resx">
+    <EmbeddedResource Include="Views\Inicio.resx">
       <DependentUpon>Inicio.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NavigationButtons.resx">
@@ -186,6 +186,11 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Controllers\" />
+    <Folder Include="Models\" />
+    <Folder Include="Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
