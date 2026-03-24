@@ -6,7 +6,7 @@ appsettings.Development.json
 
 [Bb]in/
 [Oo]bj/
-[Tt]est[搁R]esults/
+TestResults/
 .vs/
 *.user
 *.suo
