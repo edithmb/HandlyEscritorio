@@ -70,10 +70,13 @@
             // 
             // panelMain
             // 
-            this.panelMain.Location = new System.Drawing.Point(406, 217);
+            this.panelMain.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelMain.Location = new System.Drawing.Point(0, 35);
             this.panelMain.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panelMain.Name = "panelMain";
-            this.panelMain.Size = new System.Drawing.Size(1200, 692);
+            this.panelMain.Size = new System.Drawing.Size(1200, 661);
             this.panelMain.TabIndex = 8;
             this.panelMain.Visible = false;
             this.panelMain.Paint += new System.Windows.Forms.PaintEventHandler(this.panelMain_Paint);

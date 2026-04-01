@@ -22,10 +22,8 @@ namespace handlyAdminScreens.Views
 
         private void Usuarios_Load(object sender, EventArgs e)
         {
-            // 2. CREAR LOS DATOS INVENTADOS
             _listaUsuariosDePrueba = new List<UserGridItem>
             {
-                // Usuario 1: Un cliente activo
                 new UserGridItem
                 {
                     Id = 1,
@@ -47,7 +45,6 @@ namespace handlyAdminScreens.Views
                     IsAppUser = true
                 },
 
-                // Usuario 2: Un profesional baneado
                 new UserGridItem
                 {
                     Id = 2,
@@ -69,7 +66,6 @@ namespace handlyAdminScreens.Views
                     IsAppUser = true
                 },
 
-                // Usuario 3: Un admin
                 new UserGridItem
                 {
                     Id = 3,
@@ -125,6 +121,38 @@ namespace handlyAdminScreens.Views
         }
 
         private void gridUsers_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void txtSearchUsers_TextChanged(object sender, EventArgs e)
+        {
+           string text = txtSearchUsers.Text.ToLower().Trim();
+
+            // 2. Si el buscador está vacío, mostramos la lista completa original
+            if (string.IsNullOrEmpty(text))
+            {
+               gridUsers.DataSource = _listaUsuariosDePrueba;
+                return;
+            }
+
+            // 3. FILTRADO (El código que preguntabas)
+            // Buscamos en la lista original y creamos una nueva con los que coincidan
+            var filtrados = _listaUsuariosDePrueba.Where(u =>
+                (u.Name != null && u.Name.ToLower().Contains(text)) ||
+                (u.LastName != null && u.LastName.ToLower().Contains(text)) ||
+                (u.Email != null && u.Email.ToLower().Contains(text)) ||
+                (u.DNI != null && u.DNI.ToLower().Contains(text)) ||
+                (u.RoleName != null && u.RoleName.ToLower().Contains(text)) ||
+                (u.StateName != null && u.StateName.ToLower().Contains(text))
+            ).ToList();
+
+            // 4. Actualizamos el Grid con los resultados filtrados
+           gridUsers.DataSource = filtrados;
+          
+        }
+
+        private void lblBuscar_Click(object sender, EventArgs e)
         {
 
         }

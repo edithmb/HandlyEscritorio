@@ -29,7 +29,8 @@
         private void InitializeComponent()
         {
             this.gridUsers = new System.Windows.Forms.DataGridView();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtSearchUsers = new System.Windows.Forms.TextBox();
+            this.lblBuscar = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.gridUsers)).BeginInit();
             this.SuspendLayout();
             // 
@@ -41,29 +42,42 @@
             this.gridUsers.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.gridUsers.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.gridUsers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gridUsers.Location = new System.Drawing.Point(30, 71);
+            this.gridUsers.Location = new System.Drawing.Point(23, 71);
             this.gridUsers.Name = "gridUsers";
             this.gridUsers.ReadOnly = true;
             this.gridUsers.RowHeadersWidth = 62;
             this.gridUsers.RowTemplate.Height = 28;
-            this.gridUsers.Size = new System.Drawing.Size(749, 367);
+            this.gridUsers.Size = new System.Drawing.Size(756, 312);
             this.gridUsers.TabIndex = 0;
             this.gridUsers.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridUsers_CellContentClick);
             // 
-            // textBox1
+            // txtSearchUsers
             // 
-            this.textBox1.Location = new System.Drawing.Point(13, 13);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 26);
-            this.textBox1.TabIndex = 1;
+            this.txtSearchUsers.Location = new System.Drawing.Point(99, 24);
+            this.txtSearchUsers.Name = "txtSearchUsers";
+            this.txtSearchUsers.Size = new System.Drawing.Size(229, 26);
+            this.txtSearchUsers.TabIndex = 1;
+            this.txtSearchUsers.TextChanged += new System.EventHandler(this.txtSearchUsers_TextChanged);
+            // 
+            // lblBuscar
+            // 
+            this.lblBuscar.AutoSize = true;
+            this.lblBuscar.Location = new System.Drawing.Point(30, 27);
+            this.lblBuscar.Name = "lblBuscar";
+            this.lblBuscar.Size = new System.Drawing.Size(63, 20);
+            this.lblBuscar.TabIndex = 2;
+            this.lblBuscar.Text = "Buscar:";
+            this.lblBuscar.Click += new System.EventHandler(this.lblBuscar_Click);
             // 
             // Usuarios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.lblBuscar);
+            this.Controls.Add(this.txtSearchUsers);
             this.Controls.Add(this.gridUsers);
             this.Name = "Usuarios";
             this.Text = "Usuarios";
@@ -77,6 +91,7 @@
         #endregion
 
         private System.Windows.Forms.DataGridView gridUsers;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtSearchUsers;
+        private System.Windows.Forms.Label lblBuscar;
     }
 }
