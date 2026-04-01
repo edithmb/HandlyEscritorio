@@ -2,3 +2,9 @@
 [Bb]in/
 [Oo]bj/
 *.user
+/handlyAdminScreens/bin/Debug/handlyAdminScreens.exe
+/handlyAdminScreens/bin/Debug/handlyAdminScreens.pdb
+/handlyAdminScreens/obj/Debug/handlyAdminScreens.csproj.AssemblyReference.cache
+/handlyAdminScreens/obj/Debug/handlyAdminScreens.csproj.GenerateResource.cache
+/handlyAdminScreens/obj/Debug/handlyAdminScreens.exe
+/handlyAdminScreens/obj/Debug/handlyAdminScreens.pdb
