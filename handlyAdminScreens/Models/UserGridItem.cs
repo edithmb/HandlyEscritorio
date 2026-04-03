@@ -7,7 +7,7 @@ using System.Text.Json.Serialization;
 
 namespace handlyAdminScreens
 {
-    internal class UserGridItem
+    public class UserGridItem
     {
         [JsonPropertyName("id")]
         public long Id { get; set; }
@@ -54,6 +54,19 @@ namespace handlyAdminScreens
                     default:
                         return "otro";
                 }
+            }          
+        }
+
+        [JsonPropertyName("profession")]
+        public List<String> Profession { get; set; } = new List<String>();
+
+        [JsonIgnore]
+        public string ProfessionSummary
+        {
+            get
+            {
+                if (Profession == null || Profession.Count == 0) return "-";
+                return string.Join(", ", Profession);
             }
         }
 

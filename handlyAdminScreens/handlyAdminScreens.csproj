@@ -91,6 +91,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\FilterOptions.cs" />
     <Compile Include="Models\UserGridItem.cs" />
     <Compile Include="Views\Denuncias.cs">
       <SubType>Form</SubType>
@@ -98,11 +99,17 @@
     <Compile Include="Views\Denuncias.Designer.cs">
       <DependentUpon>Denuncias.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\GridCuentas.cs">
+    <Compile Include="Views\EditUser.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\GridCuentas.Designer.cs">
-      <DependentUpon>GridCuentas.cs</DependentUpon>
+    <Compile Include="Views\EditUser.Designer.cs">
+      <DependentUpon>EditUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Filter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Filter.Designer.cs">
+      <DependentUpon>Filter.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Inicio.cs">
       <SubType>Form</SubType>
@@ -139,8 +146,11 @@
     <EmbeddedResource Include="Views\Denuncias.resx">
       <DependentUpon>Denuncias.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\GridCuentas.resx">
-      <DependentUpon>GridCuentas.cs</DependentUpon>
+    <EmbeddedResource Include="Views\EditUser.resx">
+      <DependentUpon>EditUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Filter.resx">
+      <DependentUpon>Filter.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Inicio.resx">
       <DependentUpon>Inicio.cs</DependentUpon>

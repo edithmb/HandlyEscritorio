@@ -31,6 +31,9 @@
             this.gridUsers = new System.Windows.Forms.DataGridView();
             this.txtSearchUsers = new System.Windows.Forms.TextBox();
             this.lblBuscar = new System.Windows.Forms.Label();
+            this.btnFilter = new System.Windows.Forms.Button();
+            this.btnDeleteFilter = new System.Windows.Forms.Button();
+            this.btnEditUser = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gridUsers)).BeginInit();
             this.SuspendLayout();
             // 
@@ -47,8 +50,10 @@
             this.gridUsers.Location = new System.Drawing.Point(23, 71);
             this.gridUsers.Name = "gridUsers";
             this.gridUsers.ReadOnly = true;
+            this.gridUsers.RowHeadersVisible = false;
             this.gridUsers.RowHeadersWidth = 62;
             this.gridUsers.RowTemplate.Height = 28;
+            this.gridUsers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gridUsers.Size = new System.Drawing.Size(756, 312);
             this.gridUsers.TabIndex = 0;
             this.gridUsers.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridUsers_CellContentClick);
@@ -71,11 +76,48 @@
             this.lblBuscar.Text = "Buscar:";
             this.lblBuscar.Click += new System.EventHandler(this.lblBuscar_Click);
             // 
+            // btnFilter
+            // 
+            this.btnFilter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(224)))), ((int)(((byte)(232)))));
+            this.btnFilter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnFilter.Location = new System.Drawing.Point(569, 20);
+            this.btnFilter.Name = "btnFilter";
+            this.btnFilter.Size = new System.Drawing.Size(75, 35);
+            this.btnFilter.TabIndex = 3;
+            this.btnFilter.Text = "Filtrar";
+            this.btnFilter.UseVisualStyleBackColor = false;
+            this.btnFilter.Click += new System.EventHandler(this.btnFilter_Click);
+            // 
+            // btnDeleteFilter
+            // 
+            this.btnDeleteFilter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.btnDeleteFilter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDeleteFilter.Location = new System.Drawing.Point(679, 20);
+            this.btnDeleteFilter.Name = "btnDeleteFilter";
+            this.btnDeleteFilter.Size = new System.Drawing.Size(109, 35);
+            this.btnDeleteFilter.TabIndex = 4;
+            this.btnDeleteFilter.Text = "Borrar filtro";
+            this.btnDeleteFilter.UseVisualStyleBackColor = false;
+            this.btnDeleteFilter.Click += new System.EventHandler(this.btnDeleteFilter_Click);
+            // 
+            // btnEditUser
+            // 
+            this.btnEditUser.Location = new System.Drawing.Point(364, 20);
+            this.btnEditUser.Name = "btnEditUser";
+            this.btnEditUser.Size = new System.Drawing.Size(175, 35);
+            this.btnEditUser.TabIndex = 5;
+            this.btnEditUser.Text = "Editar usuario";
+            this.btnEditUser.UseVisualStyleBackColor = true;
+            this.btnEditUser.Click += new System.EventHandler(this.btnEditUser_Click);
+            // 
             // Usuarios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnEditUser);
+            this.Controls.Add(this.btnDeleteFilter);
+            this.Controls.Add(this.btnFilter);
             this.Controls.Add(this.lblBuscar);
             this.Controls.Add(this.txtSearchUsers);
             this.Controls.Add(this.gridUsers);
@@ -93,5 +135,8 @@
         private System.Windows.Forms.DataGridView gridUsers;
         private System.Windows.Forms.TextBox txtSearchUsers;
         private System.Windows.Forms.Label lblBuscar;
+        private System.Windows.Forms.Button btnFilter;
+        private System.Windows.Forms.Button btnDeleteFilter;
+        private System.Windows.Forms.Button btnEditUser;
     }
 }
