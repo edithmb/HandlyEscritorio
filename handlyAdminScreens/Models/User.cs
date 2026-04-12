@@ -7,7 +7,7 @@ using System.Text.Json.Serialization;
 
 namespace handlyAdminScreens
 {
-    public class UserGridItem
+    public class User
     {
         [JsonPropertyName("id")]
         public long Id { get; set; }
@@ -39,20 +39,11 @@ namespace handlyAdminScreens
             {
                 switch (RoleId)
                 {
-                    case 1:
-                        return "cliente";
-
-                    case 2:
-                        return "profesional";
-
-                    case 3:
-                        return "admin";
-
-                    case 4:
-                        return "super admin";
-
-                    default:
-                        return "otro";
+                    case 1:return "cliente";
+                    case 2:return "profesional";
+                    case 3:return "admin";
+                    case 4:return "super admin";
+                    default:return "otro";
                 }
             }          
         }
@@ -81,26 +72,13 @@ namespace handlyAdminScreens
             {
                 switch (StateId)
                 {
-                    case 1:
-                        return "active";
-
-                    case 2:
-                        return "banned";
-
-                    case 3:
-                        return "pending aprobation";
-
-                    case 4:
-                        return "in revision";
-
-                    case 5:
-                        return "inactive";
-
-                    case 6:
-                        return "deleted";
-
-                    default:
-                        return "otro";
+                    case 1: return "active";
+                    case 2: return "banned";
+                    case 3: return "pending aprobation";
+                    case 4:return "in revision";
+                    case 5:return "inactive";
+                    case 6:return "deleted";
+                    default:return "otro";
                 }
             }
         }

@@ -34,47 +34,47 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.txtLastName = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.gbProfession = new System.Windows.Forms.GroupBox();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.cmbRole = new System.Windows.Forms.ComboBox();
+            this.gbProfession = new System.Windows.Forms.GroupBox();
+            this.chklProfessions = new System.Windows.Forms.CheckedListBox();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.cmbAccountState = new System.Windows.Forms.ComboBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.txtStreet = new System.Windows.Forms.TextBox();
-            this.groupBox7 = new System.Windows.Forms.GroupBox();
-            this.txtCity = new System.Windows.Forms.TextBox();
-            this.groupBox8 = new System.Windows.Forms.GroupBox();
-            this.txtPostalCode = new System.Windows.Forms.TextBox();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
             this.txtCountry = new System.Windows.Forms.TextBox();
+            this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.txtPostalCode = new System.Windows.Forms.TextBox();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.txtCity = new System.Windows.Forms.TextBox();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.txtStreet = new System.Windows.Forms.TextBox();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
             this.txtPhone = new System.Windows.Forms.TextBox();
             this.groupBox11 = new System.Windows.Forms.GroupBox();
-            this.groupBox12 = new System.Windows.Forms.GroupBox();
-            this.txtEmail = new System.Windows.Forms.TextBox();
-            this.groupBox13 = new System.Windows.Forms.GroupBox();
-            this.txtDNI = new System.Windows.Forms.TextBox();
             this.groupBox14 = new System.Windows.Forms.GroupBox();
             this.dtBirthdate = new System.Windows.Forms.DateTimePicker();
+            this.groupBox13 = new System.Windows.Forms.GroupBox();
+            this.txtDNI = new System.Windows.Forms.TextBox();
+            this.groupBox12 = new System.Windows.Forms.GroupBox();
+            this.txtEmail = new System.Windows.Forms.TextBox();
             this.groupBox15 = new System.Windows.Forms.GroupBox();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnAccept = new System.Windows.Forms.Button();
-            this.chklProfessions = new System.Windows.Forms.CheckedListBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.gbProfession.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
-            this.groupBox6.SuspendLayout();
-            this.groupBox7.SuspendLayout();
-            this.groupBox8.SuspendLayout();
             this.groupBox9.SuspendLayout();
+            this.groupBox8.SuspendLayout();
+            this.groupBox7.SuspendLayout();
+            this.groupBox6.SuspendLayout();
             this.groupBox10.SuspendLayout();
             this.groupBox11.SuspendLayout();
-            this.groupBox12.SuspendLayout();
-            this.groupBox13.SuspendLayout();
             this.groupBox14.SuspendLayout();
+            this.groupBox13.SuspendLayout();
+            this.groupBox12.SuspendLayout();
             this.groupBox15.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -133,6 +133,15 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Rol";
             // 
+            // cmbRole
+            // 
+            this.cmbRole.FormattingEnabled = true;
+            this.cmbRole.Location = new System.Drawing.Point(13, 25);
+            this.cmbRole.Name = "cmbRole";
+            this.cmbRole.Size = new System.Drawing.Size(223, 28);
+            this.cmbRole.TabIndex = 1;
+            this.cmbRole.SelectedIndexChanged += new System.EventHandler(this.cmbRole_SelectedIndexChanged);
+            // 
             // gbProfession
             // 
             this.gbProfession.Controls.Add(this.chklProfessions);
@@ -143,6 +152,16 @@
             this.gbProfession.TabStop = false;
             this.gbProfession.Text = "Profesión(es)";
             // 
+            // chklProfessions
+            // 
+            this.chklProfessions.CheckOnClick = true;
+            this.chklProfessions.FormattingEnabled = true;
+            this.chklProfessions.Location = new System.Drawing.Point(7, 26);
+            this.chklProfessions.Name = "chklProfessions";
+            this.chklProfessions.Size = new System.Drawing.Size(229, 96);
+            this.chklProfessions.TabIndex = 0;
+            this.chklProfessions.SelectedIndexChanged += new System.EventHandler(this.chklProfessions_SelectedIndexChanged);
+            // 
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.cmbAccountState);
@@ -152,15 +171,6 @@
             this.groupBox4.TabIndex = 15;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Estado";
-            // 
-            // cmbRole
-            // 
-            this.cmbRole.FormattingEnabled = true;
-            this.cmbRole.Location = new System.Drawing.Point(13, 25);
-            this.cmbRole.Name = "cmbRole";
-            this.cmbRole.Size = new System.Drawing.Size(223, 28);
-            this.cmbRole.TabIndex = 1;
-            this.cmbRole.SelectedIndexChanged += new System.EventHandler(this.cmbRole_SelectedIndexChanged);
             // 
             // cmbAccountState
             // 
@@ -183,22 +193,39 @@
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Dirección postal";
             // 
-            // groupBox6
+            // groupBox9
             // 
-            this.groupBox6.Controls.Add(this.txtStreet);
-            this.groupBox6.Location = new System.Drawing.Point(6, 25);
-            this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(243, 64);
-            this.groupBox6.TabIndex = 14;
-            this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "Calle y número";
+            this.groupBox9.Controls.Add(this.txtCountry);
+            this.groupBox9.Location = new System.Drawing.Point(255, 95);
+            this.groupBox9.Name = "groupBox9";
+            this.groupBox9.Size = new System.Drawing.Size(176, 64);
+            this.groupBox9.TabIndex = 17;
+            this.groupBox9.TabStop = false;
+            this.groupBox9.Text = "País";
             // 
-            // txtStreet
+            // txtCountry
             // 
-            this.txtStreet.Location = new System.Drawing.Point(13, 26);
-            this.txtStreet.Name = "txtStreet";
-            this.txtStreet.Size = new System.Drawing.Size(223, 26);
-            this.txtStreet.TabIndex = 0;
+            this.txtCountry.Location = new System.Drawing.Point(13, 26);
+            this.txtCountry.Name = "txtCountry";
+            this.txtCountry.Size = new System.Drawing.Size(157, 26);
+            this.txtCountry.TabIndex = 0;
+            // 
+            // groupBox8
+            // 
+            this.groupBox8.Controls.Add(this.txtPostalCode);
+            this.groupBox8.Location = new System.Drawing.Point(255, 25);
+            this.groupBox8.Name = "groupBox8";
+            this.groupBox8.Size = new System.Drawing.Size(176, 64);
+            this.groupBox8.TabIndex = 16;
+            this.groupBox8.TabStop = false;
+            this.groupBox8.Text = "Código postal";
+            // 
+            // txtPostalCode
+            // 
+            this.txtPostalCode.Location = new System.Drawing.Point(13, 26);
+            this.txtPostalCode.Name = "txtPostalCode";
+            this.txtPostalCode.Size = new System.Drawing.Size(157, 26);
+            this.txtPostalCode.TabIndex = 0;
             // 
             // groupBox7
             // 
@@ -218,39 +245,22 @@
             this.txtCity.Size = new System.Drawing.Size(223, 26);
             this.txtCity.TabIndex = 0;
             // 
-            // groupBox8
+            // groupBox6
             // 
-            this.groupBox8.Controls.Add(this.txtPostalCode);
-            this.groupBox8.Location = new System.Drawing.Point(255, 25);
-            this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Size = new System.Drawing.Size(176, 64);
-            this.groupBox8.TabIndex = 16;
-            this.groupBox8.TabStop = false;
-            this.groupBox8.Text = "Código postal";
+            this.groupBox6.Controls.Add(this.txtStreet);
+            this.groupBox6.Location = new System.Drawing.Point(6, 25);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(243, 64);
+            this.groupBox6.TabIndex = 14;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "Calle y número";
             // 
-            // txtPostalCode
+            // txtStreet
             // 
-            this.txtPostalCode.Location = new System.Drawing.Point(13, 26);
-            this.txtPostalCode.Name = "txtPostalCode";
-            this.txtPostalCode.Size = new System.Drawing.Size(157, 26);
-            this.txtPostalCode.TabIndex = 0;
-            // 
-            // groupBox9
-            // 
-            this.groupBox9.Controls.Add(this.txtCountry);
-            this.groupBox9.Location = new System.Drawing.Point(255, 95);
-            this.groupBox9.Name = "groupBox9";
-            this.groupBox9.Size = new System.Drawing.Size(176, 64);
-            this.groupBox9.TabIndex = 17;
-            this.groupBox9.TabStop = false;
-            this.groupBox9.Text = "País";
-            // 
-            // txtCountry
-            // 
-            this.txtCountry.Location = new System.Drawing.Point(13, 26);
-            this.txtCountry.Name = "txtCountry";
-            this.txtCountry.Size = new System.Drawing.Size(157, 26);
-            this.txtCountry.TabIndex = 0;
+            this.txtStreet.Location = new System.Drawing.Point(13, 26);
+            this.txtStreet.Name = "txtStreet";
+            this.txtStreet.Size = new System.Drawing.Size(223, 26);
+            this.txtStreet.TabIndex = 0;
             // 
             // groupBox10
             // 
@@ -284,22 +294,22 @@
             this.groupBox11.TabStop = false;
             this.groupBox11.Text = "Datos personales";
             // 
-            // groupBox12
+            // groupBox14
             // 
-            this.groupBox12.Controls.Add(this.txtEmail);
-            this.groupBox12.Location = new System.Drawing.Point(6, 165);
-            this.groupBox12.Name = "groupBox12";
-            this.groupBox12.Size = new System.Drawing.Size(243, 64);
-            this.groupBox12.TabIndex = 15;
-            this.groupBox12.TabStop = false;
-            this.groupBox12.Text = "E-Mail";
+            this.groupBox14.Controls.Add(this.dtBirthdate);
+            this.groupBox14.Location = new System.Drawing.Point(6, 375);
+            this.groupBox14.Name = "groupBox14";
+            this.groupBox14.Size = new System.Drawing.Size(243, 64);
+            this.groupBox14.TabIndex = 15;
+            this.groupBox14.TabStop = false;
+            this.groupBox14.Text = "Fecha de nacimiento";
             // 
-            // txtEmail
+            // dtBirthdate
             // 
-            this.txtEmail.Location = new System.Drawing.Point(13, 26);
-            this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(223, 26);
-            this.txtEmail.TabIndex = 0;
+            this.dtBirthdate.Location = new System.Drawing.Point(13, 26);
+            this.dtBirthdate.Name = "dtBirthdate";
+            this.dtBirthdate.Size = new System.Drawing.Size(223, 26);
+            this.dtBirthdate.TabIndex = 0;
             // 
             // groupBox13
             // 
@@ -318,22 +328,22 @@
             this.txtDNI.Size = new System.Drawing.Size(223, 26);
             this.txtDNI.TabIndex = 0;
             // 
-            // groupBox14
+            // groupBox12
             // 
-            this.groupBox14.Controls.Add(this.dtBirthdate);
-            this.groupBox14.Location = new System.Drawing.Point(6, 375);
-            this.groupBox14.Name = "groupBox14";
-            this.groupBox14.Size = new System.Drawing.Size(243, 64);
-            this.groupBox14.TabIndex = 15;
-            this.groupBox14.TabStop = false;
-            this.groupBox14.Text = "Fecha de nacimiento";
+            this.groupBox12.Controls.Add(this.txtEmail);
+            this.groupBox12.Location = new System.Drawing.Point(6, 165);
+            this.groupBox12.Name = "groupBox12";
+            this.groupBox12.Size = new System.Drawing.Size(243, 64);
+            this.groupBox12.TabIndex = 15;
+            this.groupBox12.TabStop = false;
+            this.groupBox12.Text = "E-Mail";
             // 
-            // dtBirthdate
+            // txtEmail
             // 
-            this.dtBirthdate.Location = new System.Drawing.Point(13, 26);
-            this.dtBirthdate.Name = "dtBirthdate";
-            this.dtBirthdate.Size = new System.Drawing.Size(223, 26);
-            this.dtBirthdate.TabIndex = 0;
+            this.txtEmail.Location = new System.Drawing.Point(13, 26);
+            this.txtEmail.Name = "txtEmail";
+            this.txtEmail.Size = new System.Drawing.Size(223, 26);
+            this.txtEmail.TabIndex = 0;
             // 
             // groupBox15
             // 
@@ -366,19 +376,9 @@
             this.btnAccept.Name = "btnAccept";
             this.btnAccept.Size = new System.Drawing.Size(114, 35);
             this.btnAccept.TabIndex = 20;
-            this.btnAccept.Text = "Aceptar";
+            this.btnAccept.Text = "Guardar";
             this.btnAccept.UseVisualStyleBackColor = false;
             this.btnAccept.Click += new System.EventHandler(this.btnAccept_Click);
-            // 
-            // chklProfessions
-            // 
-            this.chklProfessions.CheckOnClick = true;
-            this.chklProfessions.FormattingEnabled = true;
-            this.chklProfessions.Location = new System.Drawing.Point(7, 26);
-            this.chklProfessions.Name = "chklProfessions";
-            this.chklProfessions.Size = new System.Drawing.Size(229, 96);
-            this.chklProfessions.TabIndex = 0;
-            this.chklProfessions.SelectedIndexChanged += new System.EventHandler(this.chklProfessions_SelectedIndexChanged);
             // 
             // EditUser
             // 
@@ -392,7 +392,7 @@
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.label1);
             this.Name = "EditUser";
-            this.Text = "EditUser";
+            this.Text = "Editar usuario/a";
             this.Load += new System.EventHandler(this.EditUser_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -402,22 +402,22 @@
             this.gbProfession.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             this.groupBox5.ResumeLayout(false);
-            this.groupBox6.ResumeLayout(false);
-            this.groupBox6.PerformLayout();
-            this.groupBox7.ResumeLayout(false);
-            this.groupBox7.PerformLayout();
-            this.groupBox8.ResumeLayout(false);
-            this.groupBox8.PerformLayout();
             this.groupBox9.ResumeLayout(false);
             this.groupBox9.PerformLayout();
+            this.groupBox8.ResumeLayout(false);
+            this.groupBox8.PerformLayout();
+            this.groupBox7.ResumeLayout(false);
+            this.groupBox7.PerformLayout();
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
             this.groupBox10.ResumeLayout(false);
             this.groupBox10.PerformLayout();
             this.groupBox11.ResumeLayout(false);
-            this.groupBox12.ResumeLayout(false);
-            this.groupBox12.PerformLayout();
+            this.groupBox14.ResumeLayout(false);
             this.groupBox13.ResumeLayout(false);
             this.groupBox13.PerformLayout();
-            this.groupBox14.ResumeLayout(false);
+            this.groupBox12.ResumeLayout(false);
+            this.groupBox12.PerformLayout();
             this.groupBox15.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();

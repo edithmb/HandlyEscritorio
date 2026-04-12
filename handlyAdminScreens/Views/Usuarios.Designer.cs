@@ -54,9 +54,10 @@
             this.gridUsers.RowHeadersWidth = 62;
             this.gridUsers.RowTemplate.Height = 28;
             this.gridUsers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridUsers.Size = new System.Drawing.Size(756, 312);
+            this.gridUsers.Size = new System.Drawing.Size(1090, 312);
             this.gridUsers.TabIndex = 0;
             this.gridUsers.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridUsers_CellContentClick);
+            this.gridUsers.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridUsers_CellDoubleClick);
             // 
             // txtSearchUsers
             // 
@@ -80,7 +81,7 @@
             // 
             this.btnFilter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(224)))), ((int)(((byte)(232)))));
             this.btnFilter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnFilter.Location = new System.Drawing.Point(569, 20);
+            this.btnFilter.Location = new System.Drawing.Point(368, 20);
             this.btnFilter.Name = "btnFilter";
             this.btnFilter.Size = new System.Drawing.Size(75, 35);
             this.btnFilter.TabIndex = 3;
@@ -92,7 +93,7 @@
             // 
             this.btnDeleteFilter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.btnDeleteFilter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDeleteFilter.Location = new System.Drawing.Point(679, 20);
+            this.btnDeleteFilter.Location = new System.Drawing.Point(476, 20);
             this.btnDeleteFilter.Name = "btnDeleteFilter";
             this.btnDeleteFilter.Size = new System.Drawing.Size(109, 35);
             this.btnDeleteFilter.TabIndex = 4;
@@ -102,19 +103,21 @@
             // 
             // btnEditUser
             // 
-            this.btnEditUser.Location = new System.Drawing.Point(364, 20);
+            this.btnEditUser.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.btnEditUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEditUser.Location = new System.Drawing.Point(851, 20);
             this.btnEditUser.Name = "btnEditUser";
             this.btnEditUser.Size = new System.Drawing.Size(175, 35);
             this.btnEditUser.TabIndex = 5;
             this.btnEditUser.Text = "Editar usuario";
-            this.btnEditUser.UseVisualStyleBackColor = true;
+            this.btnEditUser.UseVisualStyleBackColor = false;
             this.btnEditUser.Click += new System.EventHandler(this.btnEditUser_Click);
             // 
             // Usuarios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1134, 450);
             this.Controls.Add(this.btnEditUser);
             this.Controls.Add(this.btnDeleteFilter);
             this.Controls.Add(this.btnFilter);

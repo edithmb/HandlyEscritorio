@@ -16,7 +16,7 @@ namespace handlyAdminScreens.Views
     public partial class Usuarios : Form
     {
 
-        private List<UserGridItem> _listaUsuariosDePrueba;
+        private List<User> _listaUsuariosDePrueba;
         private UserFilterOptions _currentFilter = null;
 
         public Usuarios()
@@ -62,7 +62,17 @@ namespace handlyAdminScreens.Views
             gridUsers.Columns["LastName"].DisplayIndex = 1;
             gridUsers.Columns["Email"].DisplayIndex = 2;
             gridUsers.Columns["RoleName"].DisplayIndex = 3;
-            gridUsers.Columns["StateName"].DisplayIndex = 4;
+            gridUsers.Columns["ProfessionSummary"].DisplayIndex = 4;
+            gridUsers.Columns["StateName"].DisplayIndex = 5;
+            gridUsers.Columns["DNI"].DisplayIndex = 6;
+            gridUsers.Columns["StreetNumber"].DisplayIndex = 7;
+            gridUsers.Columns["City"].DisplayIndex = 8;
+            gridUsers.Columns["Postalcode"].DisplayIndex = 9;
+            gridUsers.Columns["Country"].DisplayIndex = 10;
+            gridUsers.Columns["Birthdate"].DisplayIndex = 11;
+            gridUsers.Columns["MobileNumber"].DisplayIndex = 12;
+            gridUsers.Columns["AccountCreation"].DisplayIndex =13;
+            gridUsers.Columns["LastConnection"].DisplayIndex = 14;
 
 
             gridUsers.Columns["LastName"].Frozen = true;
@@ -137,6 +147,11 @@ namespace handlyAdminScreens.Views
                     (u.DNI != null && u.DNI.ToLower().Contains(text)) ||
                     (u.RoleName != null && u.RoleName.ToLower().Contains(text)) ||
                     (u.StateName != null && u.StateName.ToLower().Contains(text)) ||
+                    (u.StreetNumber != null && u.StreetNumber.ToLower().Contains(text)) ||
+                    (u.City != null && u.City.ToLower().Contains(text)) ||
+                    (u.Postalcode != null && u.Postalcode.ToLower().Contains(text)) ||
+                    (u.Country != null && u.Country.ToLower().Contains(text)) ||
+                    (u.MobileNumber != null && u.MobileNumber.ToLower().Contains(text)) ||
                     (u.Name + " " + u.LastName).ToLower().Contains(text)
                 );
             }
@@ -161,28 +176,57 @@ namespace handlyAdminScreens.Views
             }
         }
 
+        private void btnDeleteFilter_Click(object sender, EventArgs e)
+        {
+            _currentFilter = null;
+
+            txtSearchUsers.Text = null;
+
+            ApplyFilterAndSearch();
+        }
+
+        // <>
+
+        private void btnEditUser_Click(object sender, EventArgs e)
+        {
+            if (gridUsers.SelectedRows.Count > 0)
+            {
+                var selectedUser = (User)gridUsers.SelectedRows[0].DataBoundItem;
+
+                using (var editForm = new EditUser(selectedUser))
+                {
+                    if (editForm.ShowDialog() == DialogResult.OK)
+                    {
+                        var updatedUser = editForm.EditedUser;
+                        UpdateLocalList(updatedUser);
+                        ApplyFilterAndSearch();
+                        MessageBox.Show("Usuario actualizado correctamente");
+                    }
+                }
+            }
+        }
+
+        private void UpdateLocalList(User updatedUser)
+        {
+            var index = _listaUsuariosDePrueba.FindIndex(u => u.Id == updatedUser.Id);
+            if (index != -1) _listaUsuariosDePrueba[index] = updatedUser;
+        }
+
+        private void gridUsers_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0) btnEditUser_Click(null, null);
+        }
+
         private void txtSearchUsers_TextChanged(object sender, EventArgs e)
         {
             ApplyFilterAndSearch();
         }
 
-      
-
-        private void gridUsers_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private List<User>  CrearUsariosPrueba()
         {
-
-        }
-
-        private void lblBuscar_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private List<UserGridItem>  CrearUsariosPrueba()
-        {
-            _listaUsuariosDePrueba = new List<UserGridItem>
+            return new List<User>
             {
-                new UserGridItem
+                new User
                 {
                     Id = 1,
                     UserId = 101,
@@ -204,7 +248,7 @@ namespace handlyAdminScreens.Views
                     IsAppUser = true
                 },
 
-                new UserGridItem
+                new User
                 {
                     Id = 2,
                     UserId = 102,
@@ -226,7 +270,7 @@ namespace handlyAdminScreens.Views
                     IsAppUser = true
                 },
 
-                new UserGridItem
+                new User
                 {
                     Id = 3,
                     UserId = 103,
@@ -247,43 +291,15 @@ namespace handlyAdminScreens.Views
                     AccountCreation = new DateTime(2024, 1, 1),
                     IsAppUser = false
                 }
-
             };
-
-            return _listaUsuariosDePrueba;
         }
 
-        private void btnDeleteFilter_Click(object sender, EventArgs e)
+        private void lblBuscar_Click(object sender, EventArgs e)
         {
-            _currentFilter = null;
 
-            txtSearchUsers.Text = null;
-
-            ApplyFilterAndSearch();
         }
 
-        // <>
-
-        private void btnEditUser_Click(object sender, EventArgs e)
-        {
-            if (gridUsers.Rows.Count > 0)
-            {
-                var selectedUser = (UserGridItem)gridUsers.SelectedRows[0].DataBoundItem;
-
-                using (var editForm = new EditUser(selectedUser))
-                {
-                    if (editForm.ShowDialog() == DialogResult.OK)
-                    {
-                        var updatedUser = editForm.EditedUser;
-                        UpdateLocalList(updatedUser);
-                        ApplyFilterAndSearch();
-                        MessageBox.Show("Usuario actualizado correctamente");
-                    }
-                }
-            }
-        }
-
-        private void UpdateLocalList(UserGirdItem updatedUser)
+        private void gridUsers_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }

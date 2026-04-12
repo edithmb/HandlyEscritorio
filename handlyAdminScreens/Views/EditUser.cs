@@ -13,13 +13,13 @@ namespace handlyAdminScreens.Views
 {
     public partial class EditUser : Form
     {
-        public UserGridItem EditedUser {  get; private set; }
+        public User EditedUser {  get; private set; }
 
-        public EditUser(UserGridItem originalUser)
+        public EditUser(User originalUser)
         {
             InitializeComponent();
 
-            EditedUser = new UserGridItem
+            EditedUser = new User
             {
                 Id = originalUser.Id,
                 UserId = originalUser.Id,
@@ -27,7 +27,7 @@ namespace handlyAdminScreens.Views
                 LastName = originalUser.LastName,
                 Email = originalUser.Email,
                 RoleId = originalUser.RoleId,
-                Profession = originalUser.Profession != null ? new List<string>(originalUser.Profession) : new List<string>()
+                Profession = originalUser.Profession != null ? new List<string>(originalUser.Profession) : new List<string>(),
                 StateId = originalUser.StateId,
                 DNI = originalUser.DNI,
                 StreetNumber = originalUser.StreetNumber,
@@ -140,7 +140,8 @@ namespace handlyAdminScreens.Views
 
         private void cmbRole_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cmbRole.SelectedIndex == 1) chklProfessions.Enabled = false;
+            if (cmbRole.SelectedIndex == 1) chklProfessions.Enabled = true;
+            else chklProfessions.Enabled = false;
         }
 
         private void btnAccept_Click(object sender, EventArgs e)
@@ -157,6 +158,8 @@ namespace handlyAdminScreens.Views
             EditedUser.Birthdate = dtBirthdate.Value;
             EditedUser.RoleId = cmbRole.SelectedIndex + 1;
             EditedUser.StateId = cmbRole.SelectedIndex + 1;
+
+            if (cmbRole.SelectedIndex != 1) EditedUser.Profession = null;
 
             foreach (var i in chklProfessions.CheckedItems) {
                 EditedUser.Profession.Add(i.ToString());

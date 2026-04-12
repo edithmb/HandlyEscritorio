@@ -92,7 +92,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\FilterOptions.cs" />
-    <Compile Include="Models\UserGridItem.cs" />
+    <Compile Include="Models\Transaction.cs" />
+    <Compile Include="Models\User.cs" />
     <Compile Include="Views\Denuncias.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -167,6 +168,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Views\Transacciones.resx">
+      <DependentUpon>Transacciones.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\Usuarios.resx">
       <DependentUpon>Usuarios.cs</DependentUpon>
     </EmbeddedResource>
