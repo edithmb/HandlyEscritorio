@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using handlyAdminScreens.Helpers;
 
 namespace handlyAdminScreens.Views
 {
@@ -28,6 +29,7 @@ namespace handlyAdminScreens.Views
         {
             _listaUsuariosDePrueba = CrearUsariosPrueba();
             gridUsers.DataSource = _listaUsuariosDePrueba;
+
 
             SetupGrid();
         }
@@ -78,11 +80,6 @@ namespace handlyAdminScreens.Views
             gridUsers.Columns["LastName"].Frozen = true;
         }
     
-
-
-        // <>
-
-
         private void ApplyFilterAndSearch()
         {
             var query = _listaUsuariosDePrueba.AsQueryable();
@@ -135,24 +132,24 @@ namespace handlyAdminScreens.Views
                 }
             }
 
-            string text = txtSearchUsers.Text.ToLower().Trim();
+            string text = txtSearchUsers.Text.FormatStrForSearch().Trim();
 
             if (!string.IsNullOrEmpty(text))
             {
                 query = query.Where(u =>
-                    (u.Name != null && u.Name.ToLower().Contains(text)) ||
-                    (u.LastName != null && u.LastName.ToLower().Contains(text)) ||
-                    (u.Profession != null && u.Profession.Any(p => p.ToLower().Contains(text))) ||
+                    (u.Name != null && u.Name.FormatStrForSearch().Contains(text)) ||
+                    (u.LastName != null && u.LastName.FormatStrForSearch().Contains(text)) ||
+                    (u.Profession != null && u.Profession.Any(p => p.FormatStrForSearch().Contains(text))) ||
                     (u.Email != null && u.Email.ToLower().Contains(text)) ||
-                    (u.DNI != null && u.DNI.ToLower().Contains(text)) ||
-                    (u.RoleName != null && u.RoleName.ToLower().Contains(text)) ||
-                    (u.StateName != null && u.StateName.ToLower().Contains(text)) ||
-                    (u.StreetNumber != null && u.StreetNumber.ToLower().Contains(text)) ||
-                    (u.City != null && u.City.ToLower().Contains(text)) ||
-                    (u.Postalcode != null && u.Postalcode.ToLower().Contains(text)) ||
-                    (u.Country != null && u.Country.ToLower().Contains(text)) ||
+                    (u.DNI != null && u.DNI.FormatStrForSearch().Contains(text)) ||
+                    (u.RoleName != null && u.RoleName.FormatStrForSearch().Contains(text)) ||
+                    (u.StateName != null && u.StateName.FormatStrForSearch().Contains(text)) ||
+                    (u.StreetNumber != null && u.StreetNumber.FormatStrForSearch().Contains(text)) ||
+                    (u.City != null && u.City.FormatStrForSearch().Contains(text)) ||
+                    (u.Postalcode != null && u.Postalcode.FormatStrForSearch().Contains(text)) ||
+                    (u.Country != null && u.Country.FormatStrForSearch().Contains(text)) ||
                     (u.MobileNumber != null && u.MobileNumber.ToLower().Contains(text)) ||
-                    (u.Name + " " + u.LastName).ToLower().Contains(text)
+                    (u.Name + " " + u.LastName).FormatStrForSearch().Contains(text)
                 );
             }
 
@@ -184,8 +181,6 @@ namespace handlyAdminScreens.Views
 
             ApplyFilterAndSearch();
         }
-
-        // <>
 
         private void btnEditUser_Click(object sender, EventArgs e)
         {

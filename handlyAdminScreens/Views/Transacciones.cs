@@ -1,5 +1,6 @@
 ﻿using handlyAdminScreens.Models;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using handlyAdminScreens.Helpers;
 
 namespace handlyAdminScreens.Views
 {
@@ -55,21 +57,106 @@ namespace handlyAdminScreens.Views
             if (gridTransactions.Columns["Task"] != null) gridTransactions.Columns["Task"].Visible = false;
             if (gridTransactions.Columns["Invoice"] != null) gridTransactions.Columns["Invoice"].Visible = false;
 
-            gridTransactions.Columns["TaskID"].Frozen = true;    
-            gridTransactions.Columns["TaskTitle"].Frozen = true;    
+            gridTransactions.Columns["TaskID"].Frozen = true;
+            gridTransactions.Columns["TaskTitle"].Frozen = true;
         }
 
-        private void ApplyFilterAndSearch
+        private void ApplyFilterAndSearch()
+        {
+            var query = _listaTransaccionesDePrueba.AsQueryable();
+
+            if (_currentFilter != null)
+            {
+                if (_currentFilter.TaskState != null && _currentFilter.TaskState.Any())
+                {
+                    query = query.Where(t => t.Task != null &&
+                                             _currentFilter.TaskState.Contains(t.Task.TaskStateName.ToLower()));
+                }
+
+                if (_currentFilter.CreatedFromDate.HasValue)
+                {
+                    query = query.Where(t => t.Task != null &&
+                                             t.Task.CreationDate >= _currentFilter.CreatedFromDate.Value);
+                }
+
+                if (_currentFilter.CreatedToDate.HasValue)
+                {
+                    DateTime until = _currentFilter.CreatedToDate.Value.Date.AddDays(1).AddTicks(-1);
+                    query = query.Where(t => t.Task != null &&
+                                             t.Task.CreationDate <= until);
+                }
+
+                if (_currentFilter.MinAmount.HasValue)
+                {
+                    query = query.Where(t => t.Invoice != null &&
+                                             t.Invoice.TotalPayment >= _currentFilter.MinAmount.Value);
+                }
+
+                if (_currentFilter.MaxAmount.HasValue)
+                {
+                    query = query.Where(t => t.Invoice != null &&
+                                             t.Invoice.TotalPayment <= _currentFilter.MaxAmount.Value);
+                }
+            }
+
+
+            string text = txtSearchTransaction.Text.FormatStrForSearch().Trim();
+
+            if (!string.IsNullOrEmpty(text))
+            {
+                query = query.Where(t =>
+                    (t.Task != null && t.Task.Id.ToString().Contains(text)) ||
+                    (t.Task != null && t.Task.Title != null && t.Task.Title.FormatStrForSearch().Contains(text)) ||
+                    (t.Task != null && t.Task.Description != null && t.Task.Description.FormatStrForSearch().Contains(text)) ||
+                    (t.Task != null && t.Task.TaskStateName != null && t.Task.TaskStateName.FormatStrForSearch().Contains(text)) ||
+
+                    (t.Task != null && t.Task.Client != null && (
+                        (t.Task.Client.Name != null && t.Task.Client.Name.FormatStrForSearch().Contains(text)) ||
+                        (t.Task.Client.LastName != null && t.Task.Client.LastName.FormatStrForSearch().Contains(text)) ||
+                        ((t.Task.Client.Name + " " + t.Task.Client.LastName).FormatStrForSearch().Contains(text))
+                    )) ||
+
+                        (t.Task != null && t.Task.Professional != null && (
+                        (t.Task.Professional.Name != null && t.Task.Professional.Name.FormatStrForSearch().Contains(text)) ||
+                        (t.Task.Professional.LastName != null && t.Task.Professional.LastName.FormatStrForSearch().Contains(text)) ||
+                        ((t.Task.Professional.Name + " " + t.Task.Professional.LastName).FormatStrForSearch().Contains(text))
+                    )) ||
+
+                    (t.Invoice != null && t.Invoice.PaymentMethod != null && t.Invoice.PaymentMethod.FormatStrForSearch().Contains(text)) ||
+                    (t.Invoice != null && t.Invoice.TotalPayment.ToString().Contains(text))
+                );
+            }
+
+            gridTransactions.DataSource = null;
+            gridTransactions.DataSource = query.ToList();
+
+            SetupGrid();
+        }
 
         private void btnFilter_Click(object sender, EventArgs e)
         {
             using (var filterForm = new Filter(CurrentGridType.Transactions))
             {
-                /*if (filterForm.ShowDialog() == DialogResult.OK) 
+                if (filterForm.ShowDialog() == DialogResult.OK)
                 {
-                
-                }*/
+                    _currentFilter = (TransactionFilterOptions)filterForm.SelectedFilters;
+
+                    ApplyFilterAndSearch();
+                }
             }
+        }
+        private void txtSearchTransaction_TextChanged(object sender, EventArgs e)
+        {
+            ApplyFilterAndSearch();
+        }
+
+        private void btnDeleteFilter_Click(object sender, EventArgs e)
+        {
+            _currentFilter = null;
+
+            txtSearchTransaction.Text = null;
+
+            ApplyFilterAndSearch();
         }
 
         private List<Transaction> CrearTransaccionesPrueba()

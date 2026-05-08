@@ -30,9 +30,9 @@
         {
             this.gridTransactions = new System.Windows.Forms.DataGridView();
             this.lblBuscar = new System.Windows.Forms.Label();
-            this.txtSearchUsers = new System.Windows.Forms.TextBox();
             this.btnFilter = new System.Windows.Forms.Button();
             this.btnDeleteFilter = new System.Windows.Forms.Button();
+            this.txtSearchTransaction = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.gridTransactions)).BeginInit();
             this.SuspendLayout();
             // 
@@ -65,13 +65,6 @@
             this.lblBuscar.TabIndex = 3;
             this.lblBuscar.Text = "Buscar:";
             // 
-            // txtSearchUsers
-            // 
-            this.txtSearchUsers.Location = new System.Drawing.Point(99, 24);
-            this.txtSearchUsers.Name = "txtSearchUsers";
-            this.txtSearchUsers.Size = new System.Drawing.Size(229, 26);
-            this.txtSearchUsers.TabIndex = 4;
-            // 
             // btnFilter
             // 
             this.btnFilter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(224)))), ((int)(((byte)(232)))));
@@ -94,15 +87,24 @@
             this.btnDeleteFilter.TabIndex = 6;
             this.btnDeleteFilter.Text = "Borrar filtro";
             this.btnDeleteFilter.UseVisualStyleBackColor = false;
+            this.btnDeleteFilter.Click += new System.EventHandler(this.btnDeleteFilter_Click);
+            // 
+            // txtSearchTransaction
+            // 
+            this.txtSearchTransaction.Location = new System.Drawing.Point(99, 24);
+            this.txtSearchTransaction.Name = "txtSearchTransaction";
+            this.txtSearchTransaction.Size = new System.Drawing.Size(229, 26);
+            this.txtSearchTransaction.TabIndex = 7;
+            this.txtSearchTransaction.TextChanged += new System.EventHandler(this.txtSearchTransaction_TextChanged);
             // 
             // Transacciones
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1134, 450);
+            this.Controls.Add(this.txtSearchTransaction);
             this.Controls.Add(this.btnDeleteFilter);
             this.Controls.Add(this.btnFilter);
-            this.Controls.Add(this.txtSearchUsers);
             this.Controls.Add(this.lblBuscar);
             this.Controls.Add(this.gridTransactions);
             this.Name = "Transacciones";
@@ -118,8 +120,8 @@
 
         private System.Windows.Forms.DataGridView gridTransactions;
         private System.Windows.Forms.Label lblBuscar;
-        private System.Windows.Forms.TextBox txtSearchUsers;
         private System.Windows.Forms.Button btnFilter;
         private System.Windows.Forms.Button btnDeleteFilter;
+        private System.Windows.Forms.TextBox txtSearchTransaction;
     }
 }

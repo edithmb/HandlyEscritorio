@@ -15,7 +15,7 @@ namespace handlyAdminScreens.Models
         Reports
     }
 
-    public class BaseFilterOptions 
+    public class BaseFilterOptions
     {
         public bool RemoveFilter { get; set; } = false;
     }
@@ -32,12 +32,13 @@ namespace handlyAdminScreens.Models
         public DateTime? LastConnectionToDate { get; set; }
     }
 
-    public class TransactionFilterOptions : BaseFilterOptions 
+    public class TransactionFilterOptions : BaseFilterOptions
     {
-         public decimal? MinAmount { get; set; }
+        public string TaskState { get; set; }
+        public DateTime? CreatedFromDate { get; set; }
+        public DateTime? CreatedToDate { get; set; }
+        public double? MinAmount { get; set; }
+        public double? MaxAmount { get; set; }
 
-        public decimal? MaxAmount { get; set; }
-        public DateTime? FromDate { get; set; }
-        public DateTime? ToDate { get; set; }
     }
 }
