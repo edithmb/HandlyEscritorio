@@ -30,9 +30,22 @@ namespace handlyAdminScreens.Views
 
         private async void Usuarios_Load(object sender, EventArgs e)
         {
-            var users = await _apiService.GetAllUsersAsync();
-           
-            SetupGrid();
+            // pedimos los usuarios al API. Si falla, mostramos lista vacía y avisamos
+            try
+            {
+                _listaUsuariosDePrueba = await _apiService.GetAllUsersAsync();
+            }
+            catch (Exception ex)
+            {
+                _listaUsuariosDePrueba = new List<User>();
+                Helpers.SafeData.ShowError("Error al cargar usuarios",
+                    "No se pudieron cargar los usuarios desde el servidor.", ex);
+            }
+
+            // garantizamos que nunca sea null
+            if (_listaUsuariosDePrueba == null) _listaUsuariosDePrueba = new List<User>();
+
+            ApplyFilterAndSearch();
         }
 
         private void SetupGrid()

@@ -104,8 +104,10 @@ namespace handlyAdminScreens
         public string Country { get; set; }
 
 
+        // todos los campos de fecha son nullable porque la API puede devolver null
+        // (ej. usuarios sin App_users entry como admin/superadmin)
         [JsonPropertyName("birthdate")]
-        public DateTime Birthdate { get; set; }
+        public DateTime? Birthdate { get; set; }
 
 
         [JsonPropertyName("mobile")]
@@ -113,11 +115,11 @@ namespace handlyAdminScreens
 
 
         [JsonPropertyName("last_connection")]
-        public DateTime LastConnection { get; set; }
+        public DateTime? LastConnection { get; set; }
 
 
         [JsonPropertyName("account_creation_date")]
-        public DateTime AccountCreation { get; set; }
+        public DateTime? AccountCreation { get; set; }
 
 
         [JsonIgnore]

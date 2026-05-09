@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using handlyAdminScreens.Helpers;
+using handlyAdminScreens.Services;
 
 namespace handlyAdminScreens.Views
 {
@@ -18,18 +19,41 @@ namespace handlyAdminScreens.Views
 
         private List<Transaction> _listaTransaccionesDePrueba;
         private TransactionFilterOptions _currentFilter = null;
+        private readonly ApiService _api = new ApiService();
 
         public Transacciones()
         {
             InitializeComponent();
         }
 
-        private void Transacciones_Load(object sender, EventArgs e)
+        private async void Transacciones_Load(object sender, EventArgs e)
         {
-            _listaTransaccionesDePrueba = CrearTransaccionesPrueba();
-            gridTransactions.DataSource = _listaTransaccionesDePrueba;
+            // cargamos las transacciones desde la API en vez de usar datos de prueba
+            try
+            {
+                var result = await _api.GetAllTransactionsAsync();
+                if (result.Success)
+                {
+                    _listaTransaccionesDePrueba = result.Data ?? new List<Transaction>();
+                }
+                else
+                {
+                    _listaTransaccionesDePrueba = new List<Transaction>();
+                    SafeData.ShowError("Error al cargar transacciones",
+                        "No se pudieron cargar las transacciones: " + result.ErrorMessage);
+                }
+            }
+            catch (Exception ex)
+            {
+                _listaTransaccionesDePrueba = new List<Transaction>();
+                SafeData.ShowError("Error inesperado",
+                    "No se pudieron cargar las transacciones.", ex);
+            }
 
-            SetupGrid();
+            // garantizamos que nunca sea null
+            if (_listaTransaccionesDePrueba == null) _listaTransaccionesDePrueba = new List<Transaction>();
+
+            ApplyFilterAndSearch();
         }
 
         private void SetupGrid()

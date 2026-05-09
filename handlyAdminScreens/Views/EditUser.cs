@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,42 +7,60 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using handlyAdminScreens.Helpers;
 using handlyAdminScreens.Models;
+using handlyAdminScreens.Services;
 
 namespace handlyAdminScreens.Views
 {
     public partial class EditUser : Form
     {
-        public User EditedUser {  get; private set; }
+        public User EditedUser { get; private set; }
+
+        private readonly ApiService _api = new ApiService();
 
         public EditUser(User originalUser)
         {
             InitializeComponent();
 
+            // si nos pasan un usuario null, montamos uno vacío para que no reviente nada
+            if (originalUser == null) originalUser = new User();
+
+            // copia defensiva del usuario - todos los campos string usan SafeData
             EditedUser = new User
             {
                 Id = originalUser.Id,
                 UserId = originalUser.Id,
-                Name = originalUser.Name,
-                LastName = originalUser.LastName,
-                Email = originalUser.Email,
+                Name = SafeData.Text(originalUser.Name),
+                LastName = SafeData.Text(originalUser.LastName),
+                Email = SafeData.Text(originalUser.Email),
                 RoleId = originalUser.RoleId,
-                Profession = originalUser.Profession != null ? new List<string>(originalUser.Profession) : new List<string>(),
+                Profession = SafeData.List(originalUser.Profession),
                 StateId = originalUser.StateId,
-                DNI = originalUser.DNI,
-                StreetNumber = originalUser.StreetNumber,
-                City = originalUser.City,   
-                Postalcode = originalUser.Postalcode,
-                Country = originalUser.Country,
+                DNI = SafeData.Text(originalUser.DNI),
+                StreetNumber = SafeData.Text(originalUser.StreetNumber),
+                City = SafeData.Text(originalUser.City),
+                Postalcode = SafeData.Text(originalUser.Postalcode),
+                Country = SafeData.Text(originalUser.Country),
                 Birthdate = originalUser.Birthdate,
-                MobileNumber = originalUser.MobileNumber,
+                MobileNumber = SafeData.Text(originalUser.MobileNumber),
                 LastConnection = originalUser.LastConnection,
                 AccountCreation = originalUser.AccountCreation
             };
 
-            SetupComboBoxes();
-            SetupProfessions();
-            LoadData();
+            try
+            {
+                SetupComboBoxes();
+                SetupProfessions();
+                LoadData();
+            }
+            catch (Exception ex)
+            {
+                // no queremos que el form reviente al abrirse
+                SafeData.ShowError("Error al cargar usuario",
+                    "No se pudieron cargar todos los datos del usuario. Faltan campos en la API.",
+                    ex);
+            }
         }
 
         private void SetupComboBoxes()
@@ -77,7 +95,6 @@ namespace handlyAdminScreens.Views
             chklProfessions.Items.AddRange(options);
         }
 
-        // <>
         private void LoadData()
         {
             LoadProfessionsInUI();
@@ -91,82 +108,142 @@ namespace handlyAdminScreens.Views
             txtCity.Text = EditedUser.City;
             txtPostalCode.Text = EditedUser.Postalcode;
             txtCountry.Text = EditedUser.Country;
-            dtBirthdate.Value = EditedUser.Birthdate;
 
-            if (EditedUser.RoleId > 0) cmbRole.SelectedIndex = EditedUser.RoleId - 1;
-            if (EditedUser.StateId > 0) cmbAccountState.SelectedIndex = EditedUser.StateId - 1;
+            // DateTimePicker no acepta DateTime.MinValue ni fechas < 1753 -> usamos helper
+            SafeData.SetDate(dtBirthdate, EditedUser.Birthdate);
+
+            // SelectedIndex seguro: si el rol/estado vienen vacíos, no peta
+            SafeData.SelectIndex(cmbRole, EditedUser.RoleId - 1);
+            SafeData.SelectIndex(cmbAccountState, EditedUser.StateId - 1);
         }
 
         private void LoadProfessionsInUI()
         {
-            for (int i = 0; i< chklProfessions.Items.Count; i++)
+            // EditedUser.Profession ya está garantizado no-null por SafeData.List
+            for (int i = 0; i < chklProfessions.Items.Count; i++)
             {
                 string professionName = chklProfessions.Items[i].ToString();
-
-                if (EditedUser.Profession.Contains(professionName)) chklProfessions.SetItemChecked(i, true);
-                else chklProfessions.SetItemChecked (i, false);
+                chklProfessions.SetItemChecked(i, EditedUser.Profession.Contains(professionName));
             }
         }
 
-        private void EditUser_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void groupBox7_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtName_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtLastName_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void chklProfessions_SelectedIndexChanged(object sender, EventArgs e)
-        {
-         
-        }
+        private void EditUser_Load(object sender, EventArgs e) { }
+        private void groupBox1_Enter(object sender, EventArgs e) { }
+        private void groupBox7_Enter(object sender, EventArgs e) { }
+        private void txtName_TextChanged(object sender, EventArgs e) { }
+        private void txtLastName_TextChanged(object sender, EventArgs e) { }
+        private void chklProfessions_SelectedIndexChanged(object sender, EventArgs e) { }
 
         private void cmbRole_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cmbRole.SelectedIndex == 1) chklProfessions.Enabled = true;
-            else chklProfessions.Enabled = false;
+            // sólo profesionales tienen oficios
+            chklProfessions.Enabled = (cmbRole.SelectedIndex == 1);
         }
 
-        private void btnAccept_Click(object sender, EventArgs e)
+        // valida que el formulario tiene los campos mínimos antes de mandar al API
+        private bool ValidateInputs(out string errorMessage)
         {
+            errorMessage = null;
+
+            if (string.IsNullOrWhiteSpace(txtName.Text))
+            {
+                errorMessage = "El nombre es obligatorio.";
+                return false;
+            }
+            if (string.IsNullOrWhiteSpace(txtLastName.Text))
+            {
+                errorMessage = "El apellido es obligatorio.";
+                return false;
+            }
+
+            // email simple: si está, que tenga @
+            string email = txtEmail.Text.Trim();
+            if (!string.IsNullOrEmpty(email) && !email.Contains("@"))
+            {
+                errorMessage = "El email no es válido.";
+                return false;
+            }
+
+            return true;
+        }
+
+        private async void btnAccept_Click(object sender, EventArgs e)
+        {
+            // 1. validar antes de tocar nada
+            if (!ValidateInputs(out string error))
+            {
+                SafeData.ShowError("Datos no válidos", error);
+                return;
+            }
+
+            // 2. recoger los valores actuales del formulario
             EditedUser.Name = txtName.Text.Trim();
             EditedUser.LastName = txtLastName.Text.Trim();
             EditedUser.Email = txtEmail.Text.Trim();
             EditedUser.MobileNumber = txtPhone.Text.Trim();
-            EditedUser.DNI = txtDNI.Text.Trim();  
+            EditedUser.DNI = txtDNI.Text.Trim();
             EditedUser.StreetNumber = txtStreet.Text.Trim();
             EditedUser.Postalcode = txtPostalCode.Text.Trim();
             EditedUser.City = txtCity.Text.Trim();
             EditedUser.Country = txtCountry.Text.Trim();
             EditedUser.Birthdate = dtBirthdate.Value;
-            EditedUser.RoleId = cmbRole.SelectedIndex + 1;
-            EditedUser.StateId = cmbRole.SelectedIndex + 1;
+            if (cmbRole.SelectedIndex >= 0) EditedUser.RoleId = cmbRole.SelectedIndex + 1;
+            if (cmbAccountState.SelectedIndex >= 0) EditedUser.StateId = cmbAccountState.SelectedIndex + 1;
 
-            if (cmbRole.SelectedIndex != 1) EditedUser.Profession = null;
-
-            foreach (var i in chklProfessions.CheckedItems) {
-                EditedUser.Profession.Add(i.ToString());
+            // profesiones (sólo si es profesional)
+            EditedUser.Profession = new List<string>();
+            if (cmbRole.SelectedIndex == 1)
+            {
+                foreach (var i in chklProfessions.CheckedItems)
+                {
+                    EditedUser.Profession.Add(i.ToString());
+                }
             }
 
-            this.DialogResult = DialogResult.OK;
-            this.Close();
+            // 3. mandar al API
+            SetBusy(true);
+            try
+            {
+                // 3a. datos personales / dirección (PUT /clients/{id})
+                var updateResult = await _api.UpdateUserAsync(EditedUser);
+                if (!updateResult.Success)
+                {
+                    SafeData.ShowError("No se pudo guardar",
+                        "Error al actualizar datos: " + updateResult.ErrorMessage);
+                    return;
+                }
+
+                // 3b. estado de la cuenta (PATCH /users/{id}/state) - sólo si lo seleccionaron
+                if (cmbAccountState.SelectedIndex >= 0)
+                {
+                    var stateResult = await _api.ChangeUserStateAsync(EditedUser.Id, EditedUser.StateId);
+                    if (!stateResult.Success)
+                    {
+                        // no es un error fatal: avisamos pero seguimos
+                        SafeData.ShowError("Aviso",
+                            "Datos guardados, pero no se pudo actualizar el estado: " + stateResult.ErrorMessage);
+                    }
+                }
+
+                this.DialogResult = DialogResult.OK;
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                SafeData.ShowError("Error inesperado",
+                    "No se pudo guardar el usuario.", ex);
+            }
+            finally
+            {
+                SetBusy(false);
+            }
+        }
+
+        private void SetBusy(bool busy)
+        {
+            btnAccept.Enabled = !busy;
+            btnCancel.Enabled = !busy;
+            this.Cursor = busy ? Cursors.WaitCursor : Cursors.Default;
         }
     }
 }

@@ -98,8 +98,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Helpers\SafeData.cs" />
     <Compile Include="Helpers\StringExtensions.cs" />
     <Compile Include="Models\FilterOptions.cs" />
+    <Compile Include="Models\LoginModels.cs" />
     <Compile Include="Models\Transaction.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\Task.cs" />
@@ -128,6 +130,12 @@
     </Compile>
     <Compile Include="Views\Inicio.Designer.cs">
       <DependentUpon>Inicio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Login.Designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\NavigationButtons.cs">
       <SubType>Form</SubType>
@@ -166,6 +174,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Inicio.resx">
       <DependentUpon>Inicio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\NavigationButtons.resx">
       <DependentUpon>NavigationButtons.cs</DependentUpon>
