@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -12,15 +13,19 @@ namespace handlyAdminScreens.Services
     {
         private readonly HttpClient _httpClient;
         private const string BaseUrl = "http://localhost:8000/api";
+        private readonly JsonSerializerOptions _jsonOptions;
 
         public ApiService()
         {
             _httpClient = new HttpClient();
+            _jsonOptions = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
         }
 
-        // Get all users
+        // GET: All users
         public async Task<List<User>> GetAllUsersAsync()
         {
+            List<User> result = new List<User>();
+
             try
             {
                 var response = await _httpClient.GetAsync($"{BaseUrl}/users");
@@ -28,26 +33,34 @@ namespace handlyAdminScreens.Services
                 if (response.IsSuccessStatusCode)
                 {
                     var json = await response.Content.ReadAsStringAsync();
-                    var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
-                    var users = JsonSerializer.Deserialize<List<User>>(json, options);
-                    return users ?? new List<User>();
+                    result = JsonSerializer.Deserialize<List<User>>(json, _jsonOptions) ?? new List<User>();
                 }
                 else
                 {
-                    Console.WriteLine($"Error: {response.StatusCode}");
-                    return new List<User>();
+                    throw new HttpRequestException($"API Error: {response.StatusCode}");
                 }
+            }
+            catch (HttpRequestException ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"HTTP Error: {ex.Message}");
+            }
+            catch (JsonException ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"JSON Deserialization Error: {ex.Message}");
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Exception: {ex.Message}");
-                return new List<User>();
+                System.Diagnostics.Debug.WriteLine($"Unexpected Error: {ex.Message}");
             }
+
+            return result;
         }
 
-        // Get all tasks (admin endpoint)
+        // GET: All tasks (admin endpoint)
         public async Task<List<Task>> GetAllTasksAsync()
         {
+            List<Task> result = new List<Task>();
+
             try
             {
                 var response = await _httpClient.GetAsync($"{BaseUrl}/admin/tasks");
@@ -55,26 +68,34 @@ namespace handlyAdminScreens.Services
                 if (response.IsSuccessStatusCode)
                 {
                     var json = await response.Content.ReadAsStringAsync();
-                    var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
-                    var tasks = JsonSerializer.Deserialize<List<Task>>(json, options);
-                    return tasks ?? new List<Task>();
+                    result = JsonSerializer.Deserialize<List<Task>>(json, _jsonOptions) ?? new List<Task>();
                 }
                 else
                 {
-                    Console.WriteLine($"Error: {response.StatusCode}");
-                    return new List<Task>();
+                    throw new HttpRequestException($"API Error: {response.StatusCode}");
                 }
+            }
+            catch (HttpRequestException ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"HTTP Error: {ex.Message}");
+            }
+            catch (JsonException ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"JSON Deserialization Error: {ex.Message}");
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Exception: {ex.Message}");
-                return new List<Task>();
+                System.Diagnostics.Debug.WriteLine($"Unexpected Error: {ex.Message}");
             }
+
+            return result;
         }
 
-        // Get all invoices (admin endpoint)
+        // GET: All invoices (admin endpoint)
         public async Task<List<Models.Transaction>> GetAllInvoicesAsync()
         {
+            List<Models.Transaction> result = new List<Models.Transaction>();
+
             try
             {
                 var response = await _httpClient.GetAsync($"{BaseUrl}/admin/invoices");
@@ -82,26 +103,34 @@ namespace handlyAdminScreens.Services
                 if (response.IsSuccessStatusCode)
                 {
                     var json = await response.Content.ReadAsStringAsync();
-                    var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
-                    var invoices = JsonSerializer.Deserialize<List<Models.Transaction>>(json, options);
-                    return invoices ?? new List<Models.Transaction>();
+                    result = JsonSerializer.Deserialize<List<Models.Transaction>>(json, _jsonOptions) ?? new List<Models.Transaction>();
                 }
                 else
                 {
-                    Console.WriteLine($"Error: {response.StatusCode}");
-                    return new List<Models.Transaction>();
+                    throw new HttpRequestException($"API Error: {response.StatusCode}");
                 }
+            }
+            catch (HttpRequestException ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"HTTP Error: {ex.Message}");
+            }
+            catch (JsonException ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"JSON Deserialization Error: {ex.Message}");
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Exception: {ex.Message}");
-                return new List<Models.Transaction>();
+                System.Diagnostics.Debug.WriteLine($"Unexpected Error: {ex.Message}");
             }
+
+            return result;
         }
 
-        // Get all professions
+        // GET: All professions
         public async Task<List<Profession>> GetAllProfessionsAsync()
         {
+            List<Profession> result = new List<Profession>();
+
             try
             {
                 var response = await _httpClient.GetAsync($"{BaseUrl}/professions");
@@ -109,21 +138,27 @@ namespace handlyAdminScreens.Services
                 if (response.IsSuccessStatusCode)
                 {
                     var json = await response.Content.ReadAsStringAsync();
-                    var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
-                    var professions = JsonSerializer.Deserialize<List<Profession>>(json, options);
-                    return professions ?? new List<Profession>();
+                    result = JsonSerializer.Deserialize<List<Profession>>(json, _jsonOptions) ?? new List<Profession>();
                 }
                 else
                 {
-                    Console.WriteLine($"Error: {response.StatusCode}");
-                    return new List<Profession>();
+                    throw new HttpRequestException($"API Error: {response.StatusCode}");
                 }
+            }
+            catch (HttpRequestException ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"HTTP Error: {ex.Message}");
+            }
+            catch (JsonException ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"JSON Deserialization Error: {ex.Message}");
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Exception: {ex.Message}");
-                return new List<Profession>();
+                System.Diagnostics.Debug.WriteLine($"Unexpected Error: {ex.Message}");
             }
+
+            return result;
         }
     }
 }

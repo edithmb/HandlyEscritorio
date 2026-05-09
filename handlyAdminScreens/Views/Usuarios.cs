@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using handlyAdminScreens.Helpers;
+using handlyAdminScreens.Services;
 
 namespace handlyAdminScreens.Views
 {
@@ -19,18 +20,18 @@ namespace handlyAdminScreens.Views
 
         private List<User> _listaUsuariosDePrueba;
         private UserFilterOptions _currentFilter = null;
+        private ApiService _apiService;
 
         public Usuarios()
         {
             InitializeComponent();
+            _apiService = new ApiService();
         }
 
-        private void Usuarios_Load(object sender, EventArgs e)
+        private async void Usuarios_Load(object sender, EventArgs e)
         {
-            _listaUsuariosDePrueba = CrearUsariosPrueba();
-            gridUsers.DataSource = _listaUsuariosDePrueba;
-
-
+            var users = await _apiService.GetAllUsersAsync();
+           
             SetupGrid();
         }
 
