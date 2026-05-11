@@ -245,12 +245,9 @@ namespace handlyAdminScreens.Services
             return await GetEnvelopedAsync<User>($"/users/{id}");
         }
 
-        // PUT /api/clients/{id} - actualiza datos de Users + App_users (vale para clientes y profesionales)
-        // (el endpoint /api/users/{id} hace lo mismo en teoría pero su método 'update' aún no existe en la API)
-        //
-        // IMPORTANTE: la API valida con 'sometimes|required'. Esto significa que si una clave
-        // viene en el request debe tener valor, pero si la omitimos completamente la API la ignora.
-        // Por eso construimos el payload con un Dictionary y SOLO incluimos los campos no vacíos.
+        // PUT /api/users/{id} - actualiza TODO el usuario en una sola llamada.
+        // El admin app siempre manda el usuario completo, así que la API simplemente
+        // sobreescribe lo que recibe (incluyendo address, state y profesiones).
         public async Task<ApiResult<bool>> UpdateUserAsync(User user)
         {
             if (user == null)
@@ -258,22 +255,23 @@ namespace handlyAdminScreens.Services
                 return new ApiResult<bool> { ErrorMessage = "Usuario nulo." };
             }
 
-            var payload = new Dictionary<string, object>();
-
-            if (!string.IsNullOrWhiteSpace(user.Name)) payload["name"] = user.Name;
-            if (!string.IsNullOrWhiteSpace(user.LastName)) payload["surname"] = user.LastName;
-            if (!string.IsNullOrWhiteSpace(user.MobileNumber)) payload["mobile"] = user.MobileNumber;
-            if (!string.IsNullOrWhiteSpace(user.StreetNumber)) payload["street_number"] = user.StreetNumber;
-            if (!string.IsNullOrWhiteSpace(user.City)) payload["city"] = user.City;
-            if (!string.IsNullOrWhiteSpace(user.Postalcode)) payload["postal_code"] = user.Postalcode;
-            if (!string.IsNullOrWhiteSpace(user.Country)) payload["country"] = user.Country;
-
-            if (payload.Count == 0)
+            var payload = new Dictionary<string, object>
             {
-                return new ApiResult<bool> { ErrorMessage = "No hay nada que actualizar." };
-            }
+                ["name"] = string.IsNullOrWhiteSpace(user.Name) ? null : user.Name,
+                ["surname"] = string.IsNullOrWhiteSpace(user.LastName) ? null : user.LastName,
+                ["email"] = string.IsNullOrWhiteSpace(user.Email) ? null : user.Email,
+                ["mobile"] = string.IsNullOrWhiteSpace(user.MobileNumber) ? null : user.MobileNumber,
+                ["dni"] = string.IsNullOrWhiteSpace(user.DNI) ? null : user.DNI,
+                ["birthdate"] = user.Birthdate.HasValue ? user.Birthdate.Value.ToString("yyyy-MM-dd") : null,
+                ["street_number"] = string.IsNullOrWhiteSpace(user.StreetNumber) ? null : user.StreetNumber,
+                ["city"] = string.IsNullOrWhiteSpace(user.City) ? null : user.City,
+                ["postal_code"] = string.IsNullOrWhiteSpace(user.Postalcode) ? null : user.Postalcode,
+                ["country"] = string.IsNullOrWhiteSpace(user.Country) ? null : user.Country,
+                ["account_state_id"] = user.StateId > 0 ? (object)user.StateId : null,
+                ["profession"] = user.Profession ?? new List<string>(),
+            };
 
-            return await SendJsonAsync(HttpMethod.Put, $"/clients/{user.Id}", payload);
+            return await SendJsonAsync(HttpMethod.Put, $"/users/{user.Id}", payload);
         }
 
         // PATCH /api/users/{id}/state - cambia el estado (activo/baneado/etc)
@@ -289,6 +287,27 @@ namespace handlyAdminScreens.Services
         public async Task<ApiResult<List<Transaction>>> GetAllTransactionsAsync()
         {
             return await GetEnvelopedAsync<List<Transaction>>("/admin/transactions");
+        }
+
+        // -------- DENUNCIAS --------
+
+        // GET /api/admin/reports - listado completo para el grid de Denuncias
+        public async Task<ApiResult<List<Report>>> GetAllReportsAsync()
+        {
+            return await GetEnvelopedAsync<List<Report>>("/admin/reports");
+        }
+
+        // PATCH /api/admin/reports/{id}/status - cambia el estado de una denuncia
+        public async Task<ApiResult<bool>> UpdateReportStatusAsync(long id, int stateId)
+        {
+            var payload = new { report_state_id = stateId };
+            return await SendJsonAsync(new HttpMethod("PATCH"), $"/admin/reports/{id}/status", payload);
+        }
+
+        // GET /api/admin/report-states - lista de estados para poblar el dropdown
+        public async Task<ApiResult<List<ReportState>>> GetReportStatesAsync()
+        {
+            return await GetEnvelopedAsync<List<ReportState>>("/admin/report-states");
         }
 
         // -------- TAREAS --------

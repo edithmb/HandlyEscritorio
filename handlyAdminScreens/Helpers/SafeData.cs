@@ -46,6 +46,18 @@ namespace handlyAdminScreens.Helpers
             }
         }
 
+        // overload para DateTime?: si es null usa el fallback
+        public static void SetDate(DateTimePicker dtp, DateTime? value, DateTime? fallback = null)
+        {
+            if (dtp == null) return;
+            if (!value.HasValue)
+            {
+                dtp.Value = fallback ?? DateTime.Today;
+                return;
+            }
+            SetDate(dtp, value.Value, fallback);
+        }
+
         // selecciona un índice en un ComboBox sin reventar si está fuera de rango
         public static void SelectIndex(ComboBox cmb, int index)
         {

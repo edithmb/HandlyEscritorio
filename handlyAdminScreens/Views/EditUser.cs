@@ -200,29 +200,16 @@ namespace handlyAdminScreens.Views
                 }
             }
 
-            // 3. mandar al API
+            // 3. mandar al API (un sólo PUT /users/{id} con todo el usuario)
             SetBusy(true);
             try
             {
-                // 3a. datos personales / dirección (PUT /clients/{id})
                 var updateResult = await _api.UpdateUserAsync(EditedUser);
                 if (!updateResult.Success)
                 {
                     SafeData.ShowError("No se pudo guardar",
                         "Error al actualizar datos: " + updateResult.ErrorMessage);
                     return;
-                }
-
-                // 3b. estado de la cuenta (PATCH /users/{id}/state) - sólo si lo seleccionaron
-                if (cmbAccountState.SelectedIndex >= 0)
-                {
-                    var stateResult = await _api.ChangeUserStateAsync(EditedUser.Id, EditedUser.StateId);
-                    if (!stateResult.Success)
-                    {
-                        // no es un error fatal: avisamos pero seguimos
-                        SafeData.ShowError("Aviso",
-                            "Datos guardados, pero no se pudo actualizar el estado: " + stateResult.ErrorMessage);
-                    }
                 }
 
                 this.DialogResult = DialogResult.OK;
