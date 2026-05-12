@@ -41,4 +41,10 @@ namespace handlyAdminScreens.Models
         public double? MaxAmount { get; set; }
 
     }
+
+    public class ReportFilterOptions : BaseFilterOptions
+    {
+        // estados seleccionados (en minúsculas, igual que en UserFilterOptions)
+        public List<string> StateNames { get; set; } = new List<string>();
+    }
 }

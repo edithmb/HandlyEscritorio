@@ -60,6 +60,9 @@
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.panelReportFilter = new System.Windows.Forms.Panel();
+            this.gbReportState = new System.Windows.Forms.GroupBox();
+            this.chklReportState = new System.Windows.Forms.CheckedListBox();
             this.panelUserFilter.SuspendLayout();
             this.gbAccountState.SuspendLayout();
             this.gbProfession.SuspendLayout();
@@ -70,6 +73,8 @@
             this.panelTransactionFilter.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.panelReportFilter.SuspendLayout();
+            this.gbReportState.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnFilter
@@ -401,12 +406,40 @@
             this.dateTimePicker2.ShowCheckBox = true;
             this.dateTimePicker2.Size = new System.Drawing.Size(220, 26);
             this.dateTimePicker2.TabIndex = 10;
-            // 
+            //
+            // panelReportFilter
+            //
+            this.panelReportFilter.Controls.Add(this.gbReportState);
+            this.panelReportFilter.Location = new System.Drawing.Point(693, 13);
+            this.panelReportFilter.Name = "panelReportFilter";
+            this.panelReportFilter.Size = new System.Drawing.Size(360, 280);
+            this.panelReportFilter.TabIndex = 2;
+            //
+            // gbReportState
+            //
+            this.gbReportState.Controls.Add(this.chklReportState);
+            this.gbReportState.Location = new System.Drawing.Point(13, 13);
+            this.gbReportState.Name = "gbReportState";
+            this.gbReportState.Size = new System.Drawing.Size(280, 240);
+            this.gbReportState.TabIndex = 0;
+            this.gbReportState.TabStop = false;
+            this.gbReportState.Text = "Estado de la denuncia";
+            //
+            // chklReportState
+            //
+            this.chklReportState.CheckOnClick = true;
+            this.chklReportState.FormattingEnabled = true;
+            this.chklReportState.Location = new System.Drawing.Point(15, 30);
+            this.chklReportState.Name = "chklReportState";
+            this.chklReportState.Size = new System.Drawing.Size(248, 191);
+            this.chklReportState.TabIndex = 0;
+            //
             // Filter
-            // 
+            //
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1262, 567);
+            this.Controls.Add(this.panelReportFilter);
             this.Controls.Add(this.panelTransactionFilter);
             this.Controls.Add(this.panelUserFilter);
             this.Controls.Add(this.btnFilter);
@@ -429,6 +462,8 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.panelReportFilter.ResumeLayout(false);
+            this.gbReportState.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -467,5 +502,8 @@
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.Panel panelReportFilter;
+        private System.Windows.Forms.GroupBox gbReportState;
+        private System.Windows.Forms.CheckedListBox chklReportState;
     }
 }
