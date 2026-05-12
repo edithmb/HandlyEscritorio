@@ -45,6 +45,14 @@ namespace handlyAdminScreens.Views
             // garantizamos que nunca sea null
             if (_listaUsuariosDePrueba == null) _listaUsuariosDePrueba = new List<User>();
 
+            // IsAppUser no viene del API: lo derivamos del rol
+            // rol_id 1 = cliente, 2 = profesional -> son usuarios de la app
+            // rol_id 3 = admin, 4 = superadmin -> NO son usuarios de la app
+            foreach (var u in _listaUsuariosDePrueba)
+            {
+                u.IsAppUser = u.RoleId == 1 || u.RoleId == 2;
+            }
+
             ApplyFilterAndSearch();
         }
 
@@ -73,6 +81,7 @@ namespace handlyAdminScreens.Views
             gridUsers.Columns["MobileNumber"].HeaderText = "Teléfono";
             gridUsers.Columns["AccountCreation"].HeaderText = "F. Registro";
             gridUsers.Columns["LastConnection"].HeaderText = "Últ. Conexión";
+            if (gridUsers.Columns["IsAppUser"] != null) gridUsers.Columns["IsAppUser"].HeaderText = "Usuario app";
 
             gridUsers.Columns["Name"].DisplayIndex = 0;
             gridUsers.Columns["LastName"].DisplayIndex = 1;
@@ -87,8 +96,9 @@ namespace handlyAdminScreens.Views
             gridUsers.Columns["Country"].DisplayIndex = 10;
             gridUsers.Columns["Birthdate"].DisplayIndex = 11;
             gridUsers.Columns["MobileNumber"].DisplayIndex = 12;
-            gridUsers.Columns["AccountCreation"].DisplayIndex =13;
+            gridUsers.Columns["AccountCreation"].DisplayIndex = 13;
             gridUsers.Columns["LastConnection"].DisplayIndex = 14;
+            if (gridUsers.Columns["IsAppUser"] != null) gridUsers.Columns["IsAppUser"].DisplayIndex = 15;
 
 
             gridUsers.Columns["LastName"].Frozen = true;

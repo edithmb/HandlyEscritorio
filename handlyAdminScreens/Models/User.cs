@@ -62,23 +62,26 @@ namespace handlyAdminScreens
         }
 
 
+        // nullable porque admins/superadmins no tienen entrada en App_users
+        // (la API hace LEFT JOIN y devuelve null para esos casos)
         [JsonPropertyName("account_state_id")]
-        public int StateId { get; set; }
+        public int? StateId { get; set; }
 
         [JsonIgnore]
         public string StateName
         {
             get
             {
-                switch (StateId)
+                if (!StateId.HasValue) return "-";
+                switch (StateId.Value)
                 {
                     case 1: return "active";
                     case 2: return "banned";
                     case 3: return "pending aprobation";
-                    case 4:return "in revision";
-                    case 5:return "inactive";
-                    case 6:return "deleted";
-                    default:return "otro";
+                    case 4: return "in revision";
+                    case 5: return "inactive";
+                    case 6: return "deleted";
+                    default: return "otro";
                 }
             }
         }

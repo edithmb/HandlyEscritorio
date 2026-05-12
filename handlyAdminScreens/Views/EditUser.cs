@@ -114,7 +114,8 @@ namespace handlyAdminScreens.Views
 
             // SelectedIndex seguro: si el rol/estado vienen vacíos, no peta
             SafeData.SelectIndex(cmbRole, EditedUser.RoleId - 1);
-            SafeData.SelectIndex(cmbAccountState, EditedUser.StateId - 1);
+            // StateId es int? (null para admin/superadmin) -> usamos GetValueOrDefault
+            SafeData.SelectIndex(cmbAccountState, EditedUser.StateId.GetValueOrDefault() - 1);
         }
 
         private void LoadProfessionsInUI()
