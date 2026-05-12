@@ -98,10 +98,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Helpers\FlexibleDateTimeConverter.cs" />
     <Compile Include="Helpers\SafeData.cs" />
     <Compile Include="Helpers\StringExtensions.cs" />
     <Compile Include="Models\FilterOptions.cs" />
     <Compile Include="Models\LoginModels.cs" />
+    <Compile Include="Models\Report.cs" />
+    <Compile Include="Models\ReportState.cs" />
     <Compile Include="Models\Transaction.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\Task.cs" />

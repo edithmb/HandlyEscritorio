@@ -20,7 +20,10 @@ namespace handlyAdminScreens.Models
         public long TaskID => Task?.Id ?? 0;
 
         [JsonIgnore]
-        public string TaskCreation => Task?.CreationDate.ToString("dd/MM/yyyy HH:mm") ?? "-";
+        public string TaskCreation =>
+            (Task != null && Task.CreationDate.HasValue)
+                ? Task.CreationDate.Value.ToString("dd/MM/yyyy HH:mm")
+                : "-";
 
         [JsonIgnore]
         public string TaskState => Task?.TaskStateName ?? "Desconocido";
@@ -70,8 +73,9 @@ namespace handlyAdminScreens.Models
                 }
             }
 
+            // nullable porque algunos timestamps pueden venir vacíos / en formato raro
             [JsonPropertyName("creation_date")]
-            public DateTime CreationDate { get; set; }
+            public DateTime? CreationDate { get; set; }
 
 
             [JsonPropertyName("client")]
@@ -104,8 +108,9 @@ namespace handlyAdminScreens.Models
             [JsonPropertyName("payment_method")]
             public string PaymentMethod { get; set; }
 
+            // nullable porque puede que aún no se haya pagado
             [JsonPropertyName("payment_date")]
-            public DateTime PaymentDate { get; set; }
+            public DateTime? PaymentDate { get; set; }
 
             [JsonPropertyName("professional_revenue")]
             public double ProfessionalRevenue { get; set; }

@@ -7,6 +7,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using handlyAdminScreens;
+using handlyAdminScreens.Helpers;
 using handlyAdminScreens.Models;
 
 namespace handlyAdminScreens.Services
@@ -33,6 +34,10 @@ namespace handlyAdminScreens.Services
         public ApiService()
         {
             _jsonOptions = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
+            // convertidor tolerante de fechas: la API a veces devuelve "2026-04-01 09:00:00"
+            // (formato Postgres) que el parser estándar rechaza
+            _jsonOptions.Converters.Add(new FlexibleDateTimeConverter());
+            _jsonOptions.Converters.Add(new FlexibleNullableDateTimeConverter());
         }
 
         // -------- AUTENTICACIÓN --------
