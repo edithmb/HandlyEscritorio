@@ -56,14 +56,4 @@ namespace handlyAdminScreens
         [JsonIgnore]
         public string StateDisplay => string.IsNullOrWhiteSpace(StateName) ? "-" : StateName;
     }
-
-    // Estado de denuncia (para poblar el filtro)
-    public class ReportState
-    {
-        [JsonPropertyName("id")]
-        public int Id { get; set; }
-
-        [JsonPropertyName("name")]
-        public string Name { get; set; }
-    }
 }

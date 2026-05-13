@@ -1,4 +1,6 @@
-﻿using handlyAdminScreens.Models;
+﻿using handlyAdminScreens.Helpers;
+using handlyAdminScreens.Models;
+using handlyAdminScreens.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,6 +17,7 @@ namespace handlyAdminScreens.Views
     public partial class Filter : Form
     {
         private CurrentGridType _currentType;
+        private readonly ApiService _api = new ApiService();
 
         public BaseFilterOptions SelectedFilters { get; private set; }
 
@@ -25,19 +28,27 @@ namespace handlyAdminScreens.Views
 
             panelUserFilter.Location = new Point(12, 12);
             panelTransactionFilter.Location = new Point(12, 12);
+            panelReportFilter.Location = new Point(12, 12);
 
             SetupUI();
         }
 
-        private void Filter_Load(object sender, EventArgs e)
+        private async void Filter_Load(object sender, EventArgs e)
         {
             Size = new Size(412, 423);
+
+            // si es de denuncias, cargamos los estados desde el API
+            if (_currentType == CurrentGridType.Reports)
+            {
+                await LoadReportStatesAsync();
+            }
         }
 
         private void SetupUI()
         {
             panelUserFilter.Visible = false;
-            panelTransactionFilter.Visible = false; 
+            panelTransactionFilter.Visible = false;
+            panelReportFilter.Visible = false;
 
             switch (_currentType)
             {
@@ -54,12 +65,50 @@ namespace handlyAdminScreens.Views
 
                 case CurrentGridType.Transactions:
                     this.Text = "Filtrar transacciones";
-                    panelTransactionFilter.Visible = true; 
+                    panelTransactionFilter.Visible = true;
                     SelectedFilters = new TransactionFilterOptions();
 
-                    //cargar elementos 
+                    //cargar elementos
 
                     break;
+
+                case CurrentGridType.Reports:
+                    this.Text = "Filtrar denuncias";
+                    panelReportFilter.Visible = true;
+                    SelectedFilters = new ReportFilterOptions();
+                    // los estados se cargan en Filter_Load (async)
+                    break;
+            }
+        }
+
+        // carga los estados de denuncia desde el API y los pinta en el checkbox list
+        private async Task LoadReportStatesAsync()
+        {
+            chklReportState.Items.Clear();
+            try
+            {
+                var result = await _api.GetReportStatesAsync();
+                if (result.Success && result.Data != null)
+                {
+                    foreach (var s in result.Data)
+                    {
+                        // guardamos el nombre tal cual viene de la API (lo normalizamos luego al filtrar)
+                        if (!string.IsNullOrWhiteSpace(s.Name))
+                        {
+                            chklReportState.Items.Add(s.Name);
+                        }
+                    }
+                }
+                else
+                {
+                    SafeData.ShowError("Error al cargar estados",
+                        "No se pudieron cargar los estados de denuncia: " + result.ErrorMessage);
+                }
+            }
+            catch (Exception ex)
+            {
+                SafeData.ShowError("Error inesperado",
+                    "No se pudieron cargar los estados de denuncia.", ex);
             }
         }
 
@@ -113,6 +162,16 @@ namespace handlyAdminScreens.Views
             else if (_currentType == CurrentGridType.Transactions)
             {
 
+            }
+            else if (_currentType == CurrentGridType.Reports)
+            {
+                var reportFilter = (ReportFilterOptions)SelectedFilters;
+                reportFilter.StateNames.Clear();
+                foreach (var s in chklReportState.CheckedItems)
+                {
+                    // guardamos en minúsculas para el match en Denuncias.ApplyFilterAndSearch
+                    reportFilter.StateNames.Add(s.ToString().ToLower());
+                }
             }
 
 
