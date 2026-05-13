@@ -110,6 +110,7 @@
             this.Name = "Transacciones";
             this.Text = "Transacciones";
             this.Load += new System.EventHandler(this.Transacciones_Load);
+            this.gridTransactions.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridTransactions_CellClick);
             ((System.ComponentModel.ISupportInitialize)(this.gridTransactions)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -18,10 +18,16 @@ namespace handlyAdminScreens.Views
         public User EditedUser { get; private set; }
 
         private readonly ApiService _api = new ApiService();
+        private readonly bool _readOnly;
 
-        public EditUser(User originalUser)
+        // Constructor normal (edición)
+        public EditUser(User originalUser) : this(originalUser, readOnly: false) { }
+
+        // Constructor de solo lectura — usado desde Transacciones y Denuncias
+        public EditUser(User originalUser, bool readOnly)
         {
             InitializeComponent();
+            _readOnly = readOnly;
 
             // si nos pasan un usuario null, montamos uno vacío para que no reviente nada
             if (originalUser == null) originalUser = new User();
@@ -116,6 +122,32 @@ namespace handlyAdminScreens.Views
             SafeData.SelectIndex(cmbRole, EditedUser.RoleId - 1);
             // StateId es int? (null para admin/superadmin) -> usamos GetValueOrDefault
             SafeData.SelectIndex(cmbAccountState, EditedUser.StateId.GetValueOrDefault() - 1);
+
+            if (_readOnly) ApplyReadOnly();
+        }
+
+        private void ApplyReadOnly()
+        {
+            this.Text = "Ver usuario";
+
+            // deshabilitar todos los inputs
+            txtName.ReadOnly = true;
+            txtLastName.ReadOnly = true;
+            txtEmail.ReadOnly = true;
+            txtPhone.ReadOnly = true;
+            txtDNI.ReadOnly = true;
+            txtStreet.ReadOnly = true;
+            txtCity.ReadOnly = true;
+            txtPostalCode.ReadOnly = true;
+            txtCountry.ReadOnly = true;
+            dtBirthdate.Enabled = false;
+            cmbRole.Enabled = false;
+            cmbAccountState.Enabled = false;
+            chklProfessions.Enabled = false;
+
+            // ocultar botón guardar, dejar solo Cerrar
+            btnAccept.Visible = false;
+            btnCancel.Text = "Cerrar";
         }
 
         private void LoadProfessionsInUI()

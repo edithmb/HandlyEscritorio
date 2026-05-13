@@ -25,6 +25,10 @@ namespace handlyAdminScreens
         [JsonPropertyName("reporter_id")]
         public long? ReporterId { get; set; }
 
+        // Users.id del denunciante (para abrir EditUser)
+        [JsonPropertyName("reporter_user_id")]
+        public long? ReporterUserId { get; set; }
+
         [JsonPropertyName("reporter_name")]
         public string ReporterName { get; set; }
 
@@ -33,6 +37,10 @@ namespace handlyAdminScreens
 
         [JsonPropertyName("reportee_id")]
         public long? ReporteeId { get; set; }
+
+        // Users.id del denunciado (para abrir EditUser)
+        [JsonPropertyName("reportee_user_id")]
+        public long? ReporteeUserId { get; set; }
 
         [JsonPropertyName("reportee_name")]
         public string ReporteeName { get; set; }

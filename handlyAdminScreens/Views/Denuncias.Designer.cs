@@ -110,6 +110,7 @@ namespace handlyAdminScreens.Views
             this.Name = "Denuncias";
             this.Text = "Denuncias";
             this.Load += new System.EventHandler(this.Denuncias_Load);
+            this.gridReports.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridReports_CellClick);
             ((System.ComponentModel.ISupportInitialize)(this.gridReports)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

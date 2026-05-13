@@ -135,5 +135,34 @@ namespace handlyAdminScreens.Views
             txtSearchReport.Text = null;
             ApplyFilterAndSearch();
         }
+
+        private void gridReports_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
+
+            var colName = gridReports.Columns[e.ColumnIndex].DataPropertyName;
+            if (colName != "ReporterFullName" && colName != "ReporteeFullName") return;
+
+            var report = (Report)gridReports.Rows[e.RowIndex].DataBoundItem;
+            if (report == null) return;
+
+            long? userId = colName == "ReporterFullName"
+                ? report.ReporterUserId
+                : report.ReporteeUserId;
+
+            if (userId.HasValue && userId.Value > 0) _ = OpenUserReadOnlyAsync(userId.Value);
+        }
+
+        private async System.Threading.Tasks.Task OpenUserReadOnlyAsync(long userId)
+        {
+            var result = await _api.GetUserByIdAsync(userId);
+            if (!result.Success || result.Data == null)
+            {
+                SafeData.ShowError("Error", "No se pudieron cargar los datos del usuario: " + result.ErrorMessage);
+                return;
+            }
+            using (var form = new EditUser(result.Data, readOnly: true))
+                form.ShowDialog();
+        }
     }
 }

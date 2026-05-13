@@ -168,11 +168,37 @@ namespace handlyAdminScreens.Views
         private void btnDeleteFilter_Click(object sender, EventArgs e)
         {
             _currentFilter = null;
-
             txtSearchTransaction.Text = null;
-
             ApplyFilterAndSearch();
         }
 
-       }
+        private void gridTransactions_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
+
+            var colName = gridTransactions.Columns[e.ColumnIndex].DataPropertyName;
+            if (colName != "ClientName" && colName != "ProfesionalName") return;
+
+            var tx = (Transaction)gridTransactions.Rows[e.RowIndex].DataBoundItem;
+            if (tx?.Task == null) return;
+
+            long userId = colName == "ClientName"
+                ? tx.Task.Client?.Id ?? 0
+                : tx.Task.Professional?.Id ?? 0;
+
+            if (userId > 0) _ = OpenUserReadOnlyAsync(userId);
+        }
+
+        private async System.Threading.Tasks.Task OpenUserReadOnlyAsync(long userId)
+        {
+            var result = await _api.GetUserByIdAsync(userId);
+            if (!result.Success || result.Data == null)
+            {
+                SafeData.ShowError("Error", "No se pudieron cargar los datos del usuario: " + result.ErrorMessage);
+                return;
+            }
+            using (var form = new EditUser(result.Data, readOnly: true))
+                form.ShowDialog();
+        }
+    }
 }
