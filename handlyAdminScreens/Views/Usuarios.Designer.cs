@@ -33,6 +33,7 @@
             this.lblBuscar = new System.Windows.Forms.Label();
             this.btnFilter = new System.Windows.Forms.Button();
             this.btnDeleteFilter = new System.Windows.Forms.Button();
+            this.btnRefresh = new System.Windows.Forms.Button();
             this.btnEditUser = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gridUsers)).BeginInit();
             this.SuspendLayout();
@@ -101,8 +102,20 @@
             this.btnDeleteFilter.UseVisualStyleBackColor = false;
             this.btnDeleteFilter.Click += new System.EventHandler(this.btnDeleteFilter_Click);
             // 
+            // btnRefresh
+            //
+            this.btnRefresh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(224)))), ((int)(((byte)(232)))));
+            this.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRefresh.Location = new System.Drawing.Point(620, 20);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(150, 35);
+            this.btnRefresh.TabIndex = 6;
+            this.btnRefresh.Text = "↺ Actualizar datos";
+            this.btnRefresh.UseVisualStyleBackColor = false;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+            //
             // btnEditUser
-            // 
+            //
             this.btnEditUser.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.btnEditUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEditUser.Location = new System.Drawing.Point(851, 20);
@@ -119,6 +132,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1134, 450);
             this.Controls.Add(this.btnEditUser);
+            this.Controls.Add(this.btnRefresh);
             this.Controls.Add(this.btnDeleteFilter);
             this.Controls.Add(this.btnFilter);
             this.Controls.Add(this.lblBuscar);
@@ -140,6 +154,7 @@
         private System.Windows.Forms.Label lblBuscar;
         private System.Windows.Forms.Button btnFilter;
         private System.Windows.Forms.Button btnDeleteFilter;
+        private System.Windows.Forms.Button btnRefresh;
         private System.Windows.Forms.Button btnEditUser;
     }
 }

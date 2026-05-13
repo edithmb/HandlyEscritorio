@@ -21,6 +21,22 @@ namespace handlyAdminScreens.Views
 
         private async void Denuncias_Load(object sender, EventArgs e)
         {
+            await LoadReportsAsync(forceRefresh: false);
+        }
+
+        private async System.Threading.Tasks.Task LoadReportsAsync(bool forceRefresh)
+        {
+            if (!forceRefresh)
+            {
+                var cached = CacheService.Load<List<Report>>("reports.json");
+                if (cached != null)
+                {
+                    _reportsList = cached;
+                    ApplyFilterAndSearch();
+                    return;
+                }
+            }
+
             try
             {
                 var result = await _api.GetAllReportsAsync();
@@ -44,7 +60,24 @@ namespace handlyAdminScreens.Views
 
             if (_reportsList == null) _reportsList = new List<Report>();
 
+            CacheService.Save("reports.json", _reportsList);
+
             ApplyFilterAndSearch();
+        }
+
+        private async void btnRefresh_Click(object sender, EventArgs e)
+        {
+            btnRefresh.Enabled = false;
+            btnRefresh.Text = "Actualizando...";
+            try
+            {
+                await LoadReportsAsync(forceRefresh: true);
+            }
+            finally
+            {
+                btnRefresh.Enabled = true;
+                btnRefresh.Text = "↺ Actualizar datos";
+            }
         }
 
         private void SetupGrid()

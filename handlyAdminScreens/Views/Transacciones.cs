@@ -28,7 +28,22 @@ namespace handlyAdminScreens.Views
 
         private async void Transacciones_Load(object sender, EventArgs e)
         {
-            // cargamos las transacciones desde la API en vez de usar datos de prueba
+            await LoadTransactionsAsync(forceRefresh: false);
+        }
+
+        private async System.Threading.Tasks.Task LoadTransactionsAsync(bool forceRefresh)
+        {
+            if (!forceRefresh)
+            {
+                var cached = CacheService.Load<List<Transaction>>("transactions.json");
+                if (cached != null)
+                {
+                    _listaTransaccionesDePrueba = cached;
+                    ApplyFilterAndSearch();
+                    return;
+                }
+            }
+
             try
             {
                 var result = await _api.GetAllTransactionsAsync();
@@ -50,10 +65,26 @@ namespace handlyAdminScreens.Views
                     "No se pudieron cargar las transacciones.", ex);
             }
 
-            // garantizamos que nunca sea null
             if (_listaTransaccionesDePrueba == null) _listaTransaccionesDePrueba = new List<Transaction>();
 
+            CacheService.Save("transactions.json", _listaTransaccionesDePrueba);
+
             ApplyFilterAndSearch();
+        }
+
+        private async void btnRefresh_Click(object sender, EventArgs e)
+        {
+            btnRefresh.Enabled = false;
+            btnRefresh.Text = "Actualizando...";
+            try
+            {
+                await LoadTransactionsAsync(forceRefresh: true);
+            }
+            finally
+            {
+                btnRefresh.Enabled = true;
+                btnRefresh.Text = "↺ Actualizar datos";
+            }
         }
 
         private void SetupGrid()

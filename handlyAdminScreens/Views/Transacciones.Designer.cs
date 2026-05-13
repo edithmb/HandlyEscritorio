@@ -32,6 +32,7 @@
             this.lblBuscar = new System.Windows.Forms.Label();
             this.btnFilter = new System.Windows.Forms.Button();
             this.btnDeleteFilter = new System.Windows.Forms.Button();
+            this.btnRefresh = new System.Windows.Forms.Button();
             this.txtSearchTransaction = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.gridTransactions)).BeginInit();
             this.SuspendLayout();
@@ -89,8 +90,19 @@
             this.btnDeleteFilter.UseVisualStyleBackColor = false;
             this.btnDeleteFilter.Click += new System.EventHandler(this.btnDeleteFilter_Click);
             // 
+            // btnRefresh
+            //
+            this.btnRefresh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(224)))), ((int)(((byte)(232)))));
+            this.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRefresh.Location = new System.Drawing.Point(620, 20);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(150, 35);
+            this.btnRefresh.TabIndex = 8;
+            this.btnRefresh.Text = "↺ Actualizar datos";
+            this.btnRefresh.UseVisualStyleBackColor = false;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // txtSearchTransaction
-            // 
+            //
             this.txtSearchTransaction.Location = new System.Drawing.Point(99, 24);
             this.txtSearchTransaction.Name = "txtSearchTransaction";
             this.txtSearchTransaction.Size = new System.Drawing.Size(229, 26);
@@ -103,6 +115,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1134, 450);
             this.Controls.Add(this.txtSearchTransaction);
+            this.Controls.Add(this.btnRefresh);
             this.Controls.Add(this.btnDeleteFilter);
             this.Controls.Add(this.btnFilter);
             this.Controls.Add(this.lblBuscar);
@@ -123,6 +136,7 @@
         private System.Windows.Forms.Label lblBuscar;
         private System.Windows.Forms.Button btnFilter;
         private System.Windows.Forms.Button btnDeleteFilter;
+        private System.Windows.Forms.Button btnRefresh;
         private System.Windows.Forms.TextBox txtSearchTransaction;
     }
 }

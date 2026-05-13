@@ -100,6 +100,7 @@
   <ItemGroup>
     <Compile Include="Helpers\FlexibleDateTimeConverter.cs" />
     <Compile Include="Helpers\GridFormat.cs" />
+    <Compile Include="Helpers\CacheService.cs" />
     <Compile Include="Helpers\SafeData.cs" />
     <Compile Include="Helpers\StringExtensions.cs" />
     <Compile Include="Models\FilterOptions.cs" />

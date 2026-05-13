@@ -30,6 +30,24 @@ namespace handlyAdminScreens.Views
 
         private async void Usuarios_Load(object sender, EventArgs e)
         {
+            await LoadUsersAsync(forceRefresh: false);
+        }
+
+        private async System.Threading.Tasks.Task LoadUsersAsync(bool forceRefresh)
+        {
+            if (!forceRefresh)
+            {
+                var cached = CacheService.Load<List<User>>("users.json");
+                if (cached != null)
+                {
+                    _usersList = cached;
+                    foreach (var u in _usersList)
+                        u.IsAppUser = u.RoleId == 1 || u.RoleId == 2;
+                    ApplyFilterAndSearch();
+                    return;
+                }
+            }
+
             try
             {
                 _usersList = await _apiService.GetAllUsersAsync();
@@ -51,7 +69,24 @@ namespace handlyAdminScreens.Views
                 u.IsAppUser = u.RoleId == 1 || u.RoleId == 2;
             }
 
+            CacheService.Save("users.json", _usersList);
+
             ApplyFilterAndSearch();
+        }
+
+        private async void btnRefresh_Click(object sender, EventArgs e)
+        {
+            btnRefresh.Enabled = false;
+            btnRefresh.Text = "Actualizando...";
+            try
+            {
+                await LoadUsersAsync(forceRefresh: true);
+            }
+            finally
+            {
+                btnRefresh.Enabled = true;
+                btnRefresh.Text = "↺ Actualizar datos";
+            }
         }
 
         private void SetupGrid()
