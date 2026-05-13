@@ -18,7 +18,7 @@ namespace handlyAdminScreens.Views
     public partial class Usuarios : Form
     {
 
-        private List<User> _listaUsuariosDePrueba;
+        private List<User> _usersList;
         private UserFilterOptions _currentFilter = null;
         private ApiService _apiService;
 
@@ -30,25 +30,23 @@ namespace handlyAdminScreens.Views
 
         private async void Usuarios_Load(object sender, EventArgs e)
         {
-            // pedimos los usuarios al API. Si falla, mostramos lista vacía y avisamos
             try
             {
-                _listaUsuariosDePrueba = await _apiService.GetAllUsersAsync();
+                _usersList = await _apiService.GetAllUsersAsync();
             }
             catch (Exception ex)
             {
-                _listaUsuariosDePrueba = new List<User>();
+                _usersList = new List<User>();
                 Helpers.SafeData.ShowError("Error al cargar usuarios",
                     "No se pudieron cargar los usuarios desde el servidor.", ex);
             }
 
-            // garantizamos que nunca sea null
-            if (_listaUsuariosDePrueba == null) _listaUsuariosDePrueba = new List<User>();
+            if (_usersList == null) _usersList = new List<User>();
 
             // IsAppUser no viene del API: lo derivamos del rol
             // rol_id 1 = cliente, 2 = profesional -> son usuarios de la app
             // rol_id 3 = admin, 4 = superadmin -> NO son usuarios de la app
-            foreach (var u in _listaUsuariosDePrueba)
+            foreach (var u in _usersList)
             {
                 u.IsAppUser = u.RoleId == 1 || u.RoleId == 2;
             }
@@ -58,55 +56,34 @@ namespace handlyAdminScreens.Views
 
         private void SetupGrid()
         {
-            if (gridUsers.Columns.Count == 0) return;
+            if (gridUsers.Columns.Count > 0)
+            {
 
-            if (gridUsers.Columns["Id"] != null) gridUsers.Columns["Id"].Visible = false;
-            if (gridUsers.Columns["UserId"] != null) gridUsers.Columns["UserId"].Visible = false;
-            if (gridUsers.Columns["RoleId"] != null) gridUsers.Columns["RoleId"].Visible = false;
-            if (gridUsers.Columns["StateId"] != null) gridUsers.Columns["StateId"].Visible = false;
-            if (gridUsers.Columns["Profession"] != null) gridUsers.Columns["Profession"].Visible = false;
+                gridUsers.HideCol("Id", "UserId", "RoleId", "StateId", "Profession");
 
-            gridUsers.Columns["Name"].HeaderText = "Nombre";
-            gridUsers.Columns["LastName"].HeaderText = "Apellidos";
-            gridUsers.Columns["Email"].HeaderText = "E-Mail";
-            gridUsers.Columns["RoleName"].HeaderText = "Rol";
-            gridUsers.Columns["ProfessionSummary"].HeaderText = "Profesión";
-            gridUsers.Columns["StateName"].HeaderText = "Estado";
-            gridUsers.Columns["DNI"].HeaderText = "DNI / NIE";
-            gridUsers.Columns["StreetNumber"].HeaderText = "Dirección";
-            gridUsers.Columns["City"].HeaderText = "Ciudad";
-            gridUsers.Columns["Postalcode"].HeaderText = "C.P.";
-            gridUsers.Columns["Country"].HeaderText = "País";
-            gridUsers.Columns["Birthdate"].HeaderText = "F. Nacimiento";
-            gridUsers.Columns["MobileNumber"].HeaderText = "Teléfono";
-            gridUsers.Columns["AccountCreation"].HeaderText = "F. Registro";
-            gridUsers.Columns["LastConnection"].HeaderText = "Últ. Conexión";
-            if (gridUsers.Columns["IsAppUser"] != null) gridUsers.Columns["IsAppUser"].HeaderText = "Usuario app";
+                gridUsers.ConfigureCol("Name", "Nombre", 0);
+                gridUsers.ConfigureCol("LastName", "Apellidos", 1, true);
+                gridUsers.ConfigureCol("Email", "E-Mail", 2);
+                gridUsers.ConfigureCol("RoleName", "Rol", 3);
+                gridUsers.ConfigureCol("ProfessionSummary", "Profesión", 4);
+                gridUsers.ConfigureCol("StateName", "Estado", 5);
+                gridUsers.ConfigureCol("DNI", "DNI / NIE", 6);
+                gridUsers.ConfigureCol("StreetNumber", "Dirección", 7);
+                gridUsers.ConfigureCol("City", "Ciudad", 8);
+                gridUsers.ConfigureCol("Postalcode", "C.P.", 9);
+                gridUsers.ConfigureCol("Country", "País", 10);
+                gridUsers.ConfigureCol("Birthdate", "F. Nacimiento", 11);
+                gridUsers.ConfigureCol("MobileNumber", "Teléfono", 12);
+                gridUsers.ConfigureCol("AccountCreation", "F. Registro", 13);
+                gridUsers.ConfigureCol("LastConnection", "Últ. Conexión", 14);
 
-            gridUsers.Columns["Name"].DisplayIndex = 0;
-            gridUsers.Columns["LastName"].DisplayIndex = 1;
-            gridUsers.Columns["Email"].DisplayIndex = 2;
-            gridUsers.Columns["RoleName"].DisplayIndex = 3;
-            gridUsers.Columns["ProfessionSummary"].DisplayIndex = 4;
-            gridUsers.Columns["StateName"].DisplayIndex = 5;
-            gridUsers.Columns["DNI"].DisplayIndex = 6;
-            gridUsers.Columns["StreetNumber"].DisplayIndex = 7;
-            gridUsers.Columns["City"].DisplayIndex = 8;
-            gridUsers.Columns["Postalcode"].DisplayIndex = 9;
-            gridUsers.Columns["Country"].DisplayIndex = 10;
-            gridUsers.Columns["Birthdate"].DisplayIndex = 11;
-            gridUsers.Columns["MobileNumber"].DisplayIndex = 12;
-            gridUsers.Columns["AccountCreation"].DisplayIndex = 13;
-            gridUsers.Columns["LastConnection"].DisplayIndex = 14;
-            if (gridUsers.Columns["IsAppUser"] != null) gridUsers.Columns["IsAppUser"].DisplayIndex = 15;
-
-
-            gridUsers.Columns["LastName"].Frozen = true;
+                gridUsers.ConfigureCol("IsAppUser", "Usuario app", 15);
+            }
         }
-    
+          
         private void ApplyFilterAndSearch()
         {
-            var query = _listaUsuariosDePrueba.AsQueryable();
+            var query = _usersList.AsQueryable();
 
             if (_currentFilter != null)
             {
@@ -227,8 +204,8 @@ namespace handlyAdminScreens.Views
 
         private void UpdateLocalList(User updatedUser)
         {
-            var index = _listaUsuariosDePrueba.FindIndex(u => u.Id == updatedUser.Id);
-            if (index != -1) _listaUsuariosDePrueba[index] = updatedUser;
+            var index = _usersList.FindIndex(u => u.Id == updatedUser.Id);
+            if (index != -1) _usersList[index] = updatedUser;
         }
 
         private void gridUsers_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -239,78 +216,6 @@ namespace handlyAdminScreens.Views
         private void txtSearchUsers_TextChanged(object sender, EventArgs e)
         {
             ApplyFilterAndSearch();
-        }
-
-        private List<User>  CrearUsariosPrueba()
-        {
-            return new List<User>
-            {
-                new User
-                {
-                    Id = 1,
-                    UserId = 101,
-                    Name = "Juan",
-                    LastName = "Pérez",
-                    Email = "juan@ejemplo.com",
-                    RoleId = 1, // 1 = Cliente
-                    Profession = null,
-                    StateId = 1, // 1 = Active
-                    DNI = "12345678A",
-                    StreetNumber = "Calle Mayor 1",
-                    City = "Madrid",
-                    Postalcode = "28001",
-                    Country = "España",
-                    Birthdate = new DateTime(1990, 5, 15),
-                    MobileNumber = "600111222",
-                    LastConnection = DateTime.Now.AddHours(-2),
-                    AccountCreation = new DateTime(2025, 1, 10),
-                    IsAppUser = true
-                },
-
-                new User
-                {
-                    Id = 2,
-                    UserId = 102,
-                    Name = "Laura",
-                    LastName = "Gómez",
-                    Email = "laura.fontanera@ejemplo.com",
-                    RoleId = 2, // 2 = Profesional
-                    Profession = new List<string> { "Téc. Calderas" },
-                    StateId = 2,
-                    DNI = "87654321B",
-                    StreetNumber = "Av. Diagonal 200",
-                    City = "Barcelona",
-                    Postalcode = "08001",
-                    Country = "España",
-                    Birthdate = new DateTime(1985, 8, 22),
-                    MobileNumber = "600333444",
-                    LastConnection = DateTime.Now.AddDays(-5),
-                    AccountCreation = new DateTime(2025, 2, 15),
-                    IsAppUser = true
-                },
-
-                new User
-                {
-                    Id = 3,
-                    UserId = 103,
-                    Name = "Carlos",
-                    LastName = "Admin",
-                    Email = "carlos@handly.com",
-                    RoleId = 3,
-                    Profession = null,
-                    StateId = 1,
-                    DNI = "99999999Z",
-                    StreetNumber = "Oficina Central",
-                    City = "Madrid",
-                    Postalcode = "28000",
-                    Country = "España",
-                    Birthdate = new DateTime(1980, 1, 1),
-                    MobileNumber = "600999999",
-                    LastConnection = DateTime.Now,
-                    AccountCreation = new DateTime(2024, 1, 1),
-                    IsAppUser = false
-                }
-            };
         }
 
         private void lblBuscar_Click(object sender, EventArgs e)

@@ -10,7 +10,7 @@ namespace handlyAdminScreens.Views
 {
     public partial class Denuncias : Form
     {
-        private List<Report> _listaDenuncias;
+        private List<Report> _reportsList;
         private ReportFilterOptions _currentFilter = null;
         private readonly ApiService _api = new ApiService();
 
@@ -21,69 +21,60 @@ namespace handlyAdminScreens.Views
 
         private async void Denuncias_Load(object sender, EventArgs e)
         {
-            // cargamos las denuncias desde la API
             try
             {
                 var result = await _api.GetAllReportsAsync();
                 if (result.Success)
                 {
-                    _listaDenuncias = result.Data ?? new List<Report>();
+                    _reportsList = result.Data ?? new List<Report>();
                 }
                 else
                 {
-                    _listaDenuncias = new List<Report>();
+                    _reportsList = new List<Report>();
                     SafeData.ShowError("Error al cargar denuncias",
                         "No se pudieron cargar las denuncias: " + result.ErrorMessage);
                 }
             }
             catch (Exception ex)
             {
-                _listaDenuncias = new List<Report>();
+                _reportsList = new List<Report>();
                 SafeData.ShowError("Error inesperado",
                     "No se pudieron cargar las denuncias.", ex);
             }
 
-            if (_listaDenuncias == null) _listaDenuncias = new List<Report>();
+            if (_reportsList == null) _reportsList = new List<Report>();
 
             ApplyFilterAndSearch();
         }
 
         private void SetupGrid()
         {
-            if (gridReports.Columns.Count == 0) return;
+            if (gridReports.Columns.Count > 0)
+            {
+                gridReports.HideCol(
+                    "ReporterId",
+                    "ReporteeId",
+                    "StateId",
+                    "StateName",
+                    "ReporterName",
+                    "ReporterSurname",
+                    "ReporteeName",
+                    "ReporteeSurname"
+                );
 
-            // ocultamos IDs y campos "raw" que tienen versión legible aparte
-            if (gridReports.Columns["StateId"] != null) gridReports.Columns["StateId"].Visible = false;
-            if (gridReports.Columns["StateName"] != null) gridReports.Columns["StateName"].Visible = false;
-            if (gridReports.Columns["ReporterName"] != null) gridReports.Columns["ReporterName"].Visible = false;
-            if (gridReports.Columns["ReporterSurname"] != null) gridReports.Columns["ReporterSurname"].Visible = false;
-            if (gridReports.Columns["ReporteeName"] != null) gridReports.Columns["ReporteeName"].Visible = false;
-            if (gridReports.Columns["ReporteeSurname"] != null) gridReports.Columns["ReporteeSurname"].Visible = false;
-
-            gridReports.Columns["Id"].HeaderText = "ID";
-            gridReports.Columns["ReporterId"].HeaderText = "ID Denunciante";
-            gridReports.Columns["ReporterFullName"].HeaderText = "Denunciante";
-            gridReports.Columns["ReporteeId"].HeaderText = "ID Denunciado";
-            gridReports.Columns["ReporteeFullName"].HeaderText = "Denunciado";
-            gridReports.Columns["ReportOrigin"].HeaderText = "Origen";
-            gridReports.Columns["Cause"].HeaderText = "Motivo";
-            gridReports.Columns["StateDisplay"].HeaderText = "Estado";
-
-            gridReports.Columns["Id"].DisplayIndex = 0;
-            gridReports.Columns["ReporterId"].DisplayIndex = 1;
-            gridReports.Columns["ReporterFullName"].DisplayIndex = 2;
-            gridReports.Columns["ReporteeId"].DisplayIndex = 3;
-            gridReports.Columns["ReporteeFullName"].DisplayIndex = 4;
-            gridReports.Columns["ReportOrigin"].DisplayIndex = 5;
-            gridReports.Columns["Cause"].DisplayIndex = 6;
-            gridReports.Columns["StateDisplay"].DisplayIndex = 7;
-
-            gridReports.Columns["Id"].Frozen = true;
+                gridReports.ConfigureCol("Id", "ID", 0, true);
+                gridReports.ConfigureCol("ReporterFullName", "Denunciante", 1);
+                gridReports.ConfigureCol("ReporteeFullName", "Denunciado", 2);
+                gridReports.ConfigureCol("ReportOrigin", "Origen", 3);
+                gridReports.ConfigureCol("Cause", "Motivo", 4);
+                gridReports.ConfigureCol("StateDisplay", "Estado", 5);
+            }
         }
-
+    
+        
         private void ApplyFilterAndSearch()
         {
-            var query = _listaDenuncias.AsQueryable();
+            var query = _reportsList.AsQueryable();
 
             if (_currentFilter != null)
             {
