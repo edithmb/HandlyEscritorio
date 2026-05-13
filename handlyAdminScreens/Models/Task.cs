@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace handlyAdminScreens
 {
-    public class Task
+    public class JobTask
     {
         [JsonPropertyName("id")]
         public long Id { get; set; }

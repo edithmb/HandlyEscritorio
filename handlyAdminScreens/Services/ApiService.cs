@@ -317,10 +317,10 @@ namespace handlyAdminScreens.Services
 
         // -------- TAREAS --------
 
-        public async Task<List<Task>> GetAllTasksAsync()
+        public async System.Threading.Tasks.Task<List<JobTask>> GetAllTasksAsync()
         {
-            var r = await GetEnvelopedAsync<List<Task>>("/admin/tasks");
-            return r.Data ?? new List<Task>();
+            var r = await GetEnvelopedAsync<List<JobTask>>("/admin/tasks");
+            return r.Data ?? new List<JobTask>();
         }
 
         // -------- PROFESIONES --------
