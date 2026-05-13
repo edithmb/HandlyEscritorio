@@ -315,6 +315,12 @@ namespace handlyAdminScreens.Services
             return await GetEnvelopedAsync<List<ReportState>>("/admin/report-states");
         }
 
+        // GET /api/admin/reports/{id}/context - chats o tareas entre las dos partes
+        public async Task<ApiResult<ReportContext>> GetReportContextAsync(long reportId)
+        {
+            return await GetEnvelopedAsync<ReportContext>($"/admin/reports/{reportId}/context");
+        }
+
         // -------- TAREAS --------
 
         public async System.Threading.Tasks.Task<List<JobTask>> GetAllTasksAsync()
