@@ -143,6 +143,7 @@ namespace handlyAdminScreens.Views
             gridReports.DataSource = query.ToList();
 
             SetupGrid();
+            gridReports.ClearSelection();
         }
 
         private void btnFilter_Click(object sender, EventArgs e)
@@ -196,6 +197,29 @@ namespace handlyAdminScreens.Views
             }
             using (var form = new EditUser(result.Data, readOnly: true))
                 form.ShowDialog();
+        }
+
+        // abre SolveReport para la denuncia seleccionada actualmente
+        private async void btnResolve_Click(object sender, EventArgs e)
+        {
+            if (gridReports.SelectedRows.Count == 0)
+            {
+                SafeData.ShowInfo("Selecciona una denuncia",
+                    "Tienes que seleccionar una fila para resolver la denuncia.");
+                return;
+            }
+
+            var report = gridReports.SelectedRows[0].DataBoundItem as Report;
+            if (report == null) return;
+
+            using (var form = new SolveReport(report))
+            {
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    // tras resolver, refrescamos desde la API (forzando, no la caché)
+                    await LoadReportsAsync(forceRefresh: true);
+                }
+            }
         }
     }
 }

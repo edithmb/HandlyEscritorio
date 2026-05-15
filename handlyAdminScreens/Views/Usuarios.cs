@@ -193,6 +193,7 @@ namespace handlyAdminScreens.Views
             gridUsers.DataSource = query.ToList();
 
             SetupGrid();
+            gridUsers.ClearSelection();
         }
 
 

@@ -143,7 +143,20 @@ namespace handlyAdminScreens.Views
             dtBirthdate.Enabled = false;
             cmbRole.Enabled = false;
             cmbAccountState.Enabled = false;
-            chklProfessions.Enabled = false;
+
+            // reemplazar el CheckedListBox de profesiones por una etiqueta de texto simple
+            chklProfessions.Visible = false;
+            var lblProfs = new Label
+            {
+                AutoSize = false,
+                Location = chklProfessions.Location,
+                Size = chklProfessions.Size,
+                TextAlign = System.Drawing.ContentAlignment.TopLeft,
+                Text = EditedUser.Profession != null && EditedUser.Profession.Count > 0
+                    ? string.Join(Environment.NewLine, EditedUser.Profession)
+                    : "—"
+            };
+            gbProfession.Controls.Add(lblProfs);
 
             // ocultar botón guardar, dejar solo Cerrar
             btnAccept.Visible = false;

@@ -177,6 +177,7 @@ namespace handlyAdminScreens.Views
             gridTransactions.DataSource = query.ToList();
 
             SetupGrid();
+            gridTransactions.ClearSelection();
         }
 
         private void btnFilter_Click(object sender, EventArgs e)

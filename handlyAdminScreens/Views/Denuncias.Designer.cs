@@ -33,6 +33,7 @@ namespace handlyAdminScreens.Views
             this.btnFilter = new System.Windows.Forms.Button();
             this.btnDeleteFilter = new System.Windows.Forms.Button();
             this.btnRefresh = new System.Windows.Forms.Button();
+            this.btnResolve = new System.Windows.Forms.Button();
             this.txtSearchReport = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.gridReports)).BeginInit();
             this.SuspendLayout();
@@ -102,6 +103,18 @@ namespace handlyAdminScreens.Views
             this.btnRefresh.UseVisualStyleBackColor = false;
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             //
+            // btnResolve
+            //
+            this.btnResolve.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(224)))), ((int)(((byte)(232)))));
+            this.btnResolve.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnResolve.Location = new System.Drawing.Point(800, 20);
+            this.btnResolve.Name = "btnResolve";
+            this.btnResolve.Size = new System.Drawing.Size(140, 35);
+            this.btnResolve.TabIndex = 9;
+            this.btnResolve.Text = "Resolver";
+            this.btnResolve.UseVisualStyleBackColor = false;
+            this.btnResolve.Click += new System.EventHandler(this.btnResolve_Click);
+            //
             // txtSearchReport
             //
             this.txtSearchReport.Location = new System.Drawing.Point(99, 24);
@@ -116,6 +129,7 @@ namespace handlyAdminScreens.Views
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1134, 450);
             this.Controls.Add(this.txtSearchReport);
+            this.Controls.Add(this.btnResolve);
             this.Controls.Add(this.btnRefresh);
             this.Controls.Add(this.btnDeleteFilter);
             this.Controls.Add(this.btnFilter);
@@ -138,6 +152,7 @@ namespace handlyAdminScreens.Views
         private System.Windows.Forms.Button btnFilter;
         private System.Windows.Forms.Button btnDeleteFilter;
         private System.Windows.Forms.Button btnRefresh;
+        private System.Windows.Forms.Button btnResolve;
         private System.Windows.Forms.TextBox txtSearchReport;
     }
 }
