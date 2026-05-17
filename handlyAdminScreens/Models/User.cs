@@ -90,43 +90,40 @@ namespace handlyAdminScreens
         [JsonPropertyName("dni")]
         public string DNI { get; set; }
 
-
         [JsonPropertyName("street_number")]
         public string StreetNumber { get; set; }
-
 
         [JsonPropertyName("city")]
         public string City { get; set; }
 
-
         [JsonPropertyName("postal_code")]
         public string Postalcode { get; set; }
-
 
         [JsonPropertyName("country")]
         public string Country { get; set; }
 
-
-        // todos los campos de fecha son nullable porque la API puede devolver null
-        // (ej. usuarios sin App_users entry como admin/superadmin)
         [JsonPropertyName("birthdate")]
         public DateTime? Birthdate { get; set; }
-
 
         [JsonPropertyName("mobile")]
         public string MobileNumber { get; set; }
 
-
         [JsonPropertyName("last_connection")]
         public DateTime? LastConnection { get; set; }
-
 
         [JsonPropertyName("account_creation_date")]
         public DateTime? AccountCreation { get; set; }
 
-
         [JsonIgnore]
         public bool IsAppUser { get; set; }
 
+        [JsonPropertyName("selfie")]
+        public string Selfie { get; set; }
+
+        [JsonPropertyName("document_front")]
+        public string DocumentFront { get; set; }
+
+        [JsonPropertyName("document_back")]
+        public string DocumentBack { get; set; }
     }
 }

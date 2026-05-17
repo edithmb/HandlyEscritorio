@@ -80,8 +80,9 @@
             // 
             // btnFilter
             // 
-            this.btnFilter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(224)))), ((int)(((byte)(232)))));
+            this.btnFilter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(128)))), ((int)(((byte)(226)))));
             this.btnFilter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnFilter.ForeColor = System.Drawing.Color.White;
             this.btnFilter.Location = new System.Drawing.Point(368, 20);
             this.btnFilter.Name = "btnFilter";
             this.btnFilter.Size = new System.Drawing.Size(75, 35);
@@ -103,19 +104,20 @@
             this.btnDeleteFilter.Click += new System.EventHandler(this.btnDeleteFilter_Click);
             // 
             // btnRefresh
-            //
-            this.btnRefresh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(224)))), ((int)(((byte)(232)))));
+            // 
+            this.btnRefresh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(128)))), ((int)(((byte)(226)))));
             this.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRefresh.ForeColor = System.Drawing.Color.White;
             this.btnRefresh.Location = new System.Drawing.Point(620, 20);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(150, 35);
             this.btnRefresh.TabIndex = 6;
-            this.btnRefresh.Text = "↺ Actualizar datos";
+            this.btnRefresh.Text = "Actualizar datos";
             this.btnRefresh.UseVisualStyleBackColor = false;
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
-            //
+            // 
             // btnEditUser
-            //
+            // 
             this.btnEditUser.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.btnEditUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEditUser.Location = new System.Drawing.Point(851, 20);

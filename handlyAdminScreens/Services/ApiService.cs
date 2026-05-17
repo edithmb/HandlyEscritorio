@@ -336,5 +336,13 @@ namespace handlyAdminScreens.Services
             var r = await GetEnvelopedAsync<List<Profession>>("/professions");
             return r.Data ?? new List<Profession>();
         }
+
+        // -------- CATÁLOGOS --------
+
+        // GET /api/admin/catalogs - devuelve TODAS las tablas de lookup en una sola llamada
+        public async Task<ApiResult<CatalogBundle>> GetCatalogsAsync()
+        {
+            return await GetEnvelopedAsync<CatalogBundle>("/admin/catalogs");
+        }
     }
 }

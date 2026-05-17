@@ -93,10 +93,8 @@ namespace handlyAdminScreens.Views
             {
                 gridTransactions.AutoGenerateColumns = false;
 
-                // 1. Hide unwanted columns (using your new helper!)
                 gridTransactions.HideCol("Task", "Invoice");
 
-                // 2. Configure columns (using your new helper!)
                 gridTransactions.ConfigureCol("TaskID", "ID", 0, true);
                 gridTransactions.ConfigureCol("TaskTitle", "Título", 1, true);
                 gridTransactions.ConfigureCol("TaskState", "Estado tarea", 2);

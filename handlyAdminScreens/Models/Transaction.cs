@@ -83,6 +83,13 @@ namespace handlyAdminScreens.Models
 
             [JsonPropertyName("professional")]
             public UserShortData Professional { get; set; }
+
+            // fotos asociadas a la tarea (base64, pueden ser null)
+            [JsonPropertyName("photo_1")]
+            public string Photo1 { get; set; }
+
+            [JsonPropertyName("photo_2")]
+            public string Photo2 { get; set; }
         }
 
         public class UserShortData

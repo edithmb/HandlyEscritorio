@@ -41,10 +41,10 @@ namespace handlyAdminScreens.Views
             this.gridMessages = new System.Windows.Forms.DataGridView();
             this.lblContextEmpty = new System.Windows.Forms.Label();
             this.gbVerdict = new System.Windows.Forms.GroupBox();
+            this.chkBanLoser = new System.Windows.Forms.CheckBox();
             this.rbDismiss = new System.Windows.Forms.RadioButton();
             this.rbReporteeWins = new System.Windows.Forms.RadioButton();
             this.rbReporterWins = new System.Windows.Forms.RadioButton();
-            this.chkBanLoser = new System.Windows.Forms.CheckBox();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.gbReport.SuspendLayout();
@@ -53,9 +53,9 @@ namespace handlyAdminScreens.Views
             ((System.ComponentModel.ISupportInitialize)(this.gridMessages)).BeginInit();
             this.gbVerdict.SuspendLayout();
             this.SuspendLayout();
-            //
+            // 
             // gbReport
-            //
+            // 
             this.gbReport.Controls.Add(this.lblOriginValue);
             this.gbReport.Controls.Add(this.lblOrigin);
             this.gbReport.Controls.Add(this.lblCauseValue);
@@ -70,77 +70,85 @@ namespace handlyAdminScreens.Views
             this.gbReport.TabIndex = 0;
             this.gbReport.TabStop = false;
             this.gbReport.Text = "Datos de la denuncia";
-            //
-            // lblReporter
-            //
-            this.lblReporter.AutoSize = true;
-            this.lblReporter.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
-            this.lblReporter.Location = new System.Drawing.Point(15, 30);
-            this.lblReporter.Name = "lblReporter";
-            this.lblReporter.Size = new System.Drawing.Size(105, 18);
-            this.lblReporter.Text = "Denunciante:";
-            //
-            // lblReporterValue
-            //
-            this.lblReporterValue.AutoSize = true;
-            this.lblReporterValue.Location = new System.Drawing.Point(135, 30);
-            this.lblReporterValue.Name = "lblReporterValue";
-            this.lblReporterValue.Size = new System.Drawing.Size(10, 18);
-            this.lblReporterValue.Text = "-";
-            //
-            // lblReportee
-            //
-            this.lblReportee.AutoSize = true;
-            this.lblReportee.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
-            this.lblReportee.Location = new System.Drawing.Point(15, 55);
-            this.lblReportee.Name = "lblReportee";
-            this.lblReportee.Size = new System.Drawing.Size(100, 18);
-            this.lblReportee.Text = "Denunciado:";
-            //
-            // lblReporteeValue
-            //
-            this.lblReporteeValue.AutoSize = true;
-            this.lblReporteeValue.Location = new System.Drawing.Point(135, 55);
-            this.lblReporteeValue.Name = "lblReporteeValue";
-            this.lblReporteeValue.Size = new System.Drawing.Size(10, 18);
-            this.lblReporteeValue.Text = "-";
-            //
-            // lblCause
-            //
-            this.lblCause.AutoSize = true;
-            this.lblCause.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
-            this.lblCause.Location = new System.Drawing.Point(15, 80);
-            this.lblCause.Name = "lblCause";
-            this.lblCause.Size = new System.Drawing.Size(60, 18);
-            this.lblCause.Text = "Motivo:";
-            //
-            // lblCauseValue
-            //
-            this.lblCauseValue.AutoSize = true;
-            this.lblCauseValue.Location = new System.Drawing.Point(135, 80);
-            this.lblCauseValue.Name = "lblCauseValue";
-            this.lblCauseValue.Size = new System.Drawing.Size(10, 18);
-            this.lblCauseValue.Text = "-";
-            //
+            // 
+            // lblOriginValue
+            // 
+            this.lblOriginValue.AutoSize = true;
+            this.lblOriginValue.Location = new System.Drawing.Point(530, 30);
+            this.lblOriginValue.Name = "lblOriginValue";
+            this.lblOriginValue.Size = new System.Drawing.Size(14, 20);
+            this.lblOriginValue.TabIndex = 0;
+            this.lblOriginValue.Text = "-";
+            // 
             // lblOrigin
-            //
+            // 
             this.lblOrigin.AutoSize = true;
             this.lblOrigin.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
             this.lblOrigin.Location = new System.Drawing.Point(450, 30);
             this.lblOrigin.Name = "lblOrigin";
-            this.lblOrigin.Size = new System.Drawing.Size(60, 18);
+            this.lblOrigin.Size = new System.Drawing.Size(76, 22);
+            this.lblOrigin.TabIndex = 1;
             this.lblOrigin.Text = "Origen:";
-            //
-            // lblOriginValue
-            //
-            this.lblOriginValue.AutoSize = true;
-            this.lblOriginValue.Location = new System.Drawing.Point(530, 30);
-            this.lblOriginValue.Name = "lblOriginValue";
-            this.lblOriginValue.Size = new System.Drawing.Size(10, 18);
-            this.lblOriginValue.Text = "-";
-            //
+            // 
+            // lblCauseValue
+            // 
+            this.lblCauseValue.AutoSize = true;
+            this.lblCauseValue.Location = new System.Drawing.Point(135, 80);
+            this.lblCauseValue.Name = "lblCauseValue";
+            this.lblCauseValue.Size = new System.Drawing.Size(14, 20);
+            this.lblCauseValue.TabIndex = 2;
+            this.lblCauseValue.Text = "-";
+            // 
+            // lblCause
+            // 
+            this.lblCause.AutoSize = true;
+            this.lblCause.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
+            this.lblCause.Location = new System.Drawing.Point(15, 80);
+            this.lblCause.Name = "lblCause";
+            this.lblCause.Size = new System.Drawing.Size(74, 22);
+            this.lblCause.TabIndex = 3;
+            this.lblCause.Text = "Motivo:";
+            // 
+            // lblReporteeValue
+            // 
+            this.lblReporteeValue.AutoSize = true;
+            this.lblReporteeValue.Location = new System.Drawing.Point(135, 55);
+            this.lblReporteeValue.Name = "lblReporteeValue";
+            this.lblReporteeValue.Size = new System.Drawing.Size(14, 20);
+            this.lblReporteeValue.TabIndex = 4;
+            this.lblReporteeValue.Text = "-";
+            // 
+            // lblReportee
+            // 
+            this.lblReportee.AutoSize = true;
+            this.lblReportee.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
+            this.lblReportee.Location = new System.Drawing.Point(15, 55);
+            this.lblReportee.Name = "lblReportee";
+            this.lblReportee.Size = new System.Drawing.Size(122, 22);
+            this.lblReportee.TabIndex = 5;
+            this.lblReportee.Text = "Denunciado:";
+            // 
+            // lblReporterValue
+            // 
+            this.lblReporterValue.AutoSize = true;
+            this.lblReporterValue.Location = new System.Drawing.Point(135, 30);
+            this.lblReporterValue.Name = "lblReporterValue";
+            this.lblReporterValue.Size = new System.Drawing.Size(14, 20);
+            this.lblReporterValue.TabIndex = 6;
+            this.lblReporterValue.Text = "-";
+            // 
+            // lblReporter
+            // 
+            this.lblReporter.AutoSize = true;
+            this.lblReporter.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
+            this.lblReporter.Location = new System.Drawing.Point(15, 30);
+            this.lblReporter.Name = "lblReporter";
+            this.lblReporter.Size = new System.Drawing.Size(128, 22);
+            this.lblReporter.TabIndex = 7;
+            this.lblReporter.Text = "Denunciante:";
+            // 
             // gbContext
-            //
+            // 
             this.gbContext.Controls.Add(this.cmbContextItem);
             this.gbContext.Controls.Add(this.lblContextPicker);
             this.gbContext.Controls.Add(this.panelTaskDetails);
@@ -152,42 +160,28 @@ namespace handlyAdminScreens.Views
             this.gbContext.TabIndex = 1;
             this.gbContext.TabStop = false;
             this.gbContext.Text = "Contexto";
-            //
-            // lblContextPicker
-            //
-            this.lblContextPicker.AutoSize = true;
-            this.lblContextPicker.Location = new System.Drawing.Point(15, 30);
-            this.lblContextPicker.Name = "lblContextPicker";
-            this.lblContextPicker.Size = new System.Drawing.Size(48, 18);
-            this.lblContextPicker.Text = "Ver:";
-            //
+            // 
             // cmbContextItem
-            //
+            // 
             this.cmbContextItem.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbContextItem.FormattingEnabled = true;
             this.cmbContextItem.Location = new System.Drawing.Point(70, 27);
             this.cmbContextItem.Name = "cmbContextItem";
-            this.cmbContextItem.Size = new System.Drawing.Size(450, 26);
+            this.cmbContextItem.Size = new System.Drawing.Size(450, 28);
             this.cmbContextItem.TabIndex = 0;
             this.cmbContextItem.SelectedIndexChanged += new System.EventHandler(this.cmbContextItem_SelectedIndexChanged);
-            //
-            // gridMessages
-            //
-            this.gridMessages.AllowUserToAddRows = false;
-            this.gridMessages.AllowUserToDeleteRows = false;
-            this.gridMessages.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.gridMessages.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gridMessages.Location = new System.Drawing.Point(15, 70);
-            this.gridMessages.Name = "gridMessages";
-            this.gridMessages.ReadOnly = true;
-            this.gridMessages.RowHeadersVisible = false;
-            this.gridMessages.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridMessages.Size = new System.Drawing.Size(750, 235);
-            this.gridMessages.TabIndex = 1;
-            this.gridMessages.Visible = false;
-            //
+            // 
+            // lblContextPicker
+            // 
+            this.lblContextPicker.AutoSize = true;
+            this.lblContextPicker.Location = new System.Drawing.Point(15, 30);
+            this.lblContextPicker.Name = "lblContextPicker";
+            this.lblContextPicker.Size = new System.Drawing.Size(38, 20);
+            this.lblContextPicker.TabIndex = 1;
+            this.lblContextPicker.Text = "Ver:";
+            // 
             // panelTaskDetails
-            //
+            // 
             this.panelTaskDetails.Controls.Add(this.lblTaskDescriptionValue);
             this.panelTaskDetails.Controls.Add(this.lblTaskDescription);
             this.panelTaskDetails.Controls.Add(this.lblTaskStateValue);
@@ -201,80 +195,114 @@ namespace handlyAdminScreens.Views
             this.panelTaskDetails.Size = new System.Drawing.Size(750, 235);
             this.panelTaskDetails.TabIndex = 2;
             this.panelTaskDetails.Visible = false;
-            //
-            // lblTaskTitle
-            //
-            this.lblTaskTitle.AutoSize = true;
-            this.lblTaskTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
-            this.lblTaskTitle.Location = new System.Drawing.Point(5, 5);
-            this.lblTaskTitle.Name = "lblTaskTitle";
-            this.lblTaskTitle.Text = "Título:";
-            //
-            // lblTaskTitleValue
-            //
-            this.lblTaskTitleValue.AutoSize = true;
-            this.lblTaskTitleValue.Location = new System.Drawing.Point(120, 5);
-            this.lblTaskTitleValue.MaximumSize = new System.Drawing.Size(620, 0);
-            this.lblTaskTitleValue.Name = "lblTaskTitleValue";
-            this.lblTaskTitleValue.Text = "-";
-            //
-            // lblTaskState
-            //
-            this.lblTaskState.AutoSize = true;
-            this.lblTaskState.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
-            this.lblTaskState.Location = new System.Drawing.Point(5, 35);
-            this.lblTaskState.Name = "lblTaskState";
-            this.lblTaskState.Text = "Estado:";
-            //
-            // lblTaskStateValue
-            //
-            this.lblTaskStateValue.AutoSize = true;
-            this.lblTaskStateValue.Location = new System.Drawing.Point(120, 35);
-            this.lblTaskStateValue.Name = "lblTaskStateValue";
-            this.lblTaskStateValue.Text = "-";
-            //
-            // lblTaskCreation
-            //
-            this.lblTaskCreation.AutoSize = true;
-            this.lblTaskCreation.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
-            this.lblTaskCreation.Location = new System.Drawing.Point(5, 65);
-            this.lblTaskCreation.Name = "lblTaskCreation";
-            this.lblTaskCreation.Text = "Creación:";
-            //
-            // lblTaskCreationValue
-            //
-            this.lblTaskCreationValue.AutoSize = true;
-            this.lblTaskCreationValue.Location = new System.Drawing.Point(120, 65);
-            this.lblTaskCreationValue.Name = "lblTaskCreationValue";
-            this.lblTaskCreationValue.Text = "-";
-            //
-            // lblTaskDescription
-            //
-            this.lblTaskDescription.AutoSize = true;
-            this.lblTaskDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
-            this.lblTaskDescription.Location = new System.Drawing.Point(5, 95);
-            this.lblTaskDescription.Name = "lblTaskDescription";
-            this.lblTaskDescription.Text = "Descripción:";
-            //
+            // 
             // lblTaskDescriptionValue
-            //
+            // 
             this.lblTaskDescriptionValue.AutoSize = true;
             this.lblTaskDescriptionValue.Location = new System.Drawing.Point(120, 95);
             this.lblTaskDescriptionValue.MaximumSize = new System.Drawing.Size(620, 0);
             this.lblTaskDescriptionValue.Name = "lblTaskDescriptionValue";
+            this.lblTaskDescriptionValue.Size = new System.Drawing.Size(14, 20);
+            this.lblTaskDescriptionValue.TabIndex = 0;
             this.lblTaskDescriptionValue.Text = "-";
-            //
+            // 
+            // lblTaskDescription
+            // 
+            this.lblTaskDescription.AutoSize = true;
+            this.lblTaskDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
+            this.lblTaskDescription.Location = new System.Drawing.Point(5, 95);
+            this.lblTaskDescription.Name = "lblTaskDescription";
+            this.lblTaskDescription.Size = new System.Drawing.Size(121, 22);
+            this.lblTaskDescription.TabIndex = 1;
+            this.lblTaskDescription.Text = "Descripción:";
+            // 
+            // lblTaskStateValue
+            // 
+            this.lblTaskStateValue.AutoSize = true;
+            this.lblTaskStateValue.Location = new System.Drawing.Point(120, 35);
+            this.lblTaskStateValue.Name = "lblTaskStateValue";
+            this.lblTaskStateValue.Size = new System.Drawing.Size(14, 20);
+            this.lblTaskStateValue.TabIndex = 2;
+            this.lblTaskStateValue.Text = "-";
+            // 
+            // lblTaskState
+            // 
+            this.lblTaskState.AutoSize = true;
+            this.lblTaskState.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
+            this.lblTaskState.Location = new System.Drawing.Point(5, 35);
+            this.lblTaskState.Name = "lblTaskState";
+            this.lblTaskState.Size = new System.Drawing.Size(78, 22);
+            this.lblTaskState.TabIndex = 3;
+            this.lblTaskState.Text = "Estado:";
+            // 
+            // lblTaskCreationValue
+            // 
+            this.lblTaskCreationValue.AutoSize = true;
+            this.lblTaskCreationValue.Location = new System.Drawing.Point(120, 65);
+            this.lblTaskCreationValue.Name = "lblTaskCreationValue";
+            this.lblTaskCreationValue.Size = new System.Drawing.Size(14, 20);
+            this.lblTaskCreationValue.TabIndex = 4;
+            this.lblTaskCreationValue.Text = "-";
+            // 
+            // lblTaskCreation
+            // 
+            this.lblTaskCreation.AutoSize = true;
+            this.lblTaskCreation.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
+            this.lblTaskCreation.Location = new System.Drawing.Point(5, 65);
+            this.lblTaskCreation.Name = "lblTaskCreation";
+            this.lblTaskCreation.Size = new System.Drawing.Size(96, 22);
+            this.lblTaskCreation.TabIndex = 5;
+            this.lblTaskCreation.Text = "Creación:";
+            // 
+            // lblTaskTitleValue
+            // 
+            this.lblTaskTitleValue.AutoSize = true;
+            this.lblTaskTitleValue.Location = new System.Drawing.Point(120, 5);
+            this.lblTaskTitleValue.MaximumSize = new System.Drawing.Size(620, 0);
+            this.lblTaskTitleValue.Name = "lblTaskTitleValue";
+            this.lblTaskTitleValue.Size = new System.Drawing.Size(14, 20);
+            this.lblTaskTitleValue.TabIndex = 6;
+            this.lblTaskTitleValue.Text = "-";
+            // 
+            // lblTaskTitle
+            // 
+            this.lblTaskTitle.AutoSize = true;
+            this.lblTaskTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
+            this.lblTaskTitle.Location = new System.Drawing.Point(5, 5);
+            this.lblTaskTitle.Name = "lblTaskTitle";
+            this.lblTaskTitle.Size = new System.Drawing.Size(67, 22);
+            this.lblTaskTitle.TabIndex = 7;
+            this.lblTaskTitle.Text = "Título:";
+            // 
+            // gridMessages
+            // 
+            this.gridMessages.AllowUserToAddRows = false;
+            this.gridMessages.AllowUserToDeleteRows = false;
+            this.gridMessages.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.gridMessages.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridMessages.Location = new System.Drawing.Point(15, 70);
+            this.gridMessages.Name = "gridMessages";
+            this.gridMessages.ReadOnly = true;
+            this.gridMessages.RowHeadersVisible = false;
+            this.gridMessages.RowHeadersWidth = 62;
+            this.gridMessages.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.gridMessages.Size = new System.Drawing.Size(750, 235);
+            this.gridMessages.TabIndex = 1;
+            this.gridMessages.Visible = false;
+            // 
             // lblContextEmpty
-            //
+            // 
             this.lblContextEmpty.AutoSize = true;
             this.lblContextEmpty.ForeColor = System.Drawing.Color.Gray;
             this.lblContextEmpty.Location = new System.Drawing.Point(15, 145);
             this.lblContextEmpty.Name = "lblContextEmpty";
+            this.lblContextEmpty.Size = new System.Drawing.Size(342, 20);
+            this.lblContextEmpty.TabIndex = 3;
             this.lblContextEmpty.Text = "No hay contexto disponible para esta denuncia.";
             this.lblContextEmpty.Visible = false;
-            //
+            // 
             // gbVerdict
-            //
+            // 
             this.gbVerdict.Controls.Add(this.chkBanLoser);
             this.gbVerdict.Controls.Add(this.rbDismiss);
             this.gbVerdict.Controls.Add(this.rbReporteeWins);
@@ -285,41 +313,62 @@ namespace handlyAdminScreens.Views
             this.gbVerdict.TabIndex = 2;
             this.gbVerdict.TabStop = false;
             this.gbVerdict.Text = "Veredicto";
-            //
-            // rbReporterWins
-            //
-            this.rbReporterWins.AutoSize = true;
-            this.rbReporterWins.Location = new System.Drawing.Point(15, 30);
-            this.rbReporterWins.Name = "rbReporterWins";
-            this.rbReporterWins.Text = "Gana el denunciante";
-            this.rbReporterWins.UseVisualStyleBackColor = true;
-            //
-            // rbReporteeWins
-            //
-            this.rbReporteeWins.AutoSize = true;
-            this.rbReporteeWins.Location = new System.Drawing.Point(220, 30);
-            this.rbReporteeWins.Name = "rbReporteeWins";
-            this.rbReporteeWins.Text = "Gana el denunciado";
-            this.rbReporteeWins.UseVisualStyleBackColor = true;
-            //
-            // rbDismiss
-            //
-            this.rbDismiss.AutoSize = true;
-            this.rbDismiss.Location = new System.Drawing.Point(425, 30);
-            this.rbDismiss.Name = "rbDismiss";
-            this.rbDismiss.Text = "Desestimar denuncia";
-            this.rbDismiss.UseVisualStyleBackColor = true;
-            //
+            // 
             // chkBanLoser
-            //
+            // 
             this.chkBanLoser.AutoSize = true;
             this.chkBanLoser.Location = new System.Drawing.Point(15, 70);
             this.chkBanLoser.Name = "chkBanLoser";
+            this.chkBanLoser.Size = new System.Drawing.Size(234, 24);
+            this.chkBanLoser.TabIndex = 0;
             this.chkBanLoser.Text = "También banear al perdedor";
             this.chkBanLoser.UseVisualStyleBackColor = true;
-            //
+            // 
+            // rbDismiss
+            // 
+            this.rbDismiss.AutoSize = true;
+            this.rbDismiss.Location = new System.Drawing.Point(425, 30);
+            this.rbDismiss.Name = "rbDismiss";
+            this.rbDismiss.Size = new System.Drawing.Size(184, 24);
+            this.rbDismiss.TabIndex = 1;
+            this.rbDismiss.Text = "Desestimar denuncia";
+            this.rbDismiss.UseVisualStyleBackColor = true;
+            // 
+            // rbReporteeWins
+            // 
+            this.rbReporteeWins.AutoSize = true;
+            this.rbReporteeWins.Location = new System.Drawing.Point(220, 30);
+            this.rbReporteeWins.Name = "rbReporteeWins";
+            this.rbReporteeWins.Size = new System.Drawing.Size(177, 24);
+            this.rbReporteeWins.TabIndex = 2;
+            this.rbReporteeWins.Text = "Gana el denunciado";
+            this.rbReporteeWins.UseVisualStyleBackColor = true;
+            // 
+            // rbReporterWins
+            // 
+            this.rbReporterWins.AutoSize = true;
+            this.rbReporterWins.Location = new System.Drawing.Point(15, 30);
+            this.rbReporterWins.Name = "rbReporterWins";
+            this.rbReporterWins.Size = new System.Drawing.Size(182, 24);
+            this.rbReporterWins.TabIndex = 3;
+            this.rbReporterWins.Text = "Gana el denunciante";
+            this.rbReporterWins.UseVisualStyleBackColor = true;
+            // 
+            // btnSave
+            // 
+            this.btnSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(128)))), ((int)(((byte)(226)))));
+            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSave.ForeColor = System.Drawing.Color.White;
+            this.btnSave.Location = new System.Drawing.Point(685, 590);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(110, 35);
+            this.btnSave.TabIndex = 4;
+            this.btnSave.Text = "Guardar";
+            this.btnSave.UseVisualStyleBackColor = false;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
             // btnCancel
-            //
+            // 
             this.btnCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancel.Location = new System.Drawing.Point(560, 590);
@@ -329,21 +378,9 @@ namespace handlyAdminScreens.Views
             this.btnCancel.Text = "Cancelar";
             this.btnCancel.UseVisualStyleBackColor = false;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            //
-            // btnSave
-            //
-            this.btnSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(224)))), ((int)(((byte)(232)))));
-            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSave.Location = new System.Drawing.Point(685, 590);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(110, 35);
-            this.btnSave.TabIndex = 4;
-            this.btnSave.Text = "Guardar";
-            this.btnSave.UseVisualStyleBackColor = false;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            //
+            // 
             // SolveReport
-            //
+            // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(810, 640);
@@ -369,6 +406,7 @@ namespace handlyAdminScreens.Views
             this.gbVerdict.ResumeLayout(false);
             this.gbVerdict.PerformLayout();
             this.ResumeLayout(false);
+
         }
 
         #endregion

@@ -53,13 +53,13 @@
             this.lblAccountCreation = new System.Windows.Forms.Label();
             this.lblAppUserType = new System.Windows.Forms.Label();
             this.panelTransactionFilter = new System.Windows.Forms.Panel();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.chklTaskState = new System.Windows.Forms.CheckedListBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.chklTaskState = new System.Windows.Forms.CheckedListBox();
             this.panelReportFilter = new System.Windows.Forms.Panel();
             this.gbReportState = new System.Windows.Forms.GroupBox();
             this.chklReportState = new System.Windows.Forms.CheckedListBox();
@@ -71,16 +71,17 @@
             this.gbTypeAppUser.SuspendLayout();
             this.gbAppUser.SuspendLayout();
             this.panelTransactionFilter.SuspendLayout();
-            this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.panelReportFilter.SuspendLayout();
             this.gbReportState.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnFilter
             // 
-            this.btnFilter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(224)))), ((int)(((byte)(232)))));
+            this.btnFilter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(128)))), ((int)(((byte)(226)))));
             this.btnFilter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnFilter.ForeColor = System.Drawing.Color.White;
             this.btnFilter.Location = new System.Drawing.Point(287, 511);
             this.btnFilter.Name = "btnFilter";
             this.btnFilter.Size = new System.Drawing.Size(75, 35);
@@ -340,26 +341,6 @@
             this.panelTransactionFilter.TabIndex = 0;
             this.panelTransactionFilter.Paint += new System.Windows.Forms.PaintEventHandler(this.panelTransactionFilter_Paint);
             // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.chklTaskState);
-            this.groupBox1.Location = new System.Drawing.Point(13, 13);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(225, 167);
-            this.groupBox1.TabIndex = 21;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Estado de la tarea";
-            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
-            // 
-            // chklTaskState
-            // 
-            this.chklTaskState.CheckOnClick = true;
-            this.chklTaskState.FormattingEnabled = true;
-            this.chklTaskState.Location = new System.Drawing.Point(15, 28);
-            this.chklTaskState.Name = "chklTaskState";
-            this.chklTaskState.Size = new System.Drawing.Size(193, 119);
-            this.chklTaskState.TabIndex = 20;
-            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.label1);
@@ -406,17 +387,37 @@
             this.dateTimePicker2.ShowCheckBox = true;
             this.dateTimePicker2.Size = new System.Drawing.Size(220, 26);
             this.dateTimePicker2.TabIndex = 10;
-            //
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.chklTaskState);
+            this.groupBox1.Location = new System.Drawing.Point(13, 13);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(225, 167);
+            this.groupBox1.TabIndex = 21;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Estado de la tarea";
+            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
+            // 
+            // chklTaskState
+            // 
+            this.chklTaskState.CheckOnClick = true;
+            this.chklTaskState.FormattingEnabled = true;
+            this.chklTaskState.Location = new System.Drawing.Point(15, 28);
+            this.chklTaskState.Name = "chklTaskState";
+            this.chklTaskState.Size = new System.Drawing.Size(193, 119);
+            this.chklTaskState.TabIndex = 20;
+            // 
             // panelReportFilter
-            //
+            // 
             this.panelReportFilter.Controls.Add(this.gbReportState);
             this.panelReportFilter.Location = new System.Drawing.Point(693, 13);
             this.panelReportFilter.Name = "panelReportFilter";
             this.panelReportFilter.Size = new System.Drawing.Size(360, 280);
             this.panelReportFilter.TabIndex = 2;
-            //
+            // 
             // gbReportState
-            //
+            // 
             this.gbReportState.Controls.Add(this.chklReportState);
             this.gbReportState.Location = new System.Drawing.Point(13, 13);
             this.gbReportState.Name = "gbReportState";
@@ -424,18 +425,18 @@
             this.gbReportState.TabIndex = 0;
             this.gbReportState.TabStop = false;
             this.gbReportState.Text = "Estado de la denuncia";
-            //
+            // 
             // chklReportState
-            //
+            // 
             this.chklReportState.CheckOnClick = true;
             this.chklReportState.FormattingEnabled = true;
             this.chklReportState.Location = new System.Drawing.Point(15, 30);
             this.chklReportState.Name = "chklReportState";
-            this.chklReportState.Size = new System.Drawing.Size(248, 191);
+            this.chklReportState.Size = new System.Drawing.Size(248, 188);
             this.chklReportState.TabIndex = 0;
-            //
+            // 
             // Filter
-            //
+            // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1262, 567);
@@ -459,9 +460,9 @@
             this.gbAppUser.ResumeLayout(false);
             this.gbAppUser.PerformLayout();
             this.panelTransactionFilter.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
             this.panelReportFilter.ResumeLayout(false);
             this.gbReportState.ResumeLayout(false);
             this.ResumeLayout(false);

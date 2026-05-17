@@ -370,8 +370,9 @@
             // 
             // btnAccept
             // 
-            this.btnAccept.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(224)))), ((int)(((byte)(232)))));
+            this.btnAccept.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(128)))), ((int)(((byte)(226)))));
             this.btnAccept.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAccept.ForeColor = System.Drawing.Color.White;
             this.btnAccept.Location = new System.Drawing.Point(341, 674);
             this.btnAccept.Name = "btnAccept";
             this.btnAccept.Size = new System.Drawing.Size(114, 35);

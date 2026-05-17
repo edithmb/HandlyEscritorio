@@ -37,14 +37,14 @@ namespace handlyAdminScreens.Views
             this.txtSearchReport = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.gridReports)).BeginInit();
             this.SuspendLayout();
-            //
+            // 
             // gridReports
-            //
+            // 
             this.gridReports.AllowUserToAddRows = false;
             this.gridReports.AllowUserToDeleteRows = false;
             this.gridReports.AllowUserToOrderColumns = true;
-            this.gridReports.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.gridReports.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gridReports.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.gridReports.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -57,20 +57,22 @@ namespace handlyAdminScreens.Views
             this.gridReports.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gridReports.Size = new System.Drawing.Size(1090, 312);
             this.gridReports.TabIndex = 0;
-            //
+            this.gridReports.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridReports_CellClick);
+            // 
             // lblBuscar
-            //
+            // 
             this.lblBuscar.AutoSize = true;
             this.lblBuscar.Location = new System.Drawing.Point(30, 27);
             this.lblBuscar.Name = "lblBuscar";
             this.lblBuscar.Size = new System.Drawing.Size(63, 20);
             this.lblBuscar.TabIndex = 3;
             this.lblBuscar.Text = "Buscar:";
-            //
+            // 
             // btnFilter
-            //
-            this.btnFilter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(224)))), ((int)(((byte)(232)))));
+            // 
+            this.btnFilter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(128)))), ((int)(((byte)(226)))));
             this.btnFilter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnFilter.ForeColor = System.Drawing.Color.White;
             this.btnFilter.Location = new System.Drawing.Point(368, 20);
             this.btnFilter.Name = "btnFilter";
             this.btnFilter.Size = new System.Drawing.Size(75, 35);
@@ -78,9 +80,9 @@ namespace handlyAdminScreens.Views
             this.btnFilter.Text = "Filtrar";
             this.btnFilter.UseVisualStyleBackColor = false;
             this.btnFilter.Click += new System.EventHandler(this.btnFilter_Click);
-            //
+            // 
             // btnDeleteFilter
-            //
+            // 
             this.btnDeleteFilter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.btnDeleteFilter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDeleteFilter.Location = new System.Drawing.Point(476, 20);
@@ -90,21 +92,22 @@ namespace handlyAdminScreens.Views
             this.btnDeleteFilter.Text = "Borrar filtro";
             this.btnDeleteFilter.UseVisualStyleBackColor = false;
             this.btnDeleteFilter.Click += new System.EventHandler(this.btnDeleteFilter_Click);
-            //
+            // 
             // btnRefresh
-            //
-            this.btnRefresh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(224)))), ((int)(((byte)(232)))));
+            // 
+            this.btnRefresh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(128)))), ((int)(((byte)(226)))));
             this.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRefresh.ForeColor = System.Drawing.Color.White;
             this.btnRefresh.Location = new System.Drawing.Point(620, 20);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(150, 35);
             this.btnRefresh.TabIndex = 8;
-            this.btnRefresh.Text = "↺ Actualizar datos";
+            this.btnRefresh.Text = "Actualizar datos";
             this.btnRefresh.UseVisualStyleBackColor = false;
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
-            //
+            // 
             // btnResolve
-            //
+            // 
             this.btnResolve.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(224)))), ((int)(((byte)(232)))));
             this.btnResolve.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnResolve.Location = new System.Drawing.Point(800, 20);
@@ -114,17 +117,17 @@ namespace handlyAdminScreens.Views
             this.btnResolve.Text = "Resolver";
             this.btnResolve.UseVisualStyleBackColor = false;
             this.btnResolve.Click += new System.EventHandler(this.btnResolve_Click);
-            //
+            // 
             // txtSearchReport
-            //
+            // 
             this.txtSearchReport.Location = new System.Drawing.Point(99, 24);
             this.txtSearchReport.Name = "txtSearchReport";
             this.txtSearchReport.Size = new System.Drawing.Size(229, 26);
             this.txtSearchReport.TabIndex = 7;
             this.txtSearchReport.TextChanged += new System.EventHandler(this.txtSearchReport_TextChanged);
-            //
+            // 
             // Denuncias
-            //
+            // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1134, 450);
@@ -138,7 +141,6 @@ namespace handlyAdminScreens.Views
             this.Name = "Denuncias";
             this.Text = "Denuncias";
             this.Load += new System.EventHandler(this.Denuncias_Load);
-            this.gridReports.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridReports_CellClick);
             ((System.ComponentModel.ISupportInitialize)(this.gridReports)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

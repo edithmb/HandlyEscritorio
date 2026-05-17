@@ -56,17 +56,10 @@ namespace handlyAdminScreens.Views
             }
         }
 
-        private void btnExit_Click(object sender, EventArgs e)
-        {
-            // si el user cierra el login, sale toda la app
-            this.DialogResult = DialogResult.Cancel;
-            this.Close();
-        }
-
+        //TODO mirar que fa aixo
         private void SetBusy(bool busy)
         {
             btnLogin.Enabled = !busy;
-            btnExit.Enabled = !busy;
             txtEmail.Enabled = !busy;
             txtPassword.Enabled = !busy;
             this.Cursor = busy ? Cursors.WaitCursor : Cursors.Default;

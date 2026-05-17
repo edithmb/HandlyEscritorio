@@ -16,6 +16,16 @@ namespace handlyAdminScreens.Helpers
             PropertyNameCaseInsensitive = true
         };
 
+        // ficheros de datos transitorios (se borran al arrancar/cerrar sesión)
+        // los catálogos NO están aquí: rara vez cambian y se recargan tras el login
+        private static readonly string[] DataCacheFiles = new[]
+        {
+            "users.json",
+            "users_verification.json",
+            "transactions.json",
+            "reports.json"
+        };
+
         public static void Save<T>(string filename, T data)
         {
             try
@@ -43,6 +53,28 @@ namespace handlyAdminScreens.Helpers
                 System.Diagnostics.Debug.WriteLine($"CacheService.Load error ({filename}): {ex.Message}");
                 return null;
             }
+        }
+
+        // borra UN fichero de cache
+        public static void Delete(string filename)
+        {
+            try
+            {
+                var path = Path.Combine(CacheDir, filename);
+                if (File.Exists(path)) File.Delete(path);
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"CacheService.Delete error ({filename}): {ex.Message}");
+            }
+        }
+
+        // borra todos los ficheros de datos (usuarios, transacciones, denuncias, verificación).
+        // Se llama al arrancar la app y al hacer logout para que el siguiente login
+        // muestre datos frescos del API en cada pestaña.
+        public static void ClearDataCaches()
+        {
+            foreach (var f in DataCacheFiles) Delete(f);
         }
     }
 }

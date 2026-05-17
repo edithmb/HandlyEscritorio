@@ -20,6 +20,8 @@ namespace handlyAdminScreens.Views
         private readonly ApiService _api = new ApiService();
         private readonly bool _readOnly;
 
+        //TODO mirar exactament com funciona linia 26 i 28
+
         // Constructor normal (edición)
         public EditUser(User originalUser) : this(originalUser, readOnly: false) { }
 
@@ -29,6 +31,7 @@ namespace handlyAdminScreens.Views
             InitializeComponent();
             _readOnly = readOnly;
 
+            //TODO mirar si aixo te sentit
             // si nos pasan un usuario null, montamos uno vacío para que no reviente nada
             if (originalUser == null) originalUser = new User();
 

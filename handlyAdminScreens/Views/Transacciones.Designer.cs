@@ -56,6 +56,7 @@
             this.gridTransactions.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gridTransactions.Size = new System.Drawing.Size(1090, 312);
             this.gridTransactions.TabIndex = 0;
+            this.gridTransactions.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridTransactions_CellClick);
             // 
             // lblBuscar
             // 
@@ -68,8 +69,9 @@
             // 
             // btnFilter
             // 
-            this.btnFilter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(224)))), ((int)(((byte)(232)))));
+            this.btnFilter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(128)))), ((int)(((byte)(226)))));
             this.btnFilter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnFilter.ForeColor = System.Drawing.Color.White;
             this.btnFilter.Location = new System.Drawing.Point(368, 20);
             this.btnFilter.Name = "btnFilter";
             this.btnFilter.Size = new System.Drawing.Size(75, 35);
@@ -91,18 +93,20 @@
             this.btnDeleteFilter.Click += new System.EventHandler(this.btnDeleteFilter_Click);
             // 
             // btnRefresh
-            //
-            this.btnRefresh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(224)))), ((int)(((byte)(232)))));
+            // 
+            this.btnRefresh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(128)))), ((int)(((byte)(226)))));
             this.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRefresh.ForeColor = System.Drawing.Color.White;
             this.btnRefresh.Location = new System.Drawing.Point(620, 20);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(150, 35);
             this.btnRefresh.TabIndex = 8;
-            this.btnRefresh.Text = "↺ Actualizar datos";
+            this.btnRefresh.Text = "Actualizar datos";
             this.btnRefresh.UseVisualStyleBackColor = false;
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+            // 
             // txtSearchTransaction
-            //
+            // 
             this.txtSearchTransaction.Location = new System.Drawing.Point(99, 24);
             this.txtSearchTransaction.Name = "txtSearchTransaction";
             this.txtSearchTransaction.Size = new System.Drawing.Size(229, 26);
@@ -123,7 +127,6 @@
             this.Name = "Transacciones";
             this.Text = "Transacciones";
             this.Load += new System.EventHandler(this.Transacciones_Load);
-            this.gridTransactions.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridTransactions_CellClick);
             ((System.ComponentModel.ISupportInitialize)(this.gridTransactions)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -94,7 +94,7 @@ namespace handlyAdminScreens.Views
             if (gridUsers.Columns.Count > 0)
             {
 
-                gridUsers.HideCol("Id", "UserId", "RoleId", "StateId", "Profession");
+                gridUsers.HideCol("Id", "UserId", "RoleId", "StateId", "Profession", "Selfie", "DocumentFront", "DocumentBack");
 
                 gridUsers.ConfigureCol("Name", "Nombre", 0);
                 gridUsers.ConfigureCol("LastName", "Apellidos", 1, true);
