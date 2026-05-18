@@ -72,6 +72,9 @@ namespace handlyAdminScreens.Views
             ApplyFilterAndSearch();
         }
 
+
+
+        //TODO metode comu per tots els grids
         private async void btnRefresh_Click(object sender, EventArgs e)
         {
             btnRefresh.Enabled = false;
@@ -83,7 +86,7 @@ namespace handlyAdminScreens.Views
             finally
             {
                 btnRefresh.Enabled = true;
-                btnRefresh.Text = "↺ Actualizar datos";
+                btnRefresh.Text = "Actualizar datos";
             }
         }
 
@@ -202,33 +205,80 @@ namespace handlyAdminScreens.Views
             ApplyFilterAndSearch();
         }
 
-        private void gridTransactions_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex < 0) return;
-
-            var colName = gridTransactions.Columns[e.ColumnIndex].DataPropertyName;
-            if (colName != "ClientName" && colName != "ProfesionalName") return;
-
-            var tx = (Transaction)gridTransactions.Rows[e.RowIndex].DataBoundItem;
-            if (tx?.Task == null) return;
-
-            long userId = colName == "ClientName"
-                ? tx.Task.Client?.Id ?? 0
-                : tx.Task.Professional?.Id ?? 0;
-
-            if (userId > 0) _ = OpenUserReadOnlyAsync(userId);
-        }
-
+        //TODO agafar dades de json
         private async System.Threading.Tasks.Task OpenUserReadOnlyAsync(long userId)
         {
-            var result = await _api.GetUserByIdAsync(userId);
-            if (!result.Success || result.Data == null)
+            // 1) primero intentamos el cache (users.json) - sin API call
+            var cached = CacheService.Load<List<User>>("users.json");
+            var user = cached?.FirstOrDefault(u => u.Id == userId);
+
+            // 2) si no está en cache, fallback al API
+            if (user == null)
             {
-                SafeData.ShowError("Error", "No se pudieron cargar los datos del usuario: " + result.ErrorMessage);
+                var result = await _api.GetUserByIdAsync(userId);
+                if (!result.Success || result.Data == null)
+                {
+                    SafeData.ShowError("Error", "No se pudieron cargar los datos del usuario: " + result.ErrorMessage);
+                    return;
+                }
+                user = result.Data;
+            }
+
+            using (var form = new EditUser(user, readOnly: true))
+                form.ShowDialog();
+        }
+
+        //TODO agafar dades de json
+        private async void gridTransactions_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                var colName = gridTransactions.Columns[e.ColumnIndex].DataPropertyName;
+                var tx = gridTransactions.Rows[e.RowIndex].DataBoundItem as Transaction;
+                if (tx != null)
+                {
+
+                    if (colName == "ClientName" || colName == "ProfesionalName")
+                    {
+                        if (tx.Task != null)
+                        {
+                            long userId = colName == "ClientName"
+                                ? tx.Task.Client?.Id ?? 0
+                                : tx.Task.Professional?.Id ?? 0;
+                            if (userId > 0) await OpenUserReadOnlyAsync(userId);
+                        }
+
+                    }
+                    else
+                    {
+                        using (var form = new TransactionImages(tx))
+                            form.ShowDialog();
+                    }
+                }
+            }
+        }
+
+        private void btnViewImages_Click(object sender, EventArgs e)
+        {
+            OpenImagesForSelected();
+        }
+
+        private void OpenImagesForSelected()
+        {
+            if (gridTransactions.SelectedRows.Count == 0)
+            {
+                SafeData.ShowInfo("Selecciona una transacción",
+                    "Selecciona una fila para ver las imágenes de la tarea.");
                 return;
             }
-            using (var form = new EditUser(result.Data, readOnly: true))
+
+            var tx = gridTransactions.SelectedRows[0].DataBoundItem as Transaction;
+            if (tx == null) return;
+
+            using (var form = new TransactionImages(tx))
+            {
                 form.ShowDialog();
+            }
         }
     }
 }

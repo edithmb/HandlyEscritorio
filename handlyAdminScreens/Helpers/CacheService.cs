@@ -3,9 +3,7 @@ using System.IO;
 using System.Text.Json;
 
 namespace handlyAdminScreens.Helpers
-{
-    // Guarda y carga listas en JSON en una carpeta "cache/" junto al ejecutable.
-    // Si el archivo no existe o está corrupto, devuelve null para que el llamador vaya a la API.
+{ 
     public static class CacheService
     {
         private static readonly string CacheDir =

@@ -49,6 +49,9 @@ namespace handlyAdminScreens.Services
         public static string RoleName(int? id)         => Lookup(_bundle.Roles, id);
         public static string TaskStateName(int? id)    => Lookup(_bundle.TaskStates, id);
 
+        // lista de profesiones para poblar dropdowns sin pegar al API
+        public static List<Profession> Professions => _bundle.Professions ?? new List<Profession>();
+
         private static string Lookup(List<CatalogItem> list, int? id)
         {
             if (list == null || !id.HasValue) return "-";

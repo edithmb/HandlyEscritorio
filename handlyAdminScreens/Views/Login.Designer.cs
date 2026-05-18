@@ -17,6 +17,7 @@ namespace handlyAdminScreens.Views
 
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
             this.gbEmail = new System.Windows.Forms.GroupBox();
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.gbPassword = new System.Windows.Forms.GroupBox();
@@ -97,10 +98,12 @@ namespace handlyAdminScreens.Views
             this.Controls.Add(this.gbPassword);
             this.Controls.Add(this.gbEmail);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "Login";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Handly Admin - Login";
+            this.Load += new System.EventHandler(this.Login_Load);
             this.gbEmail.ResumeLayout(false);
             this.gbEmail.PerformLayout();
             this.gbPassword.ResumeLayout(false);

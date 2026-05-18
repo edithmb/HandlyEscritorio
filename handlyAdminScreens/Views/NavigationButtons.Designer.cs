@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NavigationButtons));
             this.btnDenunciasResueltas = new System.Windows.Forms.Button();
             this.btnIdentidad = new System.Windows.Forms.Button();
             this.btnDenuncias = new System.Windows.Forms.Button();
@@ -35,6 +36,7 @@
             this.btnInicio = new System.Windows.Forms.Button();
             this.btnUsuarios = new System.Windows.Forms.Button();
             this.btnTransacciones = new System.Windows.Forms.Button();
+            this.btnLogout = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnDenunciasResueltas
@@ -91,6 +93,7 @@
             this.btnInicio.TabIndex = 9;
             this.btnInicio.Text = "INICIO";
             this.btnInicio.UseVisualStyleBackColor = true;
+            this.btnInicio.Click += new System.EventHandler(this.btnInicio_Click);
             // 
             // btnUsuarios
             // 
@@ -116,17 +119,33 @@
             this.btnTransacciones.UseVisualStyleBackColor = true;
             this.btnTransacciones.Click += new System.EventHandler(this.btnTransacciones_Click);
             // 
+            // btnLogout
+            // 
+            this.btnLogout.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnLogout.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.btnLogout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLogout.Location = new System.Drawing.Point(1042, 0);
+            this.btnLogout.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnLogout.Name = "btnLogout";
+            this.btnLogout.Size = new System.Drawing.Size(158, 35);
+            this.btnLogout.TabIndex = 12;
+            this.btnLogout.Text = "CERRAR SESIÓN";
+            this.btnLogout.UseVisualStyleBackColor = false;
+            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
+            // 
             // NavigationButtons
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1200, 692);
+            this.Controls.Add(this.btnLogout);
             this.Controls.Add(this.btnTransacciones);
             this.Controls.Add(this.btnUsuarios);
             this.Controls.Add(this.btnInicio);
             this.Controls.Add(this.panelMain);
             this.Controls.Add(this.btnDenuncias);
             this.Controls.Add(this.btnIdentidad);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "NavigationButtons";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -142,6 +161,7 @@
         private System.Windows.Forms.Button btnInicio;
         private System.Windows.Forms.Button btnUsuarios;
         private System.Windows.Forms.Button btnTransacciones;
+        private System.Windows.Forms.Button btnLogout;
     }
 }
 

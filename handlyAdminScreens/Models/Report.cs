@@ -1,9 +1,9 @@
 using System;
 using System.Text.Json.Serialization;
+using handlyAdminScreens.Services;
 
 namespace handlyAdminScreens
 {
-    // Una denuncia tal y como la devuelve GET /api/admin/reports
     public class Report
     {
         [JsonPropertyName("id")]
@@ -15,7 +15,6 @@ namespace handlyAdminScreens
         [JsonPropertyName("cause")]
         public string Cause { get; set; }
 
-        // nullable por si el report tiene estado nulo o desconocido
         [JsonPropertyName("state_id")]
         public int? StateId { get; set; }
 
@@ -25,7 +24,6 @@ namespace handlyAdminScreens
         [JsonPropertyName("reporter_id")]
         public long? ReporterId { get; set; }
 
-        // Users.id del denunciante (para abrir EditUser)
         [JsonPropertyName("reporter_user_id")]
         public long? ReporterUserId { get; set; }
 
@@ -38,7 +36,6 @@ namespace handlyAdminScreens
         [JsonPropertyName("reportee_id")]
         public long? ReporteeId { get; set; }
 
-        // Users.id del denunciado (para abrir EditUser)
         [JsonPropertyName("reportee_user_id")]
         public long? ReporteeUserId { get; set; }
 
@@ -48,19 +45,69 @@ namespace handlyAdminScreens
         [JsonPropertyName("reportee_surname")]
         public string ReporteeSurname { get; set; }
 
-        // helpers para mostrar en el grid en vez del id crudo
         [JsonIgnore]
-        public string ReporterFullName =>
-            string.IsNullOrWhiteSpace(ReporterName) && string.IsNullOrWhiteSpace(ReporterSurname)
-                ? "-"
-                : $"{ReporterName} {ReporterSurname}".Trim();
+        public string ReporterFullName
+        {
+            get
+            {
+                string result = "-";
+
+                if (!string.IsNullOrWhiteSpace(ReporterName) || !string.IsNullOrWhiteSpace(ReporterSurname))
+                {
+                    result = $"{ReporterName} {ReporterSurname}".Trim();
+                }
+
+                return result;
+            }
+        }
 
         [JsonIgnore]
-        public string ReporteeFullName =>
-            string.IsNullOrWhiteSpace(ReporteeName) && string.IsNullOrWhiteSpace(ReporteeSurname)
-                ? "-"
-                : $"{ReporteeName} {ReporteeSurname}".Trim();
+        public string ReporteeFullName
+        {
+            get
+            {
+                string result = "-";
 
+                if (!string.IsNullOrWhiteSpace(ReporteeName) || !string.IsNullOrWhiteSpace(ReporteeSurname))
+                {
+                    result = $"{ReporteeName} {ReporteeSurname}".Trim();
+                }
+
+                return result;
+            }
+        }
+
+
+        [JsonPropertyName("reporter_rol_id")]
+        public int? ReporterRoleId { get; set; }
+
+        [JsonPropertyName("reportee_rol_id")]
+        public int? ReporteeRoleId { get; set; }
+
+        [JsonIgnore]
+        public string ReporterRoleLabel => RoleLabel(ReporterRoleId);
+
+        [JsonIgnore]
+        public string ReporteeRoleLabel => RoleLabel(ReporteeRoleId);
+        private static string RoleLabel(int? rolId)
+        {
+            string result = "";
+
+            if (rolId.HasValue)
+            {
+                var name = Catalogs.RoleName(rolId);
+
+                if (!string.IsNullOrEmpty(name) && name != "-")
+                {
+                    name = name.ToLower();
+                    result = char.ToUpper(name[0]) + name.Substring(1);
+                }
+            }
+
+            return result;
+        }
+
+        //TODO crec que es pot treure
         [JsonIgnore]
         public string StateDisplay => string.IsNullOrWhiteSpace(StateName) ? "-" : StateName;
     }

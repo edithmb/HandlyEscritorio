@@ -65,7 +65,6 @@ namespace handlyAdminScreens.Views
             }
             catch (Exception ex)
             {
-                // no queremos que el form reviente al abrirse
                 SafeData.ShowError("Error al cargar usuario",
                     "No se pudieron cargar todos los datos del usuario. Faltan campos en la API.",
                     ex);
@@ -75,33 +74,52 @@ namespace handlyAdminScreens.Views
         private void SetupComboBoxes()
         {
             cmbRole.Items.Clear();
-            cmbRole.Items.Add("Cliente");
-            cmbRole.Items.Add("Profesional");
-            cmbRole.Items.Add("Admin");
-            cmbRole.Items.Add("Superadmin");
+            foreach (var r in Catalogs.Current.Roles)
+                cmbRole.Items.Add(r);                  // CatalogItem.ToString() devuelve Name
             cmbRole.DropDownStyle = ComboBoxStyle.DropDownList;
 
             cmbAccountState.Items.Clear();
-            cmbAccountState.Items.Add("Active");
-            cmbAccountState.Items.Add("Banned");
-            cmbAccountState.Items.Add("Pending aprobation");
-            cmbAccountState.Items.Add("In revision");
-            cmbAccountState.Items.Add("Inactive");
-            cmbAccountState.Items.Add("Deleted");
+            foreach (var s in Catalogs.Current.AccountStates)
+                cmbAccountState.Items.Add(s);
             cmbAccountState.DropDownStyle = ComboBoxStyle.DropDownList;
         }
 
+        // selecciona el item del ComboBox cuyo CatalogItem.Id coincide con targetId
+       
+        private static void SelectByCatalogId(ComboBox cmb, int? targetId)
+        {
+            if (cmb != null)
+            {
+                int targetIndex = -1;
+
+                if (targetId.HasValue)
+                {
+                    // The loop automatically stops running as soon as targetIndex changes from -1
+                    for (int i = 0; i < cmb.Items.Count && targetIndex == -1; i++)
+                    {
+                        var ci = cmb.Items[i] as CatalogItem;
+
+                        if (ci != null && ci.Id == targetId.Value)
+                        {
+                            targetIndex = i;
+                        }
+                    }
+                }
+
+                cmb.SelectedIndex = targetIndex;
+            }
+        }
+       
+
+        // profesiones desde el catálogo cacheado (NO API call)
         private void SetupProfessions()
         {
             chklProfessions.Items.Clear();
-            string[] options =
+            foreach (var p in Catalogs.Professions)
             {
-                "Albañil", "Carpintero", "Cerrajero" , "Cristalero", "Electricista", "Fontanero", "Fumigador",
-                "Jardinero", "Limpieza Hogar", "Manitas (Handyman)", "Mudanzas y Portes" , "Parquetista", "Pintor", "Tapicero",
-                "Téc. Calderas", "Téc. Electrodomésticos"
-            };
-
-            chklProfessions.Items.AddRange(options);
+                if (!string.IsNullOrWhiteSpace(p.NameProfession))
+                    chklProfessions.Items.Add(p.NameProfession);
+            }
         }
 
         private void LoadData()
@@ -121,33 +139,121 @@ namespace handlyAdminScreens.Views
             // DateTimePicker no acepta DateTime.MinValue ni fechas < 1753 -> usamos helper
             SafeData.SetDate(dtBirthdate, EditedUser.Birthdate);
 
-            // SelectedIndex seguro: si el rol/estado vienen vacíos, no peta
-            SafeData.SelectIndex(cmbRole, EditedUser.RoleId - 1);
-            // StateId es int? (null para admin/superadmin) -> usamos GetValueOrDefault
-            SafeData.SelectIndex(cmbAccountState, EditedUser.StateId.GetValueOrDefault() - 1);
+            // seleccionamos por ID del catálogo (no asumimos que el orden coincide con el ID)
+            SelectByCatalogId(cmbRole, EditedUser.RoleId);
+            SelectByCatalogId(cmbAccountState, EditedUser.StateId);
 
             if (_readOnly) ApplyReadOnly();
         }
 
+        //TODO versio simplificada potser no funciona xd
+        /*
+         private void ApplyReadOnly()
+        {
+            // 1. Clean up the TextBoxes using the single-line Array trick
+            Array.ForEach(new[] { txtName, txtLastName, txtEmail, txtPhone, txtDNI }, tb => {
+                tb.Enabled = false;
+                tb.BackColor = System.Drawing.SystemColors.Window;
+                tb.ForeColor = System.Drawing.Color.Black;
+                tb.TabStop = false;
+            });
+
+            // 2. Hide original controls and replace them with text smoothly
+            string birthText = (EditedUser.Birthdate.HasValue && EditedUser.Birthdate.Value.Year > 1900)
+                ? EditedUser.Birthdate.Value.ToString("dd/MM/yyyy")
+                : "—";
+            string roleText = cmbRole.SelectedIndex >= 0 ? cmbRole.Items[cmbRole.SelectedIndex].ToString() : "—";
+            string stateText = cmbAccountState.SelectedIndex >= 0 ? cmbAccountState.Items[cmbAccountState.SelectedIndex].ToString() : "—";
+            string profsText = (EditedUser.Profession != null && EditedUser.Profession.Count > 0)
+                ? string.Join(Environment.NewLine, EditedUser.Profession)
+                : "—";
+
+            ReplaceWithLabel(dtBirthdate, birthText);
+            ReplaceWithLabel(cmbRole, roleText);
+            ReplaceWithLabel(cmbAccountState, stateText);
+            ReplaceWithLabel(chklProfessions, profsText, gbProfession); // Injects into the GroupBox
+
+
+            groupBox5.Visible = false;
+            btnAccept.Visible = false;
+            btnCancel.Text = "Cerrar";
+        }
+
+
+        private static void ReplaceWithLabel(Control originalControl, string text, Control customParent = null)
+        {
+            originalControl.Visible = false;
+
+            var lbl = new Label
+            {
+                AutoSize = false,
+                Location = originalControl.Location,
+                Size = originalControl.Size,
+                ForeColor = System.Drawing.Color.Black,
+                TextAlign = originalControl is CheckedListBox ? System.Drawing.ContentAlignment.TopLeft : System.Drawing.ContentAlignment.MiddleLeft,
+                Text = text
+            };
+
+            // If a specific parent (like a GroupBox) is provided, use it. Otherwise, use the control's natural parent.
+            Control parent = customParent ?? originalControl.Parent;
+    
+            parent.Controls.Add(lbl);
+            lbl.BringToFront();
+        }
+        
+         */
         private void ApplyReadOnly()
         {
-            this.Text = "Ver usuario";
+            foreach (var tb in new[] { txtName, txtLastName, txtEmail, txtPhone, txtDNI })
+            {
+                tb.ReadOnly = true;
+                tb.BackColor = System.Drawing.SystemColors.Window;
+                tb.ForeColor = System.Drawing.Color.Black;
+                tb.TabStop = false;
+            }
 
-            // deshabilitar todos los inputs
-            txtName.ReadOnly = true;
-            txtLastName.ReadOnly = true;
-            txtEmail.ReadOnly = true;
-            txtPhone.ReadOnly = true;
-            txtDNI.ReadOnly = true;
-            txtStreet.ReadOnly = true;
-            txtCity.ReadOnly = true;
-            txtPostalCode.ReadOnly = true;
-            txtCountry.ReadOnly = true;
-            dtBirthdate.Enabled = false;
-            cmbRole.Enabled = false;
-            cmbAccountState.Enabled = false;
+            dtBirthdate.Visible = false;
+            var lblBirth = new Label
+            {
+                AutoSize = false,
+                Location = dtBirthdate.Location,
+                Size = dtBirthdate.Size,
+                TextAlign = System.Drawing.ContentAlignment.MiddleLeft,
+                ForeColor = System.Drawing.Color.Black,
+                Text = (EditedUser.Birthdate.HasValue && EditedUser.Birthdate.Value.Year > 1900)
+                    ? EditedUser.Birthdate.Value.ToString("dd/MM/yyyy")
+                    : "—"
+            };
+            dtBirthdate.Parent.Controls.Add(lblBirth);
+            lblBirth.BringToFront();
 
-            // reemplazar el CheckedListBox de profesiones por una etiqueta de texto simple
+            cmbRole.Visible = false;
+            var lblRole = new Label
+            {
+                AutoSize = false,
+                Location = cmbRole.Location,
+                Size = cmbRole.Size,
+                TextAlign = System.Drawing.ContentAlignment.MiddleLeft,
+                ForeColor = System.Drawing.Color.Black,
+                Text = cmbRole.SelectedIndex >= 0 ? cmbRole.Items[cmbRole.SelectedIndex].ToString() : "—"
+            };
+            cmbRole.Parent.Controls.Add(lblRole);
+            lblRole.BringToFront();
+
+            cmbAccountState.Visible = false;
+            var lblState = new Label
+            {
+                AutoSize = false,
+                Location = cmbAccountState.Location,
+                Size = cmbAccountState.Size,
+                TextAlign = System.Drawing.ContentAlignment.MiddleLeft,
+                ForeColor = System.Drawing.Color.Black,
+                Text = cmbAccountState.SelectedIndex >= 0 ? cmbAccountState.Items[cmbAccountState.SelectedIndex].ToString() : "—"
+            };
+            cmbAccountState.Parent.Controls.Add(lblState);
+            lblState.BringToFront();
+
+            //TODO fix
             chklProfessions.Visible = false;
             var lblProfs = new Label
             {
@@ -161,7 +267,8 @@ namespace handlyAdminScreens.Views
             };
             gbProfession.Controls.Add(lblProfs);
 
-            // ocultar botón guardar, dejar solo Cerrar
+
+            groupBox5.Visible = false;
             btnAccept.Visible = false;
             btnCancel.Text = "Cerrar";
         }
@@ -185,8 +292,9 @@ namespace handlyAdminScreens.Views
 
         private void cmbRole_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // sólo profesionales tienen oficios
-            chklProfessions.Enabled = (cmbRole.SelectedIndex == 1);
+            // sólo profesionales (rol_id == 2) tienen oficios
+            var selected = cmbRole.SelectedItem as CatalogItem;
+            chklProfessions.Enabled = (selected != null && selected.Id == 2);
         }
 
         // valida que el formulario tiene los campos mínimos antes de mandar al API
@@ -236,12 +344,15 @@ namespace handlyAdminScreens.Views
             EditedUser.City = txtCity.Text.Trim();
             EditedUser.Country = txtCountry.Text.Trim();
             EditedUser.Birthdate = dtBirthdate.Value;
-            if (cmbRole.SelectedIndex >= 0) EditedUser.RoleId = cmbRole.SelectedIndex + 1;
-            if (cmbAccountState.SelectedIndex >= 0) EditedUser.StateId = cmbAccountState.SelectedIndex + 1;
+            // leemos el ID del CatalogItem seleccionado (no asumimos orden secuencial)
+            var rSel = cmbRole.SelectedItem as CatalogItem;
+            if (rSel != null) EditedUser.RoleId = rSel.Id;
+            var sSel = cmbAccountState.SelectedItem as CatalogItem;
+            if (sSel != null) EditedUser.StateId = sSel.Id;
 
-            // profesiones (sólo si es profesional)
+            // profesiones (sólo si es profesional, rol_id 2)
             EditedUser.Profession = new List<string>();
-            if (cmbRole.SelectedIndex == 1)
+            if (EditedUser.RoleId == 2)
             {
                 foreach (var i in chklProfessions.CheckedItems)
                 {

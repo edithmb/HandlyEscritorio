@@ -103,6 +103,7 @@
     <Compile Include="Helpers\CacheService.cs" />
     <Compile Include="Helpers\SafeData.cs" />
     <Compile Include="Helpers\StringExtensions.cs" />
+    <Compile Include="Models\CatalogModels.cs" />
     <Compile Include="Models\FilterOptions.cs" />
     <Compile Include="Models\LoginModels.cs" />
     <Compile Include="Models\Report.cs" />
@@ -113,6 +114,8 @@
     <Compile Include="Models\Task.cs" />
     <Compile Include="Models\Profession.cs" />
     <Compile Include="Services\ApiService.cs" />
+    <Compile Include="Services\Catalogs.cs" />
+    <Compile Include="Services\GridData.cs" />
     <Compile Include="Views\Denuncias.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -163,6 +166,15 @@
     <Compile Include="Views\Transacciones.Designer.cs">
       <DependentUpon>Transacciones.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\TransactionImages.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\TransactionImages.Designer.cs">
+      <DependentUpon>TransactionImages.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Views\TransactionImages.resx">
+      <DependentUpon>TransactionImages.cs</DependentUpon>
+    </EmbeddedResource>
     <Compile Include="Views\Usuarios.cs">
       <SubType>Form</SubType>
     </Compile>

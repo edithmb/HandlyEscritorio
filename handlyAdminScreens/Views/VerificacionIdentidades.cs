@@ -4,6 +4,7 @@ using System.Linq;
 using System.Windows.Forms;
 using handlyAdminScreens.Helpers;
 using handlyAdminScreens.Services;
+using handlyAdminScreens.Views; 
 
 namespace handlyAdminScreens.Views
 {
@@ -34,7 +35,7 @@ namespace handlyAdminScreens.Views
             // si hay caché y no nos piden forzar, usamos lo que ya teníamos
             if (!forceRefresh)
             {
-                var cached = CacheService.Load<List<User>>("users.json");
+                var cached = CacheService.Load<List<User>>("users_verification.json");
                 if (cached != null)
                 {
                     _allUsers = cached;
@@ -57,7 +58,7 @@ namespace handlyAdminScreens.Views
 
             if (_allUsers == null) _allUsers = new List<User>();
 
-            CacheService.Save("users.json", _allUsers);
+            CacheService.Save("users_verification.json", _allUsers);
 
             FilterPending();
             ApplySearch();
@@ -98,7 +99,6 @@ namespace handlyAdminScreens.Views
         {
             if (gridVerify.Columns.Count == 0) return;
 
-            // ocultamos todo lo que no toca mostrar en este tab
             gridVerify.HideCol(
                 "Id",
                 "UserId",
@@ -148,18 +148,30 @@ namespace handlyAdminScreens.Views
             }
         }
 
-        // abre el visor de imágenes para la fila seleccionada
         private void btnViewImages_Click(object sender, EventArgs e)
         {
             OpenImagesForSelected();
         }
 
-        private void gridVerify_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        //TODO agafar dades de api
+        private async void gridVerify_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex < 0) return;
-            OpenImagesForSelected();
-        }
+            if (e.RowIndex >= 0)
+            {
+                var colName = gridVerify.Columns[e.ColumnIndex].DataPropertyName;
+                var user = gridVerify.Rows[e.RowIndex].DataBoundItem as User;
+                if (user == null) return;
 
+                if (colName == "Name" || colName == "LastName")
+                {
+                    using (var form = new EditUser(user, readOnly: true))
+                        form.ShowDialog();
+                    return;
+                }
+
+                OpenImagesForSelected();
+            }
+        }
         private async void OpenImagesForSelected()
         {
             if (gridVerify.SelectedRows.Count == 0)
@@ -181,6 +193,11 @@ namespace handlyAdminScreens.Views
                     await LoadUsersAsync(forceRefresh: true);
                 }
             }
+        }
+
+        private void gridVerify_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

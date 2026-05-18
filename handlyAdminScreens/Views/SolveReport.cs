@@ -34,8 +34,8 @@ namespace handlyAdminScreens.Views
         {
             // pintamos la cabecera con la info que ya tenemos
             this.Text = $"Resolver denuncia #{_report.Id}";
-            lblReporterValue.Text = SafeData.Text(_report.ReporterFullName, "-");
-            lblReporteeValue.Text = SafeData.Text(_report.ReporteeFullName, "-");
+            lblReporterValue.Text = FormatNameWithRole(_report.ReporterFullName, _report.ReporterRoleLabel);
+            lblReporteeValue.Text = FormatNameWithRole(_report.ReporteeFullName, _report.ReporteeRoleLabel);
             lblCauseValue.Text = SafeData.Text(_report.Cause, "-");
             lblOriginValue.Text = SafeData.Text(_report.ReportOrigin, "-");
 
@@ -71,6 +71,13 @@ namespace handlyAdminScreens.Views
                 ShowEmptyContext("Error inesperado al cargar el contexto.");
                 System.Diagnostics.Debug.WriteLine("LoadContextAsync error: " + ex.Message);
             }
+        }
+
+        private static string FormatNameWithRole(string fullName, string roleLabel)
+        {
+            string name = SafeData.Text(fullName, "-");
+            if (string.IsNullOrEmpty(roleLabel)) return name;
+            return name + "  (" + roleLabel + ")";
         }
 
         private void RenderContext()

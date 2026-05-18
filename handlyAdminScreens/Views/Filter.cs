@@ -1,15 +1,7 @@
-﻿using handlyAdminScreens.Helpers;
-using handlyAdminScreens.Models;
+﻿using handlyAdminScreens.Models;
 using handlyAdminScreens.Services;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace handlyAdminScreens.Views
@@ -17,6 +9,8 @@ namespace handlyAdminScreens.Views
     public partial class Filter : Form
     {
         private CurrentGridType _currentType;
+
+        //TODO crec que es pot treure
         private readonly ApiService _api = new ApiService();
 
         public BaseFilterOptions SelectedFilters { get; private set; }
@@ -33,15 +27,9 @@ namespace handlyAdminScreens.Views
             SetupUI();
         }
 
-        private async void Filter_Load(object sender, EventArgs e)
+        private void Filter_Load(object sender, EventArgs e)
         {
             Size = new Size(412, 423);
-
-            // si es de denuncias, cargamos los estados desde el API
-            if (_currentType == CurrentGridType.Reports)
-            {
-                await LoadReportStatesAsync();
-            }
         }
 
         private void SetupUI()
@@ -58,7 +46,7 @@ namespace handlyAdminScreens.Views
                     SelectedFilters = new UserFilterOptions();
 
                     SetupProfessions();
-                    SetupCalendars();
+                    SetupCalendars(_currentType);
                     SetupAccountStates();
 
                     break;
@@ -68,7 +56,8 @@ namespace handlyAdminScreens.Views
                     panelTransactionFilter.Visible = true;
                     SelectedFilters = new TransactionFilterOptions();
 
-                    //cargar elementos
+                    SetupTransactionSates();
+                    SetupCalendars(_currentType);
 
                     break;
 
@@ -76,39 +65,22 @@ namespace handlyAdminScreens.Views
                     this.Text = "Filtrar denuncias";
                     panelReportFilter.Visible = true;
                     SelectedFilters = new ReportFilterOptions();
-                    // los estados se cargan en Filter_Load (async)
+
+                    LoadReportStatesFromCatalog();
+
                     break;
             }
         }
 
-        // carga los estados de denuncia desde el API y los pinta en el checkbox list
-        private async Task LoadReportStatesAsync()
+        // los estados de denuncia se sacan del catálogo cacheado tras el login.
+        // sin API call: si catalogs.json estaba bien, esto es instantáneo
+        private void LoadReportStatesFromCatalog()
         {
             chklReportState.Items.Clear();
-            try
+            foreach (var s in Catalogs.Current.ReportStates)
             {
-                var result = await _api.GetReportStatesAsync();
-                if (result.Success && result.Data != null)
-                {
-                    foreach (var s in result.Data)
-                    {
-                        // guardamos el nombre tal cual viene de la API (lo normalizamos luego al filtrar)
-                        if (!string.IsNullOrWhiteSpace(s.Name))
-                        {
-                            chklReportState.Items.Add(s.Name);
-                        }
-                    }
-                }
-                else
-                {
-                    SafeData.ShowError("Error al cargar estados",
-                        "No se pudieron cargar los estados de denuncia: " + result.ErrorMessage);
-                }
-            }
-            catch (Exception ex)
-            {
-                SafeData.ShowError("Error inesperado",
-                    "No se pudieron cargar los estados de denuncia.", ex);
+                if (!string.IsNullOrWhiteSpace(s.Name))
+                    chklReportState.Items.Add(s.Name);
             }
         }
 
@@ -161,7 +133,19 @@ namespace handlyAdminScreens.Views
             }
             else if (_currentType == CurrentGridType.Transactions)
             {
+                var transactionFilter = (TransactionFilterOptions)SelectedFilters;
 
+                if (dtpTaskFrom.Checked && dtpTaskUntil.Checked && dtpTaskFrom.Value > dtpTaskUntil.Value)
+                {
+                    MessageBox.Show("La fecha 'Desde' no puede ser mayor que la fecha 'Hasta'");
+                    return;
+                }
+
+                transactionFilter.TaskState.Clear();
+                foreach (var s in chklTaskState.CheckedItems)
+                {
+                    transactionFilter.TaskState.Add(s.ToString().ToLower());
+                }
             }
             else if (_currentType == CurrentGridType.Reports)
             {
@@ -181,35 +165,63 @@ namespace handlyAdminScreens.Views
             this.Close();
         }
 
+        // profesiones desde el catálogo cacheado (NO API call)
         private void SetupProfessions()
         {
             chklProfessions.Items.Clear();
-
-            string[] shownProfessions = { "Albañil", "Carpintero", "Cerrajero" , "Cristalero", "Electricista", "Fontanero", "Fumigador",
-                "Jardinero", "Limpieza Hogar", "Manitas (Handyman)", "Mudanzas y Portes" , "Parquetista", "Pintor", "Tapicero",
-                "Téc. Calderas", "Téc. Electrodomésticos"};
-            chklProfessions.Items.AddRange(shownProfessions);
+            foreach (var p in Catalogs.Professions)
+            {
+                if (!string.IsNullOrWhiteSpace(p.NameProfession))
+                    chklProfessions.Items.Add(p.NameProfession);
+            }
         }
 
+        // estados de cuenta desde el catálogo cacheado (NO API)
         private void SetupAccountStates()
         {
             chklAccountState.Items.Clear();
-
-            string[] shownStates = { "Active", "Banned", "Pending aprobation", "In revision", "Inactive", "Deleted", "Otro" };
-            chklAccountState.Items.AddRange(shownStates);
+            foreach (var s in Catalogs.Current.AccountStates)
+            {
+                if (!string.IsNullOrWhiteSpace(s.Name))
+                    chklAccountState.Items.Add(s.Name);
+            }
         }
 
-        private void SetupCalendars()
+        private void SetupTransactionSates()
         {
-            dtpCreatedFrom.ShowCheckBox = true;
-            dtpCreatedTo.ShowCheckBox = true;
-            dtpLastConnectionFrom.ShowCheckBox = true;
-            dtpLastConnectionTo.ShowCheckBox = true;
+            chklTaskState.Items.Clear();
+            foreach (var s in Catalogs.Current.TaskStates)
+            {
+                if (string.IsNullOrWhiteSpace(s.Name))
+                    chklTaskState.Items.Add(s.Name);
+            }
+        }
 
-            dtpCreatedFrom.Checked = false;
-            dtpCreatedTo.Checked = false;
-            dtpLastConnectionFrom.Checked = false;
-            dtpLastConnectionTo.Checked = false;
+        private void SetupCalendars(CurrentGridType type)
+        {
+            switch (type)
+            {
+                case CurrentGridType.Users:
+
+                    dtpCreatedFrom.ShowCheckBox = true;
+                    dtpCreatedTo.ShowCheckBox = true;
+                    dtpLastConnectionFrom.ShowCheckBox = true;
+                    dtpLastConnectionTo.ShowCheckBox = true;
+
+                    dtpCreatedFrom.Checked = false;
+                    dtpCreatedTo.Checked = false;
+                    dtpLastConnectionFrom.Checked = false;
+                    dtpLastConnectionTo.Checked = false;
+                break;
+
+                case CurrentGridType.Transactions:
+                    dtpTaskUntil.ShowCheckBox = true;
+                    dtpTaskFrom.ShowCheckBox = true;
+
+                    dtpTaskFrom.Checked = false;
+                    dtpTaskUntil.Checked = false;
+                    break;
+            } 
         }
 
         private void chkAppNo_CheckedChanged(object sender, EventArgs e)

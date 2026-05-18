@@ -50,6 +50,7 @@ namespace handlyAdminScreens.Views
             this.gridVerify.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gridVerify.Size = new System.Drawing.Size(1090, 312);
             this.gridVerify.TabIndex = 0;
+            this.gridVerify.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridVerify_CellContentClick);
             this.gridVerify.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridVerify_CellDoubleClick);
             // 
             // lblBuscar
@@ -71,10 +72,10 @@ namespace handlyAdminScreens.Views
             // 
             // btnRefresh
             // 
-            this.btnRefresh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(128)))), ((int)(((byte)(226)))));
+            this.btnRefresh.BackColor = System.Drawing.Color.White;
             this.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRefresh.ForeColor = System.Drawing.Color.White;
-            this.btnRefresh.Location = new System.Drawing.Point(620, 20);
+            this.btnRefresh.ForeColor = System.Drawing.Color.Black;
+            this.btnRefresh.Location = new System.Drawing.Point(963, 20);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(150, 35);
             this.btnRefresh.TabIndex = 3;
@@ -84,9 +85,10 @@ namespace handlyAdminScreens.Views
             // 
             // btnViewImages
             // 
-            this.btnViewImages.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(224)))), ((int)(((byte)(232)))));
+            this.btnViewImages.BackColor = System.Drawing.Color.DarkGreen;
             this.btnViewImages.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnViewImages.Location = new System.Drawing.Point(800, 20);
+            this.btnViewImages.ForeColor = System.Drawing.Color.White;
+            this.btnViewImages.Location = new System.Drawing.Point(750, 20);
             this.btnViewImages.Name = "btnViewImages";
             this.btnViewImages.Size = new System.Drawing.Size(180, 35);
             this.btnViewImages.TabIndex = 4;

@@ -92,10 +92,13 @@ namespace handlyAdminScreens.Views
                     "ReporterName",
                     "ReporterSurname",
                     "ReporteeName",
-                    "ReporteeSurname"
+                    "ReporteeSurname",
+                    "ReporterUserId",
+                    "ReporteeUserId"
                 );
 
                 gridReports.ConfigureCol("Id", "ID", 0, true);
+                gridReports.ConfigureCol("ReporterFullName", "Denunciante", 1);
                 gridReports.ConfigureCol("ReporterFullName", "Denunciante", 1);
                 gridReports.ConfigureCol("ReporteeFullName", "Denunciado", 2);
                 gridReports.ConfigureCol("ReportOrigin", "Origen", 3);
@@ -170,55 +173,77 @@ namespace handlyAdminScreens.Views
             ApplyFilterAndSearch();
         }
 
-        private void gridReports_CellClick(object sender, DataGridViewCellEventArgs e)
+        //TODO mirar com simplificar i treure crida API, dades venen de json
+        private async void gridReports_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex < 0) return;
+            if (e.RowIndex >= 0)
+            {
+                var colName = gridReports.Columns[e.ColumnIndex].DataPropertyName;
+                var report = gridReports.Rows[e.RowIndex].DataBoundItem as Report;
+                if (report == null) return;
 
-            var colName = gridReports.Columns[e.ColumnIndex].DataPropertyName;
-            if (colName != "ReporterFullName" && colName != "ReporteeFullName") return;
+                if (colName == "ReporterFullName" || colName == "ReporteeFullName")
+                {
+                    long? userId = colName == "ReporterFullName"
+                        ? report.ReporterUserId
+                        : report.ReporteeUserId;
+                    if (userId.HasValue && userId.Value > 0)
+                        await OpenUserReadOnlyAsync(userId.Value);
+                    return;
+                }
 
-            var report = (Report)gridReports.Rows[e.RowIndex].DataBoundItem;
-            if (report == null) return;
-
-            long? userId = colName == "ReporterFullName"
-                ? report.ReporterUserId
-                : report.ReporteeUserId;
-
-            if (userId.HasValue && userId.Value > 0) _ = OpenUserReadOnlyAsync(userId.Value);
+                using (var form = new SolveReport(report))
+                {
+                    if (form.ShowDialog() == DialogResult.OK)
+                        await LoadReportsAsync(forceRefresh: true);
+                }
+            }
         }
 
+        //TOD treure crida api
         private async System.Threading.Tasks.Task OpenUserReadOnlyAsync(long userId)
         {
-            var result = await _api.GetUserByIdAsync(userId);
-            if (!result.Success || result.Data == null)
+            // 1) primero intentamos el cache (users.json) - sin API call
+            var cached = CacheService.Load<List<User>>("users.json");
+            var user = cached?.FirstOrDefault(u => u.Id == userId);
+
+            // 2) si no está en cache, fallback al API (sólo este caso pega al servidor)
+            if (user == null)
             {
-                SafeData.ShowError("Error", "No se pudieron cargar los datos del usuario: " + result.ErrorMessage);
-                return;
+                var result = await _api.GetUserByIdAsync(userId);
+                if (!result.Success || result.Data == null)
+                {
+                    SafeData.ShowError("Error", "No se pudieron cargar los datos del usuario: " + result.ErrorMessage);
+                    return;
+                }
+                user = result.Data;
             }
-            using (var form = new EditUser(result.Data, readOnly: true))
+
+            using (var form = new EditUser(user, readOnly: true))
                 form.ShowDialog();
         }
 
-        // abre SolveReport para la denuncia seleccionada actualmente
         private async void btnResolve_Click(object sender, EventArgs e)
         {
-            if (gridReports.SelectedRows.Count == 0)
+            if (gridReports.SelectedRows.Count > 0)
+            {
+                var report = gridReports.SelectedRows[0].DataBoundItem as Report;
+                
+                if (report != null)
+                {
+                    using (var form = new SolveReport(report))
+                    {
+                        if (form.ShowDialog() == DialogResult.OK)
+                        {
+                            await LoadReportsAsync(forceRefresh: true);
+                        }
+                    }
+                }
+            }
+            else
             {
                 SafeData.ShowInfo("Selecciona una denuncia",
                     "Tienes que seleccionar una fila para resolver la denuncia.");
-                return;
-            }
-
-            var report = gridReports.SelectedRows[0].DataBoundItem as Report;
-            if (report == null) return;
-
-            using (var form = new SolveReport(report))
-            {
-                if (form.ShowDialog() == DialogResult.OK)
-                {
-                    // tras resolver, refrescamos desde la API (forzando, no la caché)
-                    await LoadReportsAsync(forceRefresh: true);
-                }
             }
         }
     }

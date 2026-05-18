@@ -17,6 +17,7 @@ namespace handlyAdminScreens.Views
 
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SolveReport));
             this.gbReport = new System.Windows.Forms.GroupBox();
             this.lblOriginValue = new System.Windows.Forms.Label();
             this.lblOrigin = new System.Windows.Forms.Label();
@@ -390,6 +391,7 @@ namespace handlyAdminScreens.Views
             this.Controls.Add(this.gbContext);
             this.Controls.Add(this.gbReport);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "SolveReport";

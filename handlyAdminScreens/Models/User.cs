@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Text.Json.Serialization;
+using handlyAdminScreens.Services;
 
 namespace handlyAdminScreens
 {
@@ -32,57 +30,67 @@ namespace handlyAdminScreens
         [JsonPropertyName("rol_id")]
         public int RoleId { get; set; }
 
+    
         [JsonIgnore]
         public string RoleName
         {
             get
             {
-                switch (RoleId)
+                string result = "-";
+                var name = Catalogs.RoleName(RoleId);
+
+                if (!string.IsNullOrEmpty(name) && name != "-")
                 {
-                    case 1:return "cliente";
-                    case 2:return "profesional";
-                    case 3:return "admin";
-                    case 4:return "super admin";
-                    default:return "otro";
+                    result = name.ToLower();
                 }
-            }          
+
+                return result;
+            }
         }
 
         [JsonPropertyName("profession")]
         public List<String> Profession { get; set; } = new List<String>();
+
 
         [JsonIgnore]
         public string ProfessionSummary
         {
             get
             {
-                if (Profession == null || Profession.Count == 0) return "-";
-                return string.Join(", ", Profession);
+                string result = "-";
+
+                if (Profession != null && Profession.Count > 0)
+                {
+                    result = string.Join(", ", Profession);
+                }
+
+                return result;
             }
         }
 
 
-        // nullable porque admins/superadmins no tienen entrada en App_users
-        // (la API hace LEFT JOIN y devuelve null para esos casos)
         [JsonPropertyName("account_state_id")]
         public int? StateId { get; set; }
+
 
         [JsonIgnore]
         public string StateName
         {
             get
             {
-                if (!StateId.HasValue) return "-";
-                switch (StateId.Value)
+                string result = "-";
+
+                if (StateId.HasValue)
                 {
-                    case 1: return "active";
-                    case 2: return "banned";
-                    case 3: return "pending aprobation";
-                    case 4: return "in revision";
-                    case 5: return "inactive";
-                    case 6: return "deleted";
-                    default: return "otro";
+                    var name = Catalogs.AccountStateName(StateId);
+
+                    if (!string.IsNullOrEmpty(name))
+                    {
+                        result = name;
+                    }
                 }
+
+                return result;
             }
         }
 

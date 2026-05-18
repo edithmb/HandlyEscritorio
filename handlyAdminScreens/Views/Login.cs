@@ -30,9 +30,7 @@ namespace handlyAdminScreens.Views
                 return;
             }
 
-            // bloqueamos los controles mientras se hace la llamada
             SetBusy(true);
-
             try
             {
                 var result = await _api.LoginAsync(email, password);
@@ -56,13 +54,17 @@ namespace handlyAdminScreens.Views
             }
         }
 
-        //TODO mirar que fa aixo
         private void SetBusy(bool busy)
         {
             btnLogin.Enabled = !busy;
             txtEmail.Enabled = !busy;
             txtPassword.Enabled = !busy;
             this.Cursor = busy ? Cursors.WaitCursor : Cursors.Default;
+        }
+
+        private void Login_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

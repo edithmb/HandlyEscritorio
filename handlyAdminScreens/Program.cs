@@ -2,6 +2,7 @@ using System;
 using System.Threading;
 using System.Windows.Forms;
 using handlyAdminScreens.Helpers;
+using handlyAdminScreens.Services;
 using handlyAdminScreens.Views;
 
 namespace handlyAdminScreens
@@ -18,7 +19,6 @@ namespace handlyAdminScreens
             Application.SetCompatibleTextRenderingDefault(false);
 
             // -- red de seguridad para excepciones que no se hayan capturado en otro sitio --
-            // si algo peta dentro de un handler de UI, mostramos un mensaje en vez de cerrar la app
             Application.ThreadException += (sender, e) =>
             {
                 SafeData.ShowError("Error inesperado",
@@ -26,7 +26,6 @@ namespace handlyAdminScreens
                     e.Exception);
             };
 
-            // si peta algo fuera del hilo de UI (ej. tarea async sin await), tampoco queremos cerrar
             AppDomain.CurrentDomain.UnhandledException += (sender, e) =>
             {
                 var ex = e.ExceptionObject as Exception;
@@ -35,18 +34,69 @@ namespace handlyAdminScreens
                     ex);
             };
 
-            // primero el login: si no entra, no se abre el resto de la app
-            using (var login = new Login())
+            // Al arrancar la app borramos los caches de datos (usuarios, transacciones,
+            // denuncias, verificación). Así cada lanzamiento de la app empieza limpio
+            // y cada pestaña hace su llamada al API la primera vez que se abre.
+            // Los catálogos (estados, roles) NO se borran aquí: se recargan tras login.
+            CacheService.ClearDataCaches();
+
+            // ----- bucle login -> main -> logout -> login -----
+            while (true)
             {
-                var result = login.ShowDialog();
-                if (result != DialogResult.OK || !login.LoginSuccess)
+                // 1. Login
+                using (var login = new Login())
                 {
-                    return;
+                    var result = login.ShowDialog();
+                    if (result != DialogResult.OK || !login.LoginSuccess)
+                    {
+                        // el usuario canceló el login -> salir de la app
+                        return;
+                    }
+                }
+
+                // 2. Tras login OK, cargamos los catálogos (account_states, roles, etc.)
+                // Se hace en sincrónico para no abrir la pantalla principal hasta tenerlos.
+                LoadCatalogsBlocking();
+
+                // 3. Mostramos la pantalla principal
+                var nav = new NavigationButtons();
+                Application.Run(nav);
+
+                // 4. Cuando NavigationButtons se cierra, miramos si fue por logout
+                //    o si el usuario cerró la ventana (X) -> salir
+                if (!nav.LoggedOut) return;
+
+                // 5. Logout -> los caches ya se han borrado en btnLogout_Click,
+                //    volvemos al bucle para mostrar el Login otra vez.
+            }
+        }
+
+        // carga catálogos del API en modo bloqueante (Task.GetAwaiter().GetResult()).
+        // No es ideal en general pero aquí estamos justo después del login, antes de
+        // abrir cualquier UI compleja, así que es seguro y mantiene el código simple.
+        private static void LoadCatalogsBlocking()
+        {
+            try
+            {
+                var api = new ApiService();
+                var result = api.GetCatalogsAsync().GetAwaiter().GetResult();
+                if (result.Success && result.Data != null)
+                {
+                    Catalogs.Set(result.Data);
+                }
+                else
+                {
+                    // si la API falla, intentamos cargar del cache anterior por si acaso
+                    Catalogs.LoadFromDisk();
+                    System.Diagnostics.Debug.WriteLine(
+                        "No se pudieron cargar los catálogos desde la API: " + result.ErrorMessage);
                 }
             }
-
-            // login OK -> abrir la pantalla principal
-            Application.Run(new NavigationButtons());
+            catch (Exception ex)
+            {
+                Catalogs.LoadFromDisk();
+                System.Diagnostics.Debug.WriteLine("Error cargando catálogos: " + ex.Message);
+            }
         }
     }
 }

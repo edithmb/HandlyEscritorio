@@ -80,7 +80,7 @@
             // 
             // btnFilter
             // 
-            this.btnFilter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(128)))), ((int)(((byte)(226)))));
+            this.btnFilter.BackColor = System.Drawing.Color.Navy;
             this.btnFilter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFilter.ForeColor = System.Drawing.Color.White;
             this.btnFilter.Location = new System.Drawing.Point(368, 20);
@@ -93,8 +93,9 @@
             // 
             // btnDeleteFilter
             // 
-            this.btnDeleteFilter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.btnDeleteFilter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
             this.btnDeleteFilter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDeleteFilter.ForeColor = System.Drawing.Color.White;
             this.btnDeleteFilter.Location = new System.Drawing.Point(476, 20);
             this.btnDeleteFilter.Name = "btnDeleteFilter";
             this.btnDeleteFilter.Size = new System.Drawing.Size(109, 35);
@@ -105,10 +106,10 @@
             // 
             // btnRefresh
             // 
-            this.btnRefresh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(128)))), ((int)(((byte)(226)))));
+            this.btnRefresh.BackColor = System.Drawing.Color.White;
             this.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRefresh.ForeColor = System.Drawing.Color.White;
-            this.btnRefresh.Location = new System.Drawing.Point(620, 20);
+            this.btnRefresh.ForeColor = System.Drawing.Color.Black;
+            this.btnRefresh.Location = new System.Drawing.Point(963, 20);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(150, 35);
             this.btnRefresh.TabIndex = 6;
@@ -118,9 +119,10 @@
             // 
             // btnEditUser
             // 
-            this.btnEditUser.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.btnEditUser.BackColor = System.Drawing.Color.DarkGreen;
             this.btnEditUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEditUser.Location = new System.Drawing.Point(851, 20);
+            this.btnEditUser.ForeColor = System.Drawing.Color.White;
+            this.btnEditUser.Location = new System.Drawing.Point(769, 20);
             this.btnEditUser.Name = "btnEditUser";
             this.btnEditUser.Size = new System.Drawing.Size(175, 35);
             this.btnEditUser.TabIndex = 5;

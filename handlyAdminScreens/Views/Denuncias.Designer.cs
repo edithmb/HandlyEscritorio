@@ -57,7 +57,7 @@ namespace handlyAdminScreens.Views
             this.gridReports.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gridReports.Size = new System.Drawing.Size(1090, 312);
             this.gridReports.TabIndex = 0;
-            this.gridReports.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridReports_CellClick);
+            this.gridReports.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridReports_CellDoubleClick);            
             // 
             // lblBuscar
             // 
@@ -70,7 +70,7 @@ namespace handlyAdminScreens.Views
             // 
             // btnFilter
             // 
-            this.btnFilter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(128)))), ((int)(((byte)(226)))));
+            this.btnFilter.BackColor = System.Drawing.Color.Navy;
             this.btnFilter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFilter.ForeColor = System.Drawing.Color.White;
             this.btnFilter.Location = new System.Drawing.Point(368, 20);
@@ -83,8 +83,9 @@ namespace handlyAdminScreens.Views
             // 
             // btnDeleteFilter
             // 
-            this.btnDeleteFilter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.btnDeleteFilter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
             this.btnDeleteFilter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDeleteFilter.ForeColor = System.Drawing.Color.White;
             this.btnDeleteFilter.Location = new System.Drawing.Point(476, 20);
             this.btnDeleteFilter.Name = "btnDeleteFilter";
             this.btnDeleteFilter.Size = new System.Drawing.Size(109, 35);
@@ -95,10 +96,10 @@ namespace handlyAdminScreens.Views
             // 
             // btnRefresh
             // 
-            this.btnRefresh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(128)))), ((int)(((byte)(226)))));
+            this.btnRefresh.BackColor = System.Drawing.Color.White;
             this.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRefresh.ForeColor = System.Drawing.Color.White;
-            this.btnRefresh.Location = new System.Drawing.Point(620, 20);
+            this.btnRefresh.ForeColor = System.Drawing.Color.Black;
+            this.btnRefresh.Location = new System.Drawing.Point(963, 15);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(150, 35);
             this.btnRefresh.TabIndex = 8;
@@ -108,9 +109,10 @@ namespace handlyAdminScreens.Views
             // 
             // btnResolve
             // 
-            this.btnResolve.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(224)))), ((int)(((byte)(232)))));
+            this.btnResolve.BackColor = System.Drawing.Color.DarkGreen;
             this.btnResolve.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnResolve.Location = new System.Drawing.Point(800, 20);
+            this.btnResolve.ForeColor = System.Drawing.Color.White;
+            this.btnResolve.Location = new System.Drawing.Point(800, 15);
             this.btnResolve.Name = "btnResolve";
             this.btnResolve.Size = new System.Drawing.Size(140, 35);
             this.btnResolve.TabIndex = 9;

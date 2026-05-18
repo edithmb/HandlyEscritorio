@@ -33,5 +33,9 @@ namespace handlyAdminScreens.Models
 
         [JsonPropertyName("task_states")]
         public List<CatalogItem> TaskStates { get; set; } = new List<CatalogItem>();
+
+        // profesiones también vienen en el mismo bundle para evitar API calls extras
+        [JsonPropertyName("professions")]
+        public List<Profession> Professions { get; set; } = new List<Profession>();
     }
 }

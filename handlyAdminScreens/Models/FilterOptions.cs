@@ -34,7 +34,8 @@ namespace handlyAdminScreens.Models
 
     public class TransactionFilterOptions : BaseFilterOptions
     {
-        public string TaskState { get; set; }
+        // Initialize TaskState to avoid null reference when clearing/adding items
+        public List<string> TaskState { get; set; } = new List<string>();
         public DateTime? CreatedFromDate { get; set; }
         public DateTime? CreatedToDate { get; set; }
         public double? MinAmount { get; set; }

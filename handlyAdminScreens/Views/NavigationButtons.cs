@@ -1,4 +1,6 @@
-﻿using handlyAdminScreens.Views;
+using handlyAdminScreens.Helpers;
+using handlyAdminScreens.Services;
+using handlyAdminScreens.Views;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,6 +16,12 @@ namespace handlyAdminScreens
     public partial class NavigationButtons : Form
     {
         private Form activeForm = null;
+        private readonly ApiService _api = new ApiService();
+
+        // Lo lee Program.Main al cerrarse este form:
+        //   true  -> el admin pulsó "Cerrar sesión" -> volver al login
+        //   false -> el admin cerró la ventana (X) -> salir de la app
+        public bool LoggedOut { get; private set; } = false;
 
         public NavigationButtons()
         {
@@ -31,7 +39,7 @@ namespace handlyAdminScreens
             {
                 activeForm.Close();
             }
-            
+
             activeForm = childForm;
 
             childForm.TopLevel = false;
@@ -47,7 +55,11 @@ namespace handlyAdminScreens
 
         private void panelMain_Paint(object sender, PaintEventArgs e)
         {
+        }
 
+        private void btnInicio_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new Inicio());
         }
 
         private void btnIdentidad_Click_1(object sender, EventArgs e)
@@ -57,18 +69,52 @@ namespace handlyAdminScreens
 
         private void btnDenuncias_Click(object sender, EventArgs e)
         {
-             OpenChildForm(new Denuncias());
+            OpenChildForm(new Denuncias());
         }
-
 
         private void btnUsuarios_Click(object sender, EventArgs e)
         {
-          OpenChildForm(new Usuarios());
+            OpenChildForm(new Usuarios());
         }
 
         private void btnTransacciones_Click(object sender, EventArgs e)
         {
-           OpenChildForm(new Transacciones());
+            OpenChildForm(new Transacciones());
         }
+
+        // pide confirmación; si OK invalida el token en el servidor,
+        // borra los caches de datos y cierra la ventana principal.
+        // Program.Main vuelve a mostrar el login al detectar LoggedOut = true.
+        private async void btnLogout_Click(object sender, EventArgs e)
+        {
+            var confirm = MessageBox.Show(
+                "¿Seguro que quieres cerrar sesión?",
+                "Cerrar sesión",
+                MessageBoxButtons.OKCancel,
+                MessageBoxIcon.Question);
+
+            if (confirm != DialogResult.OK) return;
+
+            btnLogout.Enabled = false;
+            try
+            {
+                // invalidamos el token en el servidor y lo limpiamos en memoria
+                await _api.LogoutAsync();
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Logout error: " + ex.Message);
+            }
+
+            // borramos todos los caches de datos para que el siguiente login
+            // empiece limpio (sin información del admin anterior)
+            CacheService.ClearDataCaches();
+            Catalogs.Clear();
+
+            LoggedOut = true;
+            this.Close();
+        }
+
+     
     }
 }

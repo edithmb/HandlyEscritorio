@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Filter));
             this.btnFilter = new System.Windows.Forms.Button();
             this.panelUserFilter = new System.Windows.Forms.Panel();
             this.gbAccountState = new System.Windows.Forms.GroupBox();
@@ -55,9 +56,9 @@
             this.panelTransactionFilter = new System.Windows.Forms.Panel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.dtpTaskFrom = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.dtpTaskUntil = new System.Windows.Forms.DateTimePicker();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.chklTaskState = new System.Windows.Forms.CheckedListBox();
             this.panelReportFilter = new System.Windows.Forms.Panel();
@@ -344,9 +345,9 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.label1);
-            this.groupBox2.Controls.Add(this.dateTimePicker1);
+            this.groupBox2.Controls.Add(this.dtpTaskFrom);
             this.groupBox2.Controls.Add(this.label2);
-            this.groupBox2.Controls.Add(this.dateTimePicker2);
+            this.groupBox2.Controls.Add(this.dtpTaskUntil);
             this.groupBox2.Location = new System.Drawing.Point(13, 198);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(305, 118);
@@ -363,13 +364,13 @@
             this.label1.TabIndex = 14;
             this.label1.Text = "Desde:";
             // 
-            // dateTimePicker1
+            // dtpTaskFrom
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(73, 30);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.ShowCheckBox = true;
-            this.dateTimePicker1.Size = new System.Drawing.Size(220, 26);
-            this.dateTimePicker1.TabIndex = 9;
+            this.dtpTaskFrom.Location = new System.Drawing.Point(73, 30);
+            this.dtpTaskFrom.Name = "dtpTaskFrom";
+            this.dtpTaskFrom.ShowCheckBox = true;
+            this.dtpTaskFrom.Size = new System.Drawing.Size(220, 26);
+            this.dtpTaskFrom.TabIndex = 9;
             // 
             // label2
             // 
@@ -380,13 +381,13 @@
             this.label2.TabIndex = 16;
             this.label2.Text = "Hasta:";
             // 
-            // dateTimePicker2
+            // dtpTaskUntil
             // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(73, 75);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.ShowCheckBox = true;
-            this.dateTimePicker2.Size = new System.Drawing.Size(220, 26);
-            this.dateTimePicker2.TabIndex = 10;
+            this.dtpTaskUntil.Location = new System.Drawing.Point(73, 75);
+            this.dtpTaskUntil.Name = "dtpTaskUntil";
+            this.dtpTaskUntil.ShowCheckBox = true;
+            this.dtpTaskUntil.Size = new System.Drawing.Size(220, 26);
+            this.dtpTaskUntil.TabIndex = 10;
             // 
             // groupBox1
             // 
@@ -413,7 +414,7 @@
             this.panelReportFilter.Controls.Add(this.gbReportState);
             this.panelReportFilter.Location = new System.Drawing.Point(693, 13);
             this.panelReportFilter.Name = "panelReportFilter";
-            this.panelReportFilter.Size = new System.Drawing.Size(360, 280);
+            this.panelReportFilter.Size = new System.Drawing.Size(318, 207);
             this.panelReportFilter.TabIndex = 2;
             // 
             // gbReportState
@@ -421,7 +422,7 @@
             this.gbReportState.Controls.Add(this.chklReportState);
             this.gbReportState.Location = new System.Drawing.Point(13, 13);
             this.gbReportState.Name = "gbReportState";
-            this.gbReportState.Size = new System.Drawing.Size(280, 240);
+            this.gbReportState.Size = new System.Drawing.Size(280, 171);
             this.gbReportState.TabIndex = 0;
             this.gbReportState.TabStop = false;
             this.gbReportState.Text = "Estado de la denuncia";
@@ -432,7 +433,7 @@
             this.chklReportState.FormattingEnabled = true;
             this.chklReportState.Location = new System.Drawing.Point(15, 30);
             this.chklReportState.Name = "chklReportState";
-            this.chklReportState.Size = new System.Drawing.Size(248, 188);
+            this.chklReportState.Size = new System.Drawing.Size(248, 119);
             this.chklReportState.TabIndex = 0;
             // 
             // Filter
@@ -444,6 +445,7 @@
             this.Controls.Add(this.panelTransactionFilter);
             this.Controls.Add(this.panelUserFilter);
             this.Controls.Add(this.btnFilter);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Filter";
             this.Text = "Filtrar";
             this.Load += new System.EventHandler(this.Filter_Load);
@@ -500,9 +502,9 @@
         private System.Windows.Forms.CheckedListBox chklTaskState;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker dtpTaskFrom;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.DateTimePicker dtpTaskUntil;
         private System.Windows.Forms.Panel panelReportFilter;
         private System.Windows.Forms.GroupBox gbReportState;
         private System.Windows.Forms.CheckedListBox chklReportState;

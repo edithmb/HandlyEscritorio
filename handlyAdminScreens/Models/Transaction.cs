@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.Json.Serialization;
-using System.Threading.Tasks;
+using handlyAdminScreens.Services;
 
 namespace handlyAdminScreens.Models
 {
@@ -19,6 +16,8 @@ namespace handlyAdminScreens.Models
         [JsonIgnore]
         public long TaskID => Task?.Id ?? 0;
 
+
+        //TODO crec que es pot treure
         [JsonIgnore]
         public string TaskCreation =>
             (Task != null && Task.CreationDate.HasValue)
@@ -54,26 +53,24 @@ namespace handlyAdminScreens.Models
             [JsonPropertyName("task_state_id")]
             public int TaskStateId { get; set; }
 
+            // nombre del estado de la tarea: lo cogemos del catálogo cargado tras el login
             [JsonIgnore]
             public string TaskStateName
             {
                 get
                 {
-                    switch (TaskStateId)
+                    string result = "-";
+                    var name = Catalogs.TaskStateName(TaskStateId);
+
+                    if (!string.IsNullOrEmpty(name) && name != "-")
                     {
-                        case 1: return "solicited";
-                        case 2: return "negotiating";
-                        case 3: return "in process";
-                        case 4: return "accepted";
-                        case 5: return "finalized";
-                        case 6: return "cancelled";
-                        case 7: return "expired";
-                        default: return "otro";
+                        result = name.ToLower();
                     }
+
+                    return result;
                 }
             }
 
-            // nullable porque algunos timestamps pueden venir vacíos / en formato raro
             [JsonPropertyName("creation_date")]
             public DateTime? CreationDate { get; set; }
 
@@ -84,7 +81,6 @@ namespace handlyAdminScreens.Models
             [JsonPropertyName("professional")]
             public UserShortData Professional { get; set; }
 
-            // fotos asociadas a la tarea (base64, pueden ser null)
             [JsonPropertyName("photo_1")]
             public string Photo1 { get; set; }
 
@@ -115,7 +111,6 @@ namespace handlyAdminScreens.Models
             [JsonPropertyName("payment_method")]
             public string PaymentMethod { get; set; }
 
-            // nullable porque puede que aún no se haya pagado
             [JsonPropertyName("payment_date")]
             public DateTime? PaymentDate { get; set; }
 
@@ -127,34 +122,3 @@ namespace handlyAdminScreens.Models
         }
     }
 }
-
-
-/*
- edith tiene que enviar algo asi:
-
-{
-  "task": {
-    "id": 1050,
-    "title": "Fuga de agua en el baño",
-    "task_state_id": 5,
-    "creation_date": "2026-04-01T10:00:00",
-    "client": {
-      "id": 45,
-      "name": "María",
-      "surname": "García"
-    },
-    "professional": {
-      "id": 89,
-      "name": "Juan",
-      "surname": "Pérez"
-    },
-    "profession_name": "Fontanero"
-  },
-  "invoice": {
-    "total_payment": 60.50,
-    "app_comission": 6.05,
-    "payment_method": "tarjeta"
-  }
-}
-
- */
